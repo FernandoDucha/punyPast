@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="include" displayName="include" projectFiles="true">
+      <itemPath>include/BinaryRandomWalk.h</itemPath>
+      <itemPath>include/BufferedProbabilityBase.h</itemPath>
+      <itemPath>include/Cronometro.h</itemPath>
+      <itemPath>include/ExprBinaryRandomWalk.h</itemPath>
+      <itemPath>include/ExprParserWidget.h</itemPath>
+      <itemPath>include/ExprRNG.h</itemPath>
+      <itemPath>include/ExprTextEdit.h</itemPath>
+      <itemPath>include/FileInStreamInterface.h</itemPath>
+      <itemPath>include/FileOutStreamInterface.h</itemPath>
+      <itemPath>include/FileQBRWWidget.h</itemPath>
+      <itemPath>include/FileQTreeWidget.h</itemPath>
+      <itemPath>include/FileRawBuffer.h</itemPath>
+      <itemPath>include/FileStreamInterface.h</itemPath>
+      <itemPath>include/GULineEdit.h</itemPath>
+      <itemPath>include/GeneralUsage.h</itemPath>
+      <itemPath>include/GraphMagnifier.h</itemPath>
+      <itemPath>include/GraphPanner.h</itemPath>
+      <itemPath>include/GraphPicker.h</itemPath>
+      <itemPath>include/GraphUi.h</itemPath>
+      <itemPath>include/IInputWidget.h</itemPath>
+      <itemPath>include/IProbabilityBase.h</itemPath>
+      <itemPath>include/IRNG.h</itemPath>
+      <itemPath>include/IRWBufferManager.h</itemPath>
+      <itemPath>include/IRWBufferedItem.h</itemPath>
+      <itemPath>include/IRWItem.h</itemPath>
+      <itemPath>include/IRWSet.h</itemPath>
+      <itemPath>include/IRandomWalk.h</itemPath>
+      <itemPath>include/LCGBinaryRandomWalk.h</itemPath>
+      <itemPath>include/LCGRngWidget.h</itemPath>
+      <itemPath>include/Overlay.h</itemPath>
+      <itemPath>Parser.h</itemPath>
+      <itemPath>include/ProbabilityBase.h</itemPath>
+      <itemPath>include/QGraphItemAbstract.h</itemPath>
+      <itemPath>include/QGraphWidget.h</itemPath>
+      <itemPath>include/RWBufferedBase.h</itemPath>
+      <itemPath>include/RWBufferedDp.h</itemPath>
+      <itemPath>include/RWBufferedDpSet.h</itemPath>
+      <itemPath>include/RWBufferedVec.h</itemPath>
+      <itemPath>include/RWDPBase.h</itemPath>
+      <itemPath>include/RWDp.h</itemPath>
+      <itemPath>include/RWDpSet.h</itemPath>
+      <itemPath>include/RWVBase.h</itemPath>
+      <itemPath>include/RWVec.h</itemPath>
+      <itemPath>include/RWVecSet.h</itemPath>
+      <itemPath>include/RandomNumberGenerator.h</itemPath>
+      <itemPath>include/RandomSource.h</itemPath>
+      <itemPath>include/Token.h</itemPath>
+      <itemPath>include/Tokenizer.h</itemPath>
+      <itemPath>include/ui_GraphUi.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="f1" displayName="rngs" projectFiles="true">
+      <itemPath>rngs/RNGLinearCong.cpp</itemPath>
+      <itemPath>rngs/RNGLinearCong.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="source" displayName="source" projectFiles="true">
+      <itemPath>source/BinaryRandomWalk.cpp</itemPath>
+      <itemPath>source/BufferedProbabilityBase.cpp</itemPath>
+      <itemPath>source/Cronometro.cpp</itemPath>
+      <itemPath>source/ExprBinaryRandomWalk.cpp</itemPath>
+      <itemPath>source/ExprParserWidget.cpp</itemPath>
+      <itemPath>source/ExprRNG.cpp</itemPath>
+      <itemPath>source/ExprTextEdit.cpp</itemPath>
+      <itemPath>source/FileInStreamInterface.cpp</itemPath>
+      <itemPath>source/FileOutStreamInterface.cpp</itemPath>
+      <itemPath>source/FileQBRWWidget.cpp</itemPath>
+      <itemPath>source/FileQTreeWidget.cpp</itemPath>
+      <itemPath>source/FileRawBuffer.cpp</itemPath>
+      <itemPath>source/FileStreamInterface.cpp</itemPath>
+      <itemPath>source/GULineEdit.cpp</itemPath>
+      <itemPath>source/GeneralUsage.cpp</itemPath>
+      <itemPath>source/GraphMagnifier.cpp</itemPath>
+      <itemPath>source/GraphPanner.cpp</itemPath>
+      <itemPath>source/GraphPicker.cpp</itemPath>
+      <itemPath>source/GraphUi.cpp</itemPath>
+      <itemPath>source/IInputWidget.cpp</itemPath>
+      <itemPath>source/IProbabilityBase.cpp</itemPath>
+      <itemPath>source/IRNG.cpp</itemPath>
+      <itemPath>source/IRWBufferManager.cpp</itemPath>
+      <itemPath>source/IRWBufferedItem.cpp</itemPath>
+      <itemPath>source/IRWItem.cpp</itemPath>
+      <itemPath>source/IRWSet.cpp</itemPath>
+      <itemPath>source/IRandomWalk.cpp</itemPath>
+      <itemPath>source/LCGBinaryRandomWalk.cpp</itemPath>
+      <itemPath>source/LCGRngWidget.cpp</itemPath>
+      <itemPath>source/Overlay.cpp</itemPath>
+      <itemPath>Parser.c</itemPath>
+      <itemPath>Parser_Lex.c</itemPath>
+      <itemPath>source/ProbabilityBase.cpp</itemPath>
+      <itemPath>source/QGraphItemAbstract.cpp</itemPath>
+      <itemPath>source/QGraphWidget.cpp</itemPath>
+      <itemPath>source/RWBufferedDp.cpp</itemPath>
+      <itemPath>source/RWBufferedDpSet.cpp</itemPath>
+      <itemPath>source/RWBufferedVec.cpp</itemPath>
+      <itemPath>source/RWDp.cpp</itemPath>
+      <itemPath>source/RWDpSet.cpp</itemPath>
+      <itemPath>source/RWVec.cpp</itemPath>
+      <itemPath>source/RWVecSet.cpp</itemPath>
+      <itemPath>source/RandomNumberGenerator.cpp</itemPath>
+      <itemPath>source/RandomSource.cpp</itemPath>
+      <itemPath>source/Token.cpp</itemPath>
+      <itemPath>source/Tokenizer.cpp</itemPath>
+      <itemPath>source/main.cpp</itemPath>
+      <itemPath>teste.lex</itemPath>
+      <itemPath>teste.y</itemPath>
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>include</Elem>
+    <Elem>source</Elem>
+    <Elem>rngs</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="4">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <qt>
+        <modules>core gui widgets</modules>
+      </qt>
+      <compileType>
+        <ccTool>
+          <standard>8</standard>
+          <incDir>
+            <pElem>rngs/</pElem>
+            <pElem>include</pElem>
+            <pElem>/usr/local/qwt-6.1.0/include</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerLibLibItem>gmp</linkerLibLibItem>
+            <linkerLibLibItem>gmpxx</linkerLibLibItem>
+            <linkerLibLibItem>gsl</linkerLibLibItem>
+            <linkerLibLibItem>gslcblas</linkerLibLibItem>
+            <linkerLibFileItem>/usr/local/qwt-6.1.0/lib/libqwt.so</linkerLibFileItem>
+            <linkerLibLibItem>fl</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <packaging>
+        <packType>Debian</packType>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+        <packInfoList>
+          <packInfoListElem name="Package" value="RandomFwkGUI" mandatory="true"/>
+          <packInfoListElem name="Version" value="1.0" mandatory="true"/>
+          <packInfoListElem name="Architecture" value="amd64" mandatory="false"/>
+          <packInfoListElem name="Maintainer" value="fordem" mandatory="false"/>
+          <packInfoListElem name="Description" value="..." mandatory="false"/>
+        </packInfoList>
+      </packaging>
+      <item path="Parser.c" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Parser.h" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Parser_Lex.c" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/BinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/BufferedProbabilityBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Cronometro.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ExprBinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ExprParserWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ExprRNG.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ExprTextEdit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileInStreamInterface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileOutStreamInterface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileQBRWWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileQTreeWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileRawBuffer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileStreamInterface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GULineEdit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GeneralUsage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GraphMagnifier.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GraphPanner.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GraphPicker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GraphUi.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IInputWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IProbabilityBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRNG.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRWBufferManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRWBufferedItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRWItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRWSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRandomWalk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/LCGBinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/LCGRngWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Overlay.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ProbabilityBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/QGraphItemAbstract.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/QGraphWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWBufferedBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWBufferedDp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWBufferedDpSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWBufferedVec.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWDPBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWDp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWDpSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWVBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWVec.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWVecSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RandomNumberGenerator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RandomSource.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Token.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Tokenizer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ui_GraphUi.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="rngs/RNGLinearCong.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="rngs/RNGLinearCong.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="source/BinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/BufferedProbabilityBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Cronometro.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ExprBinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ExprParserWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ExprRNG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ExprTextEdit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileInStreamInterface.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileOutStreamInterface.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileQBRWWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileQTreeWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileRawBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileStreamInterface.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GULineEdit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GeneralUsage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GraphMagnifier.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GraphPanner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GraphPicker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GraphUi.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IInputWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IProbabilityBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRNG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRWBufferManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRWBufferedItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRWItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRWSet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRandomWalk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/LCGBinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/LCGRngWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Overlay.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ProbabilityBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/QGraphItemAbstract.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/QGraphWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWBufferedDp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWBufferedDpSet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWBufferedVec.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWDp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWDpSet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWVec.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWVecSet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RandomNumberGenerator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RandomSource.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Token.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Tokenizer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="4">
+      <toolsSet>
+        <compilerSet>GNU|GNU</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <qt>
+        <buildMode>1</buildMode>
+        <modules>core gui widgets</modules>
+        <defs>
+          <Elem>QMAKE_CXXFLAGS += -std=c++11 -m64 -pipe</Elem>
+        </defs>
+      </qt>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <standard>8</standard>
+          <incDir>
+            <pElem>rngs</pElem>
+            <pElem>include</pElem>
+            <pElem>/usr/local/qwt-6.1.0/include</pElem>
+          </incDir>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerLibProjectItem>
+              <makeArtifact PL="../RandomFwk"
+                            CT="3"
+                            CN="Debug"
+                            AC="true"
+                            BL="true"
+                            WD="../RandomFwk"
+                            BC="${MAKE}  -f Makefile CONF=Debug"
+                            CC="${MAKE}  -f Makefile CONF=Debug clean"
+                            OP="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/librandomfwk.a">
+              </makeArtifact>
+            </linkerLibProjectItem>
+            <linkerLibLibItem>gmp</linkerLibLibItem>
+            <linkerLibLibItem>gmpxx</linkerLibLibItem>
+            <linkerLibFileItem>/usr/local/qwt-6.1.0/lib/libqwt.so</linkerLibFileItem>
+            <linkerLibLibItem>fl</linkerLibLibItem>
+            <linkerLibLibItem>gsl</linkerLibLibItem>
+            <linkerLibLibItem>gslcblas</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <packaging>
+        <packType>Debian</packType>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+        <packInfoList>
+          <packInfoListElem name="Package" value="RandomFwkGUI" mandatory="true"/>
+          <packInfoListElem name="Version" value="1.0" mandatory="true"/>
+          <packInfoListElem name="Architecture" value="amd64" mandatory="false"/>
+          <packInfoListElem name="Maintainer" value="fordem" mandatory="false"/>
+          <packInfoListElem name="Description" value="..." mandatory="false"/>
+        </packInfoList>
+      </packaging>
+      <item path="Parser.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Parser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Parser_Lex.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="include/BinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/BufferedProbabilityBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Cronometro.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ExprBinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ExprParserWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ExprRNG.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ExprTextEdit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileInStreamInterface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileOutStreamInterface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileQBRWWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileQTreeWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileRawBuffer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileStreamInterface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GULineEdit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GeneralUsage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GraphMagnifier.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GraphPanner.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GraphPicker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GraphUi.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IInputWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IProbabilityBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRNG.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRWBufferManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRWBufferedItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRWItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRWSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRandomWalk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/LCGBinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/LCGRngWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Overlay.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ProbabilityBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/QGraphItemAbstract.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/QGraphWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWBufferedBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWBufferedDp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWBufferedDpSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWBufferedVec.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWDPBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWDp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWDpSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWVBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWVec.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWVecSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RandomNumberGenerator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RandomSource.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Token.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Tokenizer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ui_GraphUi.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="rngs/RNGLinearCong.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="rngs/RNGLinearCong.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="source/BinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/BufferedProbabilityBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Cronometro.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ExprBinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ExprParserWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ExprRNG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ExprTextEdit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileInStreamInterface.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileOutStreamInterface.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileQBRWWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileQTreeWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileRawBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileStreamInterface.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GULineEdit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GeneralUsage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GraphMagnifier.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GraphPanner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GraphPicker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GraphUi.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IInputWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IProbabilityBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRNG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRWBufferManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRWBufferedItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRWItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRWSet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRandomWalk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/LCGBinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/LCGRngWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Overlay.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ProbabilityBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/QGraphItemAbstract.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/QGraphWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWBufferedDp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWBufferedDpSet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWBufferedVec.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWDp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWDpSet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWVec.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWVecSet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RandomNumberGenerator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RandomSource.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Token.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Tokenizer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="teste.lex" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="teste.y" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Windows" type="4">
+      <toolsSet>
+        <compilerSet>MinGW|MinGW</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <qt>
+        <modules>core gui</modules>
+      </qt>
+      <compileType>
+        <ccTool>
+          <standard>8</standard>
+          <incDir>
+            <pElem>include</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerLibLibItem>qwt</linkerLibLibItem>
+            <linkerLibLibItem>blas</linkerLibLibItem>
+            <linkerLibLibItem>gsl</linkerLibLibItem>
+            <linkerLibLibItem>m</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="Parser.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Parser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Parser_Lex.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="include/BinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/BufferedProbabilityBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Cronometro.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ExprBinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ExprParserWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ExprRNG.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ExprTextEdit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileInStreamInterface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileOutStreamInterface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileQBRWWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileQTreeWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileRawBuffer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/FileStreamInterface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GULineEdit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GeneralUsage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GraphMagnifier.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GraphPanner.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GraphPicker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GraphUi.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IInputWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IProbabilityBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRNG.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRWBufferManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRWBufferedItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRWItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRWSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/IRandomWalk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/LCGBinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/LCGRngWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Overlay.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ProbabilityBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/QGraphItemAbstract.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/QGraphWidget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWBufferedBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWBufferedDp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWBufferedDpSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWBufferedVec.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWDPBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWDp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWDpSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWVBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWVec.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWVecSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RandomNumberGenerator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RandomSource.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Token.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Tokenizer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/ui_GraphUi.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="rngs/RNGLinearCong.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="rngs/RNGLinearCong.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="source/BinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/BufferedProbabilityBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Cronometro.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ExprBinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ExprParserWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ExprRNG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ExprTextEdit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileInStreamInterface.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileOutStreamInterface.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileQBRWWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileQTreeWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileRawBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/FileStreamInterface.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GULineEdit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GeneralUsage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GraphMagnifier.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GraphPanner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GraphPicker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GraphUi.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IInputWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IProbabilityBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRNG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRWBufferManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRWBufferedItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRWItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRWSet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/IRandomWalk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/LCGBinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/LCGRngWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Overlay.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ProbabilityBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/QGraphItemAbstract.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/QGraphWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWBufferedDp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWBufferedDpSet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWBufferedVec.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWDp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWDpSet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWVec.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWVecSet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RandomNumberGenerator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RandomSource.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Token.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Tokenizer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="teste.lex" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="teste.y" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

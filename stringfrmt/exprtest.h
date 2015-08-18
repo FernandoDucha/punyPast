@@ -1,0 +1,1 @@
+bool formatedString(char *str);
