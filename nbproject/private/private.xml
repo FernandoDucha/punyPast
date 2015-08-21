@@ -5,7 +5,7 @@
     </code-assistance-data>
     <data xmlns="http://www.netbeans.org/ns/make-project-private/1">
         <activeConfTypeElem>4</activeConfTypeElem>
-        <activeConfIndexElem>1</activeConfIndexElem>
+        <activeConfIndexElem>0</activeConfIndexElem>
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
@@ -18,26 +18,45 @@
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/IRWBufferedItem.h</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/LCGRngWidget.h</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/QPointFSLC.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/IRWItem.h</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/ProbabilityBase.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/Walks2DOverlay.cpp</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/QPollarF.cpp</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/PollarSet.cpp</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/BufferedPollarRwDp.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/DFAInputGui.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/PollarDrawingEngine.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/MemoryRandomWalk.h</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/PollarBufferedRwDpSet.h</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/ProbabilityBase.cpp</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/GraphUi.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/DFAInputGui.cpp</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/BufferedPollarDrawingEngine.cpp</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/teste.lex</file>
-            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/SweepLine.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/Walks2DOverlay.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/GraphPicker.cpp</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/main.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/VEdge.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/Parser.h</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/QPointFSLC.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/SweepLine.cpp</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/IRandomWalk.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/IDrawingEngine.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/GraphPicker.h</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/SweepLine.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/Overlay.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/GraphUi.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/WeierstrassDrawingEngine.h</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/LCGBinaryRandomWalk.h</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/PollarSet.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/ui_GraphUi.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/Overlay.h</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/BufferedProbabilityBase.h</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/BufferedProbabilityBase.cpp</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/QPollarF.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/WeiestrassInputWidget.cpp</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/LCGBinaryRandomWalk.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/DFA.h</file>
         </group>
     </open-files>
 </project-private>

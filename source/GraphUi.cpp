@@ -70,7 +70,7 @@ void GraphUi::connections() {
     connect(widget.comboytks, SIGNAL(valueChanged(int)), this, SLOT(changedTicksY(int)));
     connect(widget.gridOnOff, SIGNAL(stateChanged(int)), this, SLOT(gridOnOff(int)));
     connect(widget.quadDist, SIGNAL(stateChanged(int)), this, SLOT(quadDistCalled(int)));
-
+    connect(widget.noColision, SIGNAL(stateChanged(int)), this, SLOT(memoryRwOlay(int)));
     connect(widget.spinmin, SIGNAL(valueChanged(int)), this, SLOT(spinMinVal(int)));
     connect(widget.spinmax, SIGNAL(valueChanged(int)), this, SLOT(spinMaxVal(int)));
     connect(widget.spinbinmin, SIGNAL(valueChanged(int)), this, SLOT(spinBinMinVal(int)));
@@ -79,8 +79,9 @@ void GraphUi::connections() {
     connect(widget.spinintmax, SIGNAL(valueChanged(int)), this, SLOT(spinIntMaxVal(int)));
     connect(widget.spin2dmin, SIGNAL(valueChanged(int)), this, SLOT(spin2DMinVal(int)));
     connect(widget.spin2dmax, SIGNAL(valueChanged(int)), this, SLOT(spin2DMaxVal(int)));
-    connect(widget.choose, SIGNAL(activated(int)), this, SLOT(choose(int)));
+    connect(widget.choose, SIGNAL(currentIndexChanged(int)), this, SLOT(choose(int)));
     connect(widget.showall, SIGNAL(stateChanged(int)), this, SLOT(showall(int)));
+    connect(widget.walks2d, SIGNAL(plotItem(IRWItem<QPollarF>*)), this, SLOT(plotMemoryWalk(IRWItem<QPollarF>*)));
     connect(this, SIGNAL(emitCallQDist(int)), this, SLOT(quadDistCalled(int)));
     connect(widget.ScreenShot, SIGNAL(pressed()), this, SLOT(animate()));
     connect(widget.rand_source, SIGNAL(choiceType(RS_TYPES)), this, SLOT(configureGuiRSChoice(RS_TYPES)));
@@ -158,6 +159,7 @@ void GraphUi::configureWidgetProbBase(IRandomWalk* irwk) {
                     fittingDrawing = new FittingDrawingEngine<int>(widget.plotview);
                     pollarDrawing = new PollarDrawingEngine(widget.plotview);
                     pollarDrawing->setDataSet(prob->getAll2DWalks());
+                    widget.choose->setEnabled(true);
                     break;
                 case ALL_DISK:
                     prob = new BufferedProbabilityBase(irwk);
@@ -170,6 +172,7 @@ void GraphUi::configureWidgetProbBase(IRandomWalk* irwk) {
                     fittingDrawing = new FittingDrawingEngine<int>(widget.plotview);
                     pollarDrawing = new BufferedPollarDrawingEngine(widget.plotview);
                     pollarDrawing->setDataSet(prob->getAll2DWalks());
+                    widget.choose->setEnabled(true);
                     break;
                 case SQL_DB:
                     prob = new BDProbabilityBase(irwk);
@@ -180,6 +183,7 @@ void GraphUi::configureWidgetProbBase(IRandomWalk* irwk) {
                     integralDrawing = new BDIntegralDrawingEngine<int>(widget.plotview);
                     integralDrawing->setDataSet(dynamic_cast<BDProbabilityBase*> (prob)->getBd());
                     fittingDrawing = new FittingDrawingEngine<int>(widget.plotview);
+                    widget.choose->setEnabled(true);
                     break;
             }
 
@@ -204,6 +208,7 @@ void GraphUi::configureWidgetProbBase(IRandomWalk* irwk) {
                     fittingDrawing = new FittingDrawingEngine<int>(widget.plotview);
                     pollarDrawing = new PollarDrawingEngine(widget.plotview);
                     pollarDrawing->setDataSet(prob->getAll2DWalks());
+                    widget.choose->setEnabled(true);
                     break;
                 case ALL_DISK:
                     prob = new BufferedProbabilityBase(irwk);
@@ -216,6 +221,7 @@ void GraphUi::configureWidgetProbBase(IRandomWalk* irwk) {
                     fittingDrawing = new FittingDrawingEngine<int>(widget.plotview);
                     pollarDrawing = new BufferedPollarDrawingEngine(widget.plotview);
                     pollarDrawing->setDataSet(prob->getAll2DWalks());
+                    widget.choose->setEnabled(true);
                     break;
                 case SQL_DB:
                     prob = new BDProbabilityBase(irwk);
@@ -226,6 +232,7 @@ void GraphUi::configureWidgetProbBase(IRandomWalk* irwk) {
                     integralDrawing = new BDIntegralDrawingEngine<int>(widget.plotview);
                     integralDrawing->setDataSet(dynamic_cast<BDProbabilityBase*> (prob)->getBd());
                     fittingDrawing = new FittingDrawingEngine<int>(widget.plotview);
+                    widget.choose->setEnabled(true);
                     break;
             }
         }
@@ -242,7 +249,7 @@ void GraphUi::configureGuiRSChoice(RS_TYPES rs_type) {
             widget.lcg_brn_wid->setMeVisible(false);
             connect(widget.pDFA, SIGNAL(released()), this, SLOT(dfaPressedRW()));
             disconnect(widget.pDFA, SIGNAL(released()), this, SLOT(dfaPressedWeier()));
-            widget.choose->setEnabled(true);
+            widget.choose->setEnabled(false);
             break;
         case RNG_EP:
             widget.weie_ndcf_wid->setMeVisible(false);
@@ -251,7 +258,7 @@ void GraphUi::configureGuiRSChoice(RS_TYPES rs_type) {
             widget.lcg_brn_wid->setMeVisible(false);
             connect(widget.pDFA, SIGNAL(released()), this, SLOT(dfaPressedRW()));
             disconnect(widget.pDFA, SIGNAL(released()), this, SLOT(dfaPressedWeier()));
-            widget.choose->setEnabled(true);
+            widget.choose->setEnabled(false);
             break;
         case RNG_CD:
             widget.weie_ndcf_wid->setMeVisible(false);
@@ -260,7 +267,7 @@ void GraphUi::configureGuiRSChoice(RS_TYPES rs_type) {
             widget.file_qbrw_wid->setMeVisible(false);
             connect(widget.pDFA, SIGNAL(released()), this, SLOT(dfaPressedRW()));
             disconnect(widget.pDFA, SIGNAL(released()), this, SLOT(dfaPressedWeier()));
-            widget.choose->setEnabled(true);
+            widget.choose->setEnabled(false);
             break;
         case WEIES:
             widget.weie_ndcf_wid->setMeVisible(true);
@@ -455,6 +462,25 @@ void GraphUi::spin2DMaxVal(int v) {
     }
 }
 
+void GraphUi::plotMemoryWalk(IRWItem<QPollarF> * item) {
+    pollarDrawing->detach();
+    pollarDrawing->addToPlot(item);
+    delete item;
+    widget.plotview->replot();
+}
+
+void GraphUi::memoryRwOlay(int state) {
+    if (state == Qt::Checked) {
+        MemoryRandomWalk * novo = new MemoryRandomWalk(prob->GetThisbrwk(), prob->GetThisbrwk()->GetWalkSize());
+        widget.walks2d->setMemoryRW(novo);
+        widget.walks2d->setVisible(true);
+    } else {
+        widget.walks2d->setMemoryRW(NULL);
+        widget.walks2d->setVisible(false);
+
+    }
+}
+
 void GraphUi::choose(int val) {
     if (val == 0) {
         if (chooseVal == 1) {
@@ -540,6 +566,8 @@ void GraphUi::choose(int val) {
 }
 
 void GraphUi::AcumuladoGUI(bool visible, int spinMax, int spinMin) {
+    widget.noColision->setVisible(false);
+    widget.lblNoColision->setVisible(false);
     widget.quadDist->setVisible(visible);
     widget.lblQuadDist->setVisible(visible);
     widget.spinmax->setVisible(visible);
@@ -550,6 +578,11 @@ void GraphUi::AcumuladoGUI(bool visible, int spinMax, int spinMin) {
 }
 
 void GraphUi::D2RwGUI(bool visible, int spinMax, int spinMin) {
+    if (!visible) {
+        widget.noColision->setChecked(false);
+    }
+    widget.noColision->setVisible(visible);
+    widget.lblNoColision->setVisible(visible);
     widget.quadDist->setVisible(visible);
     widget.lblQuadDist->setVisible(visible);
     widget.spin2dmax->setVisible(visible);
@@ -561,6 +594,8 @@ void GraphUi::D2RwGUI(bool visible, int spinMax, int spinMin) {
 }
 
 void GraphUi::PassosGUI(bool visible, int spinMax, int spinMin) {
+    widget.noColision->setVisible(false);
+    widget.lblNoColision->setVisible(false);
     widget.quadDist->setVisible(visible);
     widget.lblQuadDist->setVisible(visible);
     widget.spinbinmax->setVisible(visible);
@@ -572,6 +607,8 @@ void GraphUi::PassosGUI(bool visible, int spinMax, int spinMin) {
 }
 
 void GraphUi::IntegralGUI(bool visible, int spinMax, int spinMin) {
+    widget.noColision->setVisible(false);
+    widget.lblNoColision->setVisible(false);
     widget.quadDist->setVisible(visible);
     widget.lblQuadDist->setVisible(visible);
     widget.spinintmax->setVisible(visible);
@@ -582,6 +619,8 @@ void GraphUi::IntegralGUI(bool visible, int spinMax, int spinMin) {
 }
 
 void GraphUi::CommonGui(bool visible) {
+    widget.noColision->setVisible(false);
+    widget.lblNoColision->setVisible(false);
     widget.lines->setVisible(visible);
     widget.linesLbl->setVisible(visible);
     widget.nrLinhasInf->setVisible(visible);
@@ -617,16 +656,24 @@ void GraphUi::showall(int a) {
 void GraphUi::animate() {
 
 
-    QFileDialog D(this, "Escolha o nome do arquivo.", "./", "*.pdf");
+    QFileDialog D(this, "Escolha o nome do arquivo.", "./");
     D.setAcceptMode(QFileDialog::AcceptSave);
     QStringList s;
+    QStringList filters;
+    filters << "pdf (*.pdf)"
+            << "png (*.png)";
+    D.setNameFilters(filters);
     if (D.exec()) {
         QRectF bound;
         s = D.selectedFiles();
         QwtPlotRenderer * qwtr = new QwtPlotRenderer();
         qwtr->setDiscardFlag(QwtPlotRenderer::DiscardNone);
         qwtr->setLayoutFlag(QwtPlotRenderer::FrameWithScales);
-        qwtr->renderDocument(widget.plotview, s.at(0), "png", widget.plotview->canvas()->size(), 75);
+        if (D.selectedNameFilter() == filters[0]) {
+            qwtr->renderDocument(widget.plotview, s.at(0), "pdf", widget.plotview->canvas()->size(), 75);
+        }else if (D.selectedNameFilter() == filters[1]) {
+            qwtr->renderDocument(widget.plotview, s.at(0), "png", widget.plotview->canvas()->size(), 75);
+        }
     }
 }
 

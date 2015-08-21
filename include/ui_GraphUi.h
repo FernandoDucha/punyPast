@@ -41,7 +41,7 @@
 #include "LCGBinaryRandomWalk.h"
 #include "LCGRngWidget.h"
 #include "WeiestrassInputWidget.h"
-
+#include "Walks2DOverlay.h"
 QT_BEGIN_NAMESPACE
 
 class Ui_GraphUi {
@@ -81,7 +81,9 @@ public:
     QPushButton * randomSourceChoice;
     QPushButton * pDFA;
     QPushButton * ScreenShot;
-
+    QCheckBox * noColision;
+    QLabel * lblNoColision;
+    Walks2DOverlay * walks2d;
     void setupUi(QMainWindow *GraphUi) {
         if (GraphUi->objectName().isEmpty())
             GraphUi->setObjectName(QString::fromUtf8("GraphUi"));
@@ -143,6 +145,8 @@ public:
         comboxtks->setContentsMargins(0, 0, 0, 0);
         ThisOverLay = new Overlay(centralwidget);
         expr_parse_wid->setOverlay(ThisOverLay);
+        walks2d = new Walks2DOverlay(centralwidget);
+        walks2d->setVisible(false);
         ystep = new QLabel(controlsW);
         ystep->setText("Ticks Min Y:");
         ystep->setContentsMargins(0, 0, 0, 0);
@@ -200,7 +204,11 @@ public:
         quadDist->setContentsMargins(0, 0, 0, 0);
         lblQuadDist = new QLabel("D^2:");
         lblQuadDist->setContentsMargins(0, 0, 0, 0);
-
+        noColision = new QCheckBox(NULL);
+        noColision->setContentsMargins(0, 0, 0, 0);
+        lblNoColision = new QLabel("No Collision:");
+        lblNoColision->setContentsMargins(0,0,0,0);
+        
         showall = new QCheckBox(NULL);
         showall->setContentsMargins(0, 0, 0, 0);
         labelshowall = new QLabel("Show All:");
@@ -227,7 +235,8 @@ public:
         labelshowall->setVisible(false);
         quadDist->setVisible(false);
         lblQuadDist->setVisible(false);
-        
+        lblNoColision->setVisible(false);
+        noColision->setVisible(false);
         grid = new QwtPlotGrid();
         QPen p;
         p.setBrush(QColor(125, 125, 125));
@@ -284,6 +293,9 @@ public:
         ctrlLinesLayout->addWidget(showall, 1, 5, Qt::AlignCenter | Qt::AlignHCenter);
         ctrlLinesLayout->addWidget(lblQuadDist, 2, 4, Qt::AlignCenter | Qt::AlignHCenter);
         ctrlLinesLayout->addWidget(quadDist, 2, 5, Qt::AlignCenter | Qt::AlignHCenter);
+        ctrlLinesLayout->addWidget(lblNoColision, 3, 4, Qt::AlignCenter | Qt::AlignHCenter);
+        ctrlLinesLayout->addWidget(noColision, 3, 5, Qt::AlignCenter | Qt::AlignHCenter);
+        
         //        file_qbrw_wid->setMinimumSize(400,150);
         controlsLayout->addWidget(file_qbrw_wid, 1, 10, 2, 3, Qt::AlignCenter | Qt::AlignHCenter);
         controlsLayout->addWidget(expr_parse_wid, 1, 10, 2, 3, Qt::AlignCenter | Qt::AlignHCenter);
@@ -302,7 +314,7 @@ public:
         controlsLayout->setContentsMargins(0, 0, 0, 0);
         gridLayout->addWidget(controlsW, 11, 0);
         gridLayout->addWidget(ThisOverLay, 0, 0, 10, 0, Qt::AlignCenter | Qt::AlignHCenter);
-
+        gridLayout->addWidget(walks2d,0,0,10,0,Qt::AlignCenter|Qt::AlignHCenter);
         //        controlsLayout->addWidget(enableExpression,1,14,2,1,Qt::AlignCenter | Qt::AlignTop);
         //        controlsLayout->addWidget(allowExpression,2,14,1,2,Qt::AlignLeft | Qt::AlignTop);
         //        controlsLayout->addWidget(okNoLabel,2,14,1,1,Qt::AlignCenter | Qt::AlignBottom);

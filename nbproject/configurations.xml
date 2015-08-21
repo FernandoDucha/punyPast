@@ -155,6 +155,7 @@
       <itemPath>include/Token.h</itemPath>
       <itemPath>include/Tokenizer.h</itemPath>
       <itemPath>include/VEdge.h</itemPath>
+      <itemPath>include/Walks2DOverlay.h</itemPath>
       <itemPath>include/WeierstrassDrawingEngine.h</itemPath>
       <itemPath>include/WeiestrassInputWidget.h</itemPath>
       <itemPath>include/ui_GraphUi.h</itemPath>
@@ -250,10 +251,11 @@
       <itemPath>source/RWVecSet.cpp</itemPath>
       <itemPath>source/RandomNumberGenerator.cpp</itemPath>
       <itemPath>source/RandomSource.cpp</itemPath>
-      <itemPath>include/SweepLine.cpp</itemPath>
+      <itemPath>source/SweepLine.cpp</itemPath>
       <itemPath>source/Token.cpp</itemPath>
       <itemPath>source/Tokenizer.cpp</itemPath>
       <itemPath>source/VEdge.cpp</itemPath>
+      <itemPath>source/Walks2DOverlay.cpp</itemPath>
       <itemPath>source/WeierstrassDrawingEngine.cpp</itemPath>
       <itemPath>source/WeiestrassInputWidget.cpp</itemPath>
       <itemPath>dieteste.c</itemPath>
@@ -545,8 +547,6 @@
       </item>
       <item path="include/RandomSource.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="include/SweepLine.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="include/SweepLine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Token.h" ex="false" tool="3" flavor2="0">
@@ -554,6 +554,8 @@
       <item path="include/Tokenizer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/VEdge.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Walks2DOverlay.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/WeierstrassDrawingEngine.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -935,11 +937,15 @@
       </item>
       <item path="source/RandomSource.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/SweepLine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/Token.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/Tokenizer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/VEdge.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Walks2DOverlay.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/WeierstrassDrawingEngine.cpp"
             ex="false"
@@ -1221,8 +1227,6 @@
       </item>
       <item path="include/RandomSource.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="include/SweepLine.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="include/SweepLine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Token.h" ex="false" tool="3" flavor2="0">
@@ -1230,6 +1234,8 @@
       <item path="include/Tokenizer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/VEdge.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Walks2DOverlay.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/WeierstrassDrawingEngine.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -1611,11 +1617,15 @@
       </item>
       <item path="source/RandomSource.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/SweepLine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/Token.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/Tokenizer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/VEdge.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Walks2DOverlay.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/WeierstrassDrawingEngine.cpp"
             ex="false"
@@ -1870,8 +1880,6 @@
       </item>
       <item path="include/RandomSource.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="include/SweepLine.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="include/SweepLine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Token.h" ex="false" tool="3" flavor2="0">
@@ -1879,6 +1887,8 @@
       <item path="include/Tokenizer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/VEdge.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Walks2DOverlay.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/WeierstrassDrawingEngine.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2260,11 +2270,15 @@
       </item>
       <item path="source/RandomSource.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/SweepLine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/Token.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/Tokenizer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/VEdge.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Walks2DOverlay.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/WeierstrassDrawingEngine.cpp"
             ex="false"

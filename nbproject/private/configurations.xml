@@ -26,6 +26,12 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
+          <runcommandpicklistitem>ulimit -s "${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>ulimit -s 536870912 &amp;&amp; "${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>/bin/ulimit -s 536870912 &amp;&amp; "${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>sh -c "ulimit -s 536870912" &amp;&amp; "${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>sh -c "ulimit -s 536870912 &amp;&amp; ${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>sh newscript.sh "${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
         </runcommandpicklist>
         <runcommand>"${OUTPUT_PATH}"</runcommand>

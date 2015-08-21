@@ -54,10 +54,9 @@ int main(int argc, char *argv[]) {
     //    //        teste++;
     //    //    }
     //    rwbfm.resetManager();
-
-
     QApplication app(argc, argv);
     setlocale(LC_ALL, "C");
+
     //    for (int i = 0; i < 18; i++) {
     //        _dieharder_call(i, 14, 10000, 100);
     //        for (int i = 0; i < dtst_call->nkps; i++) {
@@ -67,12 +66,12 @@ int main(int argc, char *argv[]) {
     //        }
     //        destroy_die_teste(dtst_call, tst_call);
     //    }
-    
-    RNGLinearCong lcg(5645678);
-    LCGBinaryRandomWalk lcgbrwk(&lcg, 4000, 1);
-    IRWItem<QPollarF> * d = lcgbrwk.perform2DWalkNoCollision(36);
-    d->print();
-    
+
+    //    RNGLinearCong lcg(5645678);
+    //    LCGBinaryRandomWalk lcgbrwk(&lcg, 4000, 1);
+    //    IRWItem<QPollarF> * d = lcgbrwk.perform2DWalkNoCollision(36);
+    //    d->print();
+    //    
     //        double a = 0.6, b = 0.61;
     //        IRWItem<double> * d1 = p->buildWeiestrass(0.2, 2.1, a, b, 40000);
     //    DFA dfa(5, 20000, 1.3);
