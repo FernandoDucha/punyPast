@@ -51,8 +51,10 @@ inline PollarRwDp::PollarRwDp() {
     Npoints = 0;
     this->pointsArray = NULL;
     actualPoint = 0;
-    min = QPollarF(std::numeric_limits<double>::max(), std::numeric_limits<double>::max());
-    max = QPollarF(std::numeric_limits<double>::min(), std::numeric_limits<double>::min());
+    min.setX(std::numeric_limits<double>::max());
+    min.setY(std::numeric_limits<double>::max());
+    max.setX(std::numeric_limits<double>::min());
+    max.setY(std::numeric_limits<double>::min());
 }
 
 inline PollarRwDp::~PollarRwDp() {

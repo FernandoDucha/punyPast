@@ -17,6 +17,7 @@ public:
     FittingDrawingEngine(QwtPlot * plot);
     virtual ~FittingDrawingEngine();
     virtual void addToPlot(IRWItem<Type>*);
+    virtual void addToPlot(IRWItem<Type>*,QColor);
     virtual void detach();
     virtual void paintFromTo(u_int32_t, u_int32_t);
     virtual void paintAll();
@@ -66,7 +67,9 @@ template <class Type> inline FittingDrawingEngine<Type>::~FittingDrawingEngine()
 template <class Type>void FittingDrawingEngine<Type>::addToPlot(IRWItem<Type>*) {
     return;
 }
-
+template <class Type>void FittingDrawingEngine<Type>::addToPlot(IRWItem<Type>*,QColor) {
+    return;
+}
 template <class Type>void FittingDrawingEngine<Type>::detach() {
     if (fittingCurve) {
         fittingCurve->detach();

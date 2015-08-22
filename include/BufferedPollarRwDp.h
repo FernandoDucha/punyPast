@@ -48,10 +48,11 @@ private:
     unsigned long int Npoints;
     unsigned long int actualPoint;
 };
+
 inline BufferedPollarRwDp& BufferedPollarRwDp::operator=(IRWItem<QPollarF>& rhs) {
-    if(this==&rhs){
+    if (this == &rhs) {
         return *this;
-    }else if (this->getNpoints() == rhs.getNpoints()) {
+    } else if (this->getNpoints() == rhs.getNpoints()) {
         min = rhs.getMin();
         max = rhs.getMax();
         rhs.resetIterator();
@@ -59,7 +60,7 @@ inline BufferedPollarRwDp& BufferedPollarRwDp::operator=(IRWItem<QPollarF>& rhs)
         QPollarF rhsElem;
         for (int i = 0; i < rhs.getNpoints(); i++) {
             rhs.getNext(rhsElem);
-            dynamic_cast<PollarFileOutStreamInterface*>(output)->write(rhsElem);
+            dynamic_cast<PollarFileOutStreamInterface*> (output)->write(rhsElem);
         }
         return *this;
     } else {
@@ -67,6 +68,7 @@ inline BufferedPollarRwDp& BufferedPollarRwDp::operator=(IRWItem<QPollarF>& rhs)
         exit(0);
     }
 }
+
 inline BufferedPollarRwDp::BufferedPollarRwDp(const BufferedPollarRwDp& clone) : IRWBufferedItem<QPollarF>(clone.getInput(), clone.getOutput()) {
     this->finitpos = clone.getFInitPos();
     this->Npoints = clone.getNpoints();
@@ -119,6 +121,10 @@ inline double BufferedPollarRwDp::average() {
 inline BufferedPollarRwDp::BufferedPollarRwDp(PollarFileInStreamInterface * in, PollarFileOutStreamInterface * out) : IRWBufferedItem<QPollarF>(in, out) {
     this->actualPoint = 0;
     this->finitpos = 0;
+    min.setX(std::numeric_limits<double>::max());
+    min.setY(std::numeric_limits<double>::max());
+    max.setX(std::numeric_limits<double>::min());
+    max.setY(std::numeric_limits<double>::min());
 }
 
 inline BufferedPollarRwDp::~BufferedPollarRwDp() {

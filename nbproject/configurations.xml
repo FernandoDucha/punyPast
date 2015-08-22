@@ -128,6 +128,7 @@
       <itemPath>include/ProbabilityBase.h</itemPath>
       <itemPath>include/QPointFSLC.h</itemPath>
       <itemPath>include/QPollarF.h</itemPath>
+      <itemPath>include/RW2DFractalDimension.h</itemPath>
       <itemPath>include/RWBdManager.h</itemPath>
       <itemPath>include/RWBufferIterator.h</itemPath>
       <itemPath>include/RWBufferManager.h</itemPath>
@@ -145,6 +146,7 @@
       <itemPath>include/RWDpIntervalBuilder.h</itemPath>
       <itemPath>include/RWDpSet.h</itemPath>
       <itemPath>include/RWLocPair.h</itemPath>
+      <itemPath>include/RWPollarDpIntervalBuilder.h</itemPath>
       <itemPath>include/RWVBase.h</itemPath>
       <itemPath>include/RWVec.h</itemPath>
       <itemPath>include/RWVecIntervalBuilder.h</itemPath>
@@ -232,6 +234,7 @@
       <itemPath>source/ProbabilityBase.cpp</itemPath>
       <itemPath>source/QPointFSLC.cpp</itemPath>
       <itemPath>source/QPollarF.cpp</itemPath>
+      <itemPath>source/RW2DFractalDimension.cpp</itemPath>
       <itemPath>source/RWBdManager.cpp</itemPath>
       <itemPath>source/RWBufferIterator.cpp</itemPath>
       <itemPath>source/RWBufferManager.cpp</itemPath>
@@ -246,6 +249,7 @@
       <itemPath>source/RWDpIntervalBuilder.cpp</itemPath>
       <itemPath>source/RWDpSet.cpp</itemPath>
       <itemPath>source/RWLocPair.cpp</itemPath>
+      <itemPath>source/RWPollarDpIntervalBuilder.cpp</itemPath>
       <itemPath>source/RWVec.cpp</itemPath>
       <itemPath>source/RWVecIntervalBuilder.cpp</itemPath>
       <itemPath>source/RWVecSet.cpp</itemPath>
@@ -280,6 +284,7 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>runSh.sh</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>include</Elem>
@@ -495,6 +500,8 @@
       </item>
       <item path="include/QPollarF.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/RW2DFractalDimension.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/RWBdManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/RWBufferIterator.h" ex="false" tool="3" flavor2="0">
@@ -534,6 +541,11 @@
       <item path="include/RWDpSet.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/RWLocPair.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWPollarDpIntervalBuilder.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="include/RWVBase.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -741,6 +753,8 @@
       </item>
       <item path="rngs/RNGLinearCong.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="runSh.sh" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="source/BDBinDrawingEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/BDDataPointsDrawingEngine.cpp"
@@ -890,6 +904,8 @@
       </item>
       <item path="source/QPollarF.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/RW2DFractalDimension.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/RWBdManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/RWBufferIterator.cpp" ex="false" tool="1" flavor2="0">
@@ -926,6 +942,11 @@
       <item path="source/RWDpSet.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/RWLocPair.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWPollarDpIntervalBuilder.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="source/RWVec.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1175,6 +1196,8 @@
       </item>
       <item path="include/QPollarF.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/RW2DFractalDimension.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/RWBdManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/RWBufferIterator.h" ex="false" tool="3" flavor2="0">
@@ -1214,6 +1237,11 @@
       <item path="include/RWDpSet.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/RWLocPair.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWPollarDpIntervalBuilder.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="include/RWVBase.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -1421,6 +1449,8 @@
       </item>
       <item path="rngs/RNGLinearCong.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="runSh.sh" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="source/BDBinDrawingEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/BDDataPointsDrawingEngine.cpp"
@@ -1570,6 +1600,8 @@
       </item>
       <item path="source/QPollarF.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/RW2DFractalDimension.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/RWBdManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/RWBufferIterator.cpp" ex="false" tool="1" flavor2="0">
@@ -1606,6 +1638,11 @@
       <item path="source/RWDpSet.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/RWLocPair.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWPollarDpIntervalBuilder.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="source/RWVec.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1828,6 +1865,8 @@
       </item>
       <item path="include/QPollarF.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/RW2DFractalDimension.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/RWBdManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/RWBufferIterator.h" ex="false" tool="3" flavor2="0">
@@ -1867,6 +1906,11 @@
       <item path="include/RWDpSet.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/RWLocPair.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RWPollarDpIntervalBuilder.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="include/RWVBase.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2074,6 +2118,8 @@
       </item>
       <item path="rngs/RNGLinearCong.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="runSh.sh" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="source/BDBinDrawingEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/BDDataPointsDrawingEngine.cpp"
@@ -2223,6 +2269,8 @@
       </item>
       <item path="source/QPollarF.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/RW2DFractalDimension.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/RWBdManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/RWBufferIterator.cpp" ex="false" tool="1" flavor2="0">
@@ -2259,6 +2307,11 @@
       <item path="source/RWDpSet.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/RWLocPair.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/RWPollarDpIntervalBuilder.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="source/RWVec.cpp" ex="false" tool="1" flavor2="0">
       </item>

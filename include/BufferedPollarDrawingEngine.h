@@ -26,6 +26,7 @@ public:
     void paintFromTo(u_int32_t, u_int32_t);
     void setDataSet(IPolyfit*);
     void paintQAverageDistance();
+    void addToPlot(IRWItem<QPollarF>*, QColor);
 
     virtual void setMaxForType() {
         this->max.setX(std::numeric_limits<double>::min());
@@ -73,8 +74,7 @@ inline void BufferedPollarDrawingEngine::setDataSet(IRWBd*) {
 
     return;
 }
-
-inline void BufferedPollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi) {
+inline void BufferedPollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi,QColor color){
     bool flag = false;
     setMaxForType();
     setMinForType();
@@ -96,7 +96,7 @@ inline void BufferedPollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi) {
             c->setData(temp);
             c->setStyle(QwtPlotCurve::Lines);
             QPen p;
-            p.setColor(randomColor(qrand()));
+            p.setColor(color);
             p.setWidth(2);
             c->setPen(p);
             c->attach(this->thisPlot);
@@ -131,6 +131,9 @@ inline void BufferedPollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi) {
     this->thisPlot->setAxisScale(QwtPlot::yLeft, this->min.ry(), this->max.ry());
     this->thisPlot->setAxisScale(QwtPlot::xBottom, this->min.rx(), this->max.rx());
 }
+inline void BufferedPollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi) {
+    addToPlot(irwi,randomColor(qrand()));
+}
 
 inline void BufferedPollarDrawingEngine::detach() {
     auto beg = curves.begin();
@@ -147,11 +150,11 @@ inline void BufferedPollarDrawingEngine::paintItem(u_int32_t i) {
     IRWItem<QPollarF> * a = dataSet->getElement(i);
     //    a->print();
     QVector<QPointF> d;
-    
+
     a->resetIterator();
     QPollarF next;
     while (a->getNext(next)) {
-        
+
         d.push_back(next);
     }
     a->resetIterator();

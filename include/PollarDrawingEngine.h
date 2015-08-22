@@ -20,6 +20,7 @@ public:
     void setDataSet(IRWSet<QPollarF>*);
     void setDataSet(IRWBd*);
     void addToPlot(IRWItem<QPollarF>*);
+    void addToPlot(IRWItem<QPollarF>*, QColor);
     void detach();
     void paintItem(u_int32_t);
     void paintAll();
@@ -74,7 +75,7 @@ inline void PollarDrawingEngine::setDataSet(IRWBd*) {
     return;
 }
 
-inline void PollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi) {
+inline void PollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi, QColor color) {
     bool flag = false;
     setMaxForType();
     setMinForType();
@@ -93,7 +94,7 @@ inline void PollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi) {
             c->setData(temp);
             c->setStyle(QwtPlotCurve::Lines);
             QPen p;
-            p.setColor(randomColor(qrand()));
+            p.setColor(color);
             p.setWidth(2);
             c->setPen(p);
             c->attach(this->thisPlot);
@@ -127,6 +128,10 @@ inline void PollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi) {
     }
     this->thisPlot->setAxisScale(QwtPlot::yLeft, this->min.ry(), this->max.ry());
     this->thisPlot->setAxisScale(QwtPlot::xBottom, this->min.rx(), this->max.rx());
+}
+
+inline void PollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi) {
+    addToPlot(irwi,randomColor(qrand()));
 }
 
 inline void PollarDrawingEngine::detach() {

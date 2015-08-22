@@ -24,11 +24,13 @@ public:
     QPollarF getMax() const;
 
     void setTypeMax() {
-        this->max = QPollarF(numeric_limits<double>::min(), numeric_limits<double>::min());
+        max.setX(std::numeric_limits<double>::min());
+        max.setY(std::numeric_limits<double>::min());
     }
 
     void setTypeMin() {
-        this->min = QPollarF(numeric_limits<double>::max(), numeric_limits<double>::max());
+        min.setX(std::numeric_limits<double>::max());
+        min.setY(std::numeric_limits<double>::max());
     }
 private:
     PollarRwDp ** list;
@@ -37,13 +39,14 @@ private:
 private:
 
 };
+
 inline void PollarRwDpSet::put(IRWItem<QPollarF> * a) {
     if (pos < size) {
-        if(dynamic_cast<PollarRwDp*>(a)==nullptr){
-            std::cout<<"Item PollarRwDp no Valid"<<endl;
+        if (dynamic_cast<PollarRwDp*> (a) == nullptr) {
+            std::cout << "Item PollarRwDp no Valid" << endl;
             exit(1);
         }
-        list[pos] = dynamic_cast<PollarRwDp*>(a);
+        list[pos] = dynamic_cast<PollarRwDp*> (a);
         if (a->getMax().rx() > this->max.rx()) {
             this->max.setX(a->getMax().rx());
         }
@@ -74,7 +77,7 @@ inline PollarRwDpSet::PollarRwDpSet(unsigned long int size) {
 }
 
 inline PollarRwDpSet::~PollarRwDpSet() {
-    for(int i=0;i<this->size;i++){
+    for (int i = 0; i<this->size; i++) {
         delete list[i];
     }
     delete [] list;

@@ -19,24 +19,29 @@ public:
     virtual void setDataSet(IRWSet<Type>*);
     virtual void setDataSet(IRWBd*);
     virtual void addToPlot(IRWItem<Type>*);
+    virtual void addToPlot(IRWItem<Type>*, QColor);
+
     virtual void detach();
     virtual void paintItem(u_int32_t);
     virtual void paintAll();
     virtual void paintFromTo(u_int32_t, u_int32_t);
+
     /**
      * For all classes other than Fitting*DrawingEngine BDFitting*DrawingEngine, this method has no use.
      * @param poly
      */
 
-    virtual void setDataSet(IPolyfit* ){
+    virtual void setDataSet(IPolyfit*) {
         return;
     }
     void paintQAverageDistance();
-    virtual void setMaxForType(){
-        this->max=std::numeric_limits<Type>::min();
+
+    virtual void setMaxForType() {
+        this->max = std::numeric_limits<Type>::min();
     }
-    virtual void setMinForType(){
-        this->min=std::numeric_limits<Type>::max();
+
+    virtual void setMinForType() {
+        this->min = std::numeric_limits<Type>::max();
     }
 private:
     IRWSet<Type> * dataSet;
@@ -44,6 +49,7 @@ private:
     QMap<u_int32_t, QwtPlotCurve*> curves;
     QwtPlotCurve * quadraticCurve;
 };
+
 template <class Type> void IntegralDrawingEngine<Type>::paintQAverageDistance() {
     auto beg = curves.begin();
     auto end = curves.end();
@@ -84,6 +90,7 @@ template <class Type> void IntegralDrawingEngine<Type>::paintQAverageDistance() 
     this->thisPlot->replot();
     delete sum;
 }
+
 template <class Type> void IntegralDrawingEngine<Type>::paintItem(u_int32_t i) {
     IRWItem<double> * a = dataSet->getElement(i)->getIntegral();
 
@@ -185,7 +192,7 @@ template <class Type> IntegralDrawingEngine<Type>::IntegralDrawingEngine(QwtPlot
     dataSet = NULL;
 }
 
-template <class Type> void IntegralDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi) {
+template <class Type> void IntegralDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi, QColor color) {
     Type max = numeric_limits<Type>::min();
     Type min = numeric_limits<Type>::max();
     Type x;
@@ -205,7 +212,7 @@ template <class Type> void IntegralDrawingEngine<Type>::addToPlot(IRWItem<Type>*
             c->setData(temp);
             c->setStyle(QwtPlotCurve::Lines);
             QPen p;
-            p.setColor(colors.at(i));
+            p.setColor(color);
             p.setWidth(2);
             c->setPen(p);
             c->attach(this->thisPlot);
@@ -227,6 +234,10 @@ template <class Type> void IntegralDrawingEngine<Type>::addToPlot(IRWItem<Type>*
     }
     this->thisPlot->setAxisScale(QwtPlot::yLeft, min, max);
     this->thisPlot->setAxisScale(QwtPlot::xBottom, 0, x);
+}
+
+template <class Type> void IntegralDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi) {
+    addToPlot(irwi,randomColor(qrand()));
 }
 
 template <class Type> void IntegralDrawingEngine<Type>::paintAll() {

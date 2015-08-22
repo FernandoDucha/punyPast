@@ -32,6 +32,9 @@ public:
     //@Override
     virtual void addToPlot(IRWItem<Type>*) = 0;
     //@Override
+    virtual void addToPlot(IRWItem<Type>*,QColor) = 0;
+    
+    //@Override
     virtual void detach() = 0;
     //@Override
     virtual void paintItem(u_int32_t) = 0;

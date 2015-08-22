@@ -24,6 +24,7 @@ public:
     virtual void paintItem(u_int32_t);
     virtual void paintAll();
     virtual void paintFromTo(u_int32_t, u_int32_t);
+    virtual void addToPlot(IRWItem<Type>*, QColor);
 
     /**
      * For all classes other than Fitting*DrawingEngine BDFitting*DrawingEngine, this method has no use.
@@ -33,11 +34,13 @@ public:
         return;
     }
     virtual void paintQAverageDistance();
-    virtual void setMaxForType(){
-        this->max=std::numeric_limits<Type>::min();
+
+    virtual void setMaxForType() {
+        this->max = std::numeric_limits<Type>::min();
     }
-    virtual void setMinForType(){
-        this->min=std::numeric_limits<Type>::max();
+
+    virtual void setMinForType() {
+        this->min = std::numeric_limits<Type>::max();
     }
 private:
     IRWBd * thisBD;
@@ -197,6 +200,10 @@ template <class Type> BDDataPointsDrawingEngine<Type>::BDDataPointsDrawingEngine
 }
 
 template <class Type> void BDDataPointsDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi) {
+    addToPlot(irwi,randomColor(qrand()));
+}
+
+template <class Type> void BDDataPointsDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi, QColor color) {
     Type max = numeric_limits<Type>::min();
     Type min = numeric_limits<Type>::max();
     Type x = irwi->getNpoints();
@@ -216,7 +223,7 @@ template <class Type> void BDDataPointsDrawingEngine<Type>::addToPlot(IRWItem<Ty
             c->setData(temp);
             c->setStyle(QwtPlotCurve::Lines);
             QPen p;
-            p.setColor(colors.at(i));
+            p.setColor(color);
             p.setWidth(2);
             c->setPen(p);
             c->attach(this->thisPlot);

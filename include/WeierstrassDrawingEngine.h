@@ -16,6 +16,8 @@ public:
     void setDataSet(IRWSet<Type>*);
     void setDataSet(IRWBd*);
     void addToPlot(IRWItem<Type>*);
+    void addToPlot(IRWItem<Type>*, QColor);
+
     void setYandX(IRWItem<Type>* X, IRWItem<Type>* Y);
     void detach();
     void paintItem(u_int32_t);
@@ -25,17 +27,22 @@ public:
     WeierstrassDrawingEngine(QwtPlot* qwtPlot);
     virtual ~WeierstrassDrawingEngine();
     void paintQAverageDistance();
-    virtual void setMaxForType(){
-        this->max=std::numeric_limits<Type>::min();
+
+    virtual void setMaxForType() {
+        this->max = std::numeric_limits<Type>::min();
     }
-    virtual void setMinForType(){
-        this->min=std::numeric_limits<Type>::max();
+
+    virtual void setMinForType() {
+        this->min = std::numeric_limits<Type>::max();
     }
 private:
     QwtPlotCurve * curve;
     IRWItem<Type> * actualItemX;
     IRWItem<Type> * actualItemY;
 };
+template<class Type>void WeierstrassDrawingEngine<Type>::addToPlot(IRWItem<Type>*, QColor){
+    return;
+}
 
 template<class Type>void WeierstrassDrawingEngine<Type>::paintQAverageDistance() {
     return;

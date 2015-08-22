@@ -19,6 +19,8 @@ public:
     virtual void setDataSet(IRWSet<Type>*);
     virtual void setDataSet(IRWBd*);
     virtual void addToPlot(IRWItem<Type>*);
+    virtual void addToPlot(IRWItem<Type>*, QColor);
+
     virtual void detach();
     virtual void paintItem(u_int32_t);
     virtual void paintAll();
@@ -32,18 +34,21 @@ public:
         return;
     }
     virtual void paintQAverageDistance();
-    virtual void setMaxForType(){
-        this->max=std::numeric_limits<Type>::min();
+
+    virtual void setMaxForType() {
+        this->max = std::numeric_limits<Type>::min();
     }
-    virtual void setMinForType(){
-        this->min=std::numeric_limits<Type>::max();
+
+    virtual void setMinForType() {
+        this->min = std::numeric_limits<Type>::max();
     }
 private:
     IRWItem<Type> * noiseLine;
     QwtPlotCurve * NoiseCurve;
     IRWSet<Type> * dataSet;
 };
-template <class Type> void BinDrawingEngine<Type>::paintQAverageDistance(){
+
+template <class Type> void BinDrawingEngine<Type>::paintQAverageDistance() {
     return;
 }
 
@@ -129,6 +134,9 @@ template <class Type> void BinDrawingEngine<Type>::setDataSet(IRWSet<Type>* irws
     setNPlots(irws->getSize());
     dataSet = irws;
 
+}
+template <class Type> void BinDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi, QColor){
+    addToPlot(irwi);
 }
 
 template <class Type> void BinDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi) {

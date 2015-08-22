@@ -19,6 +19,7 @@ public:
     void setDataSet(IRWSet<Type>*);
     void setDataSet(IRWBd*);
     void addToPlot(IRWItem<Type>*);
+    void addToPlot(IRWItem<Type>*, QColor);
     void detach();
     void paintItem(u_int32_t);
     void paintAll();
@@ -32,11 +33,13 @@ public:
         return;
     }
     virtual void paintQAverageDistance();
-    virtual void setMaxForType(){
-        this->max=std::numeric_limits<Type>::min();
+
+    virtual void setMaxForType() {
+        this->max = std::numeric_limits<Type>::min();
     }
-    virtual void setMinForType(){
-        this->min=std::numeric_limits<Type>::max();
+
+    virtual void setMinForType() {
+        this->min = std::numeric_limits<Type>::max();
     }
 private:
     IRWBd * thisBD;
@@ -188,7 +191,7 @@ template <class Type> BDIntegralDrawingEngine<Type>::BDIntegralDrawingEngine(Qwt
     quadraticCurve = NULL;
 }
 
-template <class Type> void BDIntegralDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi) {
+template <class Type> void BDIntegralDrawingEngine<Type>::addToPlot(IRWItem<Type>*irwi, QColor color) {
     Type max = numeric_limits<Type>::min();
     Type min = numeric_limits<Type>::max();
     Type x;
@@ -208,7 +211,7 @@ template <class Type> void BDIntegralDrawingEngine<Type>::addToPlot(IRWItem<Type
             c->setData(temp);
             c->setStyle(QwtPlotCurve::Lines);
             QPen p;
-            p.setColor(colors.at(i));
+            p.setColor(color);
             p.setWidth(2);
             c->setPen(p);
             c->attach(this->thisPlot);
@@ -230,6 +233,10 @@ template <class Type> void BDIntegralDrawingEngine<Type>::addToPlot(IRWItem<Type
     }
     this->thisPlot->setAxisScale(QwtPlot::yLeft, min, max);
     this->thisPlot->setAxisScale(QwtPlot::xBottom, 0, x);
+}
+
+template <class Type> void BDIntegralDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi) {
+    addToPlot(irwi,randomColor(qrand()));
 }
 
 template <class Type> void BDIntegralDrawingEngine<Type>::paintAll() {

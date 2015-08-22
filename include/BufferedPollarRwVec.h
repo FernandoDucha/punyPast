@@ -99,6 +99,10 @@ inline double BufferedPollarRwVec::average() {
 inline BufferedPollarRwVec::BufferedPollarRwVec(PollarFileInStreamInterface * in, PollarFileOutStreamInterface * out) : IRWBufferedItem<QPollarF>(in, out) {
     this->actualPoint = 0;
     this->finitpos = 0;
+    min.setX(std::numeric_limits<double>::max());
+    min.setY(std::numeric_limits<double>::max());
+    max.setX(std::numeric_limits<double>::min());
+    max.setY(std::numeric_limits<double>::min());
 }
 
 inline BufferedPollarRwVec::~BufferedPollarRwVec() {

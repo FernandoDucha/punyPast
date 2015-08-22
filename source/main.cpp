@@ -22,6 +22,7 @@
 #include "DFAInputGui.h"
 #include "stringfrmt/driver.h"
 #include "QPollarF.h"
+#include "RW2DFractalDimension.h"
 extern "C" {
     Dtest * dtst_call;
     Test ** tst_call;
@@ -56,6 +57,7 @@ int main(int argc, char *argv[]) {
     //    rwbfm.resetManager();
     QApplication app(argc, argv);
     setlocale(LC_ALL, "C");
+    
 
     //    for (int i = 0; i < 18; i++) {
     //        _dieharder_call(i, 14, 10000, 100);
@@ -67,10 +69,10 @@ int main(int argc, char *argv[]) {
     //        destroy_die_teste(dtst_call, tst_call);
     //    }
 
-    //    RNGLinearCong lcg(5645678);
-    //    LCGBinaryRandomWalk lcgbrwk(&lcg, 4000, 1);
-    //    IRWItem<QPollarF> * d = lcgbrwk.perform2DWalkNoCollision(36);
-    //    d->print();
+//    RNGLinearCong lcg(5645678);
+//    LCGBinaryRandomWalk lcgbrwk(&lcg, 2000, 1);
+//    IRWItem<QPollarF> * d = lcgbrwk.perform2DWalkNoCollision(4);
+//    RW2DFractalDimension rw2d(d);
     //    
     //        double a = 0.6, b = 0.61;
     //        IRWItem<double> * d1 = p->buildWeiestrass(0.2, 2.1, a, b, 40000);

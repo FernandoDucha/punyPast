@@ -18,6 +18,7 @@ public:
     virtual void setDataSet(IRWSet<Type>*);
     virtual void setDataSet(IRWBd*);
     virtual void addToPlot(IRWItem<Type>*);
+    virtual void addToPlot(IRWItem<Type>*,QColor);
     virtual void detach();
     virtual void paintItem(u_int32_t);
     virtual void paintAll();
@@ -32,20 +33,24 @@ public:
         return;
     }
     virtual void paintQAverageDistance();
-    virtual void setMaxForType(){
-        this->max=std::numeric_limits<Type>::min();
+
+    virtual void setMaxForType() {
+        this->max = std::numeric_limits<Type>::min();
     }
-    virtual void setMinForType(){
-        this->min=std::numeric_limits<Type>::max();
+
+    virtual void setMinForType() {
+        this->min = std::numeric_limits<Type>::max();
     }
 private:
     IRWItem<Type> * noiseLine;
     QwtPlotCurve * NoiseCurve;
     IRWBd * dataSet;
 };
-template <class Type> void BDBinDrawingEngine<Type>::paintQAverageDistance(){
+
+template <class Type> void BDBinDrawingEngine<Type>::paintQAverageDistance() {
     return;
 }
+
 template <class Type> BDBinDrawingEngine<Type>::BDBinDrawingEngine(QwtPlot * plot) : IDrawingEngine<Type>(plot) {
     noiseLine = NULL;
     NoiseCurve = new QwtPlotCurve();
@@ -149,6 +154,10 @@ template <class Type> void BDBinDrawingEngine<Type>::addToPlot(IRWItem<Type>* ir
     this->thisPlot->setAxisScale(QwtPlot::yLeft, NoiseCurve->minYValue(), NoiseCurve->maxYValue());
     this->thisPlot->setAxisScale(QwtPlot::xBottom, 0, noiseLine->getNpoints());
     this->thisPlot->replot();
+}
+
+template <class Type> void BDBinDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi,QColor color) {
+    addToPlot(irwi,randomColor(qrand()));
 }
 
 template <class Type> void BDBinDrawingEngine<Type>::paintAll() {

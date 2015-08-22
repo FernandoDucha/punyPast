@@ -53,7 +53,8 @@ inline void Walks2DOverlay::point(QPollarF* p, int n, double t) {
     }
     nData = n;
     Adepth->setText(QString::number(n));
-    Tspent->setText(QString::number(t));    
+    Tspent->setText(QString::number(t)); 
+    plot();
 }
 
 inline void Walks2DOverlay::setMemoryRW(MemoryRandomWalk* memRw) {

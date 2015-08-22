@@ -19,6 +19,7 @@ public:
     void setDataSet(IRWSet<Type>*);
     void addToPlot(IRWItem<Type>*);
     void setDataSet(IRWBd*);
+    void addToPlot(IRWItem<Type>*, QColor);
     void detach();
     void paintItem(u_int32_t);
     void paintAll();
@@ -32,11 +33,13 @@ public:
         return;
     }
     virtual void paintQAverageDistance();
-    virtual void setMaxForType(){
-        this->max=std::numeric_limits<Type>::min();
+
+    virtual void setMaxForType() {
+        this->max = std::numeric_limits<Type>::min();
     }
-    virtual void setMinForType(){
-        this->min=std::numeric_limits<Type>::max();
+
+    virtual void setMinForType() {
+        this->min = std::numeric_limits<Type>::max();
     }
 private:
     IRWSet<Type> * dataSet;
@@ -187,7 +190,7 @@ template <class Type> DataPointsDrawingEngine<Type>::DataPointsDrawingEngine(Qwt
     quadraticCurve = NULL;
 }
 
-template <class Type> void DataPointsDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi) {
+template <class Type> void DataPointsDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi, QColor color) {
     Type x;
     bool flag = false;
     for (int i = 0;; i++) {
@@ -205,7 +208,7 @@ template <class Type> void DataPointsDrawingEngine<Type>::addToPlot(IRWItem<Type
             c->setData(temp);
             c->setStyle(QwtPlotCurve::Lines);
             QPen p;
-            p.setColor(randomColor(qrand()));
+            p.setColor(color);
             p.setWidth(2);
             c->setPen(p);
             c->attach(this->thisPlot);
@@ -227,6 +230,10 @@ template <class Type> void DataPointsDrawingEngine<Type>::addToPlot(IRWItem<Type
     }
     this->thisPlot->setAxisScale(QwtPlot::yLeft, this->min, this->max);
     this->thisPlot->setAxisScale(QwtPlot::xBottom, 0, x);
+}
+
+template <class Type> void DataPointsDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi) {
+    addToPlot(irwi,randomColor(qrand()));
 }
 
 template <class Type> void DataPointsDrawingEngine<Type>::paintAll() {
