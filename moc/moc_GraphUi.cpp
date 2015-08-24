@@ -121,19 +121,19 @@ static const uint qt_meta_data_GraphUi[] = {
       17,    1,  190,    2, 0x0a /* Public */,
       18,    1,  193,    2, 0x0a /* Public */,
       19,    1,  196,    2, 0x0a /* Public */,
-      20,    1,  199,    2, 0x0a /* Public */,
-      22,    1,  202,    2, 0x0a /* Public */,
-      23,    0,  205,    2, 0x0a /* Public */,
-      24,    1,  206,    2, 0x0a /* Public */,
-      25,    0,  209,    2, 0x0a /* Public */,
-      26,    1,  210,    2, 0x0a /* Public */,
-      28,    1,  213,    2, 0x0a /* Public */,
-      30,    0,  216,    2, 0x0a /* Public */,
-      31,    1,  217,    2, 0x0a /* Public */,
-      33,    5,  220,    2, 0x0a /* Public */,
-      40,    0,  231,    2, 0x0a /* Public */,
-      41,    0,  232,    2, 0x0a /* Public */,
-      42,    1,  233,    2, 0x0a /* Public */,
+      20,    2,  199,    2, 0x0a /* Public */,
+      22,    1,  204,    2, 0x0a /* Public */,
+      23,    0,  207,    2, 0x0a /* Public */,
+      24,    1,  208,    2, 0x0a /* Public */,
+      25,    0,  211,    2, 0x0a /* Public */,
+      26,    1,  212,    2, 0x0a /* Public */,
+      28,    1,  215,    2, 0x0a /* Public */,
+      30,    0,  218,    2, 0x0a /* Public */,
+      31,    1,  219,    2, 0x0a /* Public */,
+      33,    5,  222,    2, 0x0a /* Public */,
+      40,    0,  233,    2, 0x0a /* Public */,
+      41,    0,  234,    2, 0x0a /* Public */,
+      42,    1,  235,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    2,
@@ -153,7 +153,7 @@ static const uint qt_meta_data_GraphUi[] = {
     QMetaType::Void, QMetaType::Int,   11,
     QMetaType::Void, QMetaType::Int,   11,
     QMetaType::Void, QMetaType::Int,    9,
-    QMetaType::Void, 0x80000000 | 21,    2,
+    QMetaType::Void, 0x80000000 | 21, QMetaType::QColor,    2,    2,
     QMetaType::Void, QMetaType::Int,    4,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    4,
@@ -190,7 +190,7 @@ void GraphUi::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 12: _t->spin2DMinVal((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 13: _t->spin2DMaxVal((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 14: _t->memoryRwOlay((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 15: _t->plotMemoryWalk((*reinterpret_cast< IRWItem<QPollarF>*(*)>(_a[1]))); break;
+        case 15: _t->plotMemoryWalk((*reinterpret_cast< IRWItem<QPollarF>*(*)>(_a[1])),(*reinterpret_cast< QColor(*)>(_a[2]))); break;
         case 16: _t->choose((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 17: _t->connections(); break;
         case 18: _t->showall((*reinterpret_cast< int(*)>(_a[1]))); break;

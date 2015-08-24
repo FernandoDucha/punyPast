@@ -81,7 +81,7 @@ void GraphUi::connections() {
     connect(widget.spin2dmax, SIGNAL(valueChanged(int)), this, SLOT(spin2DMaxVal(int)));
     connect(widget.choose, SIGNAL(currentIndexChanged(int)), this, SLOT(choose(int)));
     connect(widget.showall, SIGNAL(stateChanged(int)), this, SLOT(showall(int)));
-    connect(widget.walks2d, SIGNAL(plotItem(IRWItem<QPollarF>*)), this, SLOT(plotMemoryWalk(IRWItem<QPollarF>*)));
+    connect(widget.walks2d, SIGNAL(plotItem(IRWItem<QPollarF>*,QColor)), this, SLOT(plotMemoryWalk(IRWItem<QPollarF>*,QColor)));
     connect(this, SIGNAL(emitCallQDist(int)), this, SLOT(quadDistCalled(int)));
     connect(widget.ScreenShot, SIGNAL(pressed()), this, SLOT(animate()));
     connect(widget.rand_source, SIGNAL(choiceType(RS_TYPES)), this, SLOT(configureGuiRSChoice(RS_TYPES)));
@@ -462,10 +462,9 @@ void GraphUi::spin2DMaxVal(int v) {
     }
 }
 
-void GraphUi::plotMemoryWalk(IRWItem<QPollarF> * item) {
+void GraphUi::plotMemoryWalk(IRWItem<QPollarF> * item,QColor color) {
     pollarDrawing->detach();
-    pollarDrawing->addToPlot(item);
-    delete item;
+    pollarDrawing->addToPlot(item,color);
     widget.plotview->replot();
 }
 

@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
     //    rwbfm.resetManager();
     QApplication app(argc, argv);
     setlocale(LC_ALL, "C");
-    
+
 
     //    for (int i = 0; i < 18; i++) {
     //        _dieharder_call(i, 14, 10000, 100);
@@ -69,10 +69,25 @@ int main(int argc, char *argv[]) {
     //        destroy_die_teste(dtst_call, tst_call);
     //    }
 
-//    RNGLinearCong lcg(5645678);
-//    LCGBinaryRandomWalk lcgbrwk(&lcg, 2000, 1);
-//    IRWItem<QPollarF> * d = lcgbrwk.perform2DWalkNoCollision(4);
-//    RW2DFractalDimension rw2d(d);
+    RNGLinearCong lcg(5645678);
+
+    LCGBinaryRandomWalk lcgbrwk(&lcg, 4000, 1);
+    //    IRWItem<double> *sum = new DataPointsDouble();
+    //    for(int i=0;i<20;i++){
+    //        lcg.setSeed(5645678+i);
+    //        IRWItem<double> *p =d->power(2.0);
+    //        *sum+=*p;
+    //        cout<<i<<endl;
+    ////        sum->print();
+    //        delete p;
+    //    }
+    //    *sum=*dynamic_cast<RWDp<double> *> (sum)/sum->getNpoints();
+    //    IRWItem<double> * sqrt= sum->power(0.5);
+    //    delete sum;
+    //    sqrt->print();
+    IRWItem<QPollarF> * d = lcgbrwk.perform2DWalkNoCollision(4);
+
+    RW2DFractalDimension rw2d(d,1.5,1.5);
     //    
     //        double a = 0.6, b = 0.61;
     //        IRWItem<double> * d1 = p->buildWeiestrass(0.2, 2.1, a, b, 40000);

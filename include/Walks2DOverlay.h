@@ -17,6 +17,8 @@
 #include <QPalette>
 #include "MemoryRandomWalk.h"
 #include <QTimer>
+#include <QColorDialog>
+#include "GeneralUsage.h"
 
 class Walks2DOverlay : public QWidget {
     Q_OBJECT
@@ -25,10 +27,11 @@ public:
     virtual ~Walks2DOverlay();
     void setMemoryRW(MemoryRandomWalk *);
 public slots:
-    void point(QPollarF * p, int n,double);
+    void point(QPollarF * p, int n, double);
     void plot();
     void runPushed();
     void stopPushed();
+    void chooseColor();
 private:
     QGridLayout* thisLayout;
     QLabel * LblDisc;
@@ -38,13 +41,17 @@ private:
     QPushButton * Run;
     QPushButton * Stop;
     QPushButton * Plot;
+    QPushButton * ChooseColor;
+    QColor actualColor;
+    QColorDialog * thisDialog;
     QLabel * actualSize;
-    QLabel * Adepth,* Tspent;
+    QLabel * Adepth, * Tspent;
     MemoryRandomWalk * thismemrw;
     QPollarF * data;
     int nData;
+    IRWItem<QPollarF> * emitting;
 signals:
-    void plotItem(IRWItem<QPollarF>*);
+    void plotItem(IRWItem<QPollarF>*, QColor);
 };
 
 inline void Walks2DOverlay::point(QPollarF* p, int n, double t) {
@@ -53,17 +60,33 @@ inline void Walks2DOverlay::point(QPollarF* p, int n, double t) {
     }
     nData = n;
     Adepth->setText(QString::number(n));
-    Tspent->setText(QString::number(t)); 
+    Tspent->setText(QString::number(t));
     plot();
 }
 
+inline void Walks2DOverlay::chooseColor() {
+    if (thisDialog->exec()) {
+        actualColor = thisDialog->selectedColor();
+        QPalette p1(ChooseColor->palette());
+        p1.setColor(QPalette::Button, actualColor);
+        ChooseColor->setPalette(p1);
+        ChooseColor->setForegroundRole(QPalette::Button);
+    }
+}
+
 inline void Walks2DOverlay::setMemoryRW(MemoryRandomWalk* memRw) {
-    thismemrw = memRw;
+    if (thismemrw != NULL&&!thismemrw->isRunning()) {
+        thismemrw = memRw;
+    }else  if (thismemrw == NULL) {
+        thismemrw = memRw;
+    }
 }
 
 inline Walks2DOverlay::Walks2DOverlay(QWidget* Parent) : QWidget(Parent) {
     data = NULL;
+    thismemrw = NULL;
     QPalette pal;
+    emitting = new PollarRwDp();
     pal.setBrush(QPalette::Window, QColor(255, 0, 0, 128));
     this->setAutoFillBackground(true);
     this->resize(400, 400);
@@ -91,31 +114,39 @@ inline Walks2DOverlay::Walks2DOverlay(QWidget* Parent) : QWidget(Parent) {
     Stop->setText("Stop!");
     Adepth = new QLabel("");
     Tspent = new QLabel("");
+    actualColor = randomColor(qrand());
+    ChooseColor = new QPushButton(this);
+    QPalette p1(ChooseColor->palette());
+    p1.setColor(QPalette::Button, actualColor);
+    ChooseColor->setPalette(p1);
+    ChooseColor->setForegroundRole(QPalette::Button);
+    thisDialog = new QColorDialog(actualColor, this);
     thisLayout->addWidget(LblDisc, 0, 0, Qt::AlignCenter | Qt::AlignHCenter);
     thisLayout->addWidget(Disc, 0, 1, Qt::AlignCenter | Qt::AlignHCenter);
     thisLayout->addWidget(LblMaxTime, 1, 0, Qt::AlignCenter | Qt::AlignHCenter);
     thisLayout->addWidget(MaxTime, 1, 1, Qt::AlignCenter | Qt::AlignHCenter);
     thisLayout->addWidget(Run, 2, 0, 1, 2, Qt::AlignCenter | Qt::AlignHCenter);
-    thisLayout->addWidget(Plot, 3, 0, 1, 2, Qt::AlignCenter | Qt::AlignHCenter);
+    thisLayout->addWidget(Plot, 3, 0, 1, 1, Qt::AlignCenter | Qt::AlignHCenter);
+    thisLayout->addWidget(ChooseColor, 3, 1, 1, 1, Qt::AlignCenter | Qt::AlignHCenter);
     thisLayout->addWidget(Stop, 4, 0, 1, 2, Qt::AlignCenter | Qt::AlignHCenter);
     thisLayout->addWidget(Adepth, 5, 0, 1, 1, Qt::AlignCenter | Qt::AlignHCenter);
     thisLayout->addWidget(Tspent, 5, 1, 1, 1, Qt::AlignCenter | Qt::AlignHCenter);
     connect(Run, SIGNAL(released()), this, SLOT(runPushed()));
     connect(Plot, SIGNAL(released()), this, SLOT(plot()));
     connect(Stop, SIGNAL(released()), this, SLOT(stopPushed()));
+    connect(ChooseColor, SIGNAL(released()), this, SLOT(chooseColor()));
     Stop->setEnabled(false);
 }
 
 inline void Walks2DOverlay::plot() {
     if (data) {
-        IRWItem<QPollarF> * emitting = new PollarRwDp();
         emitting->receiveData(data, nData);
-        emit plotItem(emitting);
+        emit plotItem(emitting, actualColor);
     }
 }
 
 inline Walks2DOverlay::~Walks2DOverlay() {
-
+    delete emitting;
 }
 
 inline void Walks2DOverlay::runPushed() {

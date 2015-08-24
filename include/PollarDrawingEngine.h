@@ -95,10 +95,30 @@ inline void PollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi, QColor color
             c->setStyle(QwtPlotCurve::Lines);
             QPen p;
             p.setColor(color);
+            p.setCapStyle(Qt::RoundCap);
+            p.setJoinStyle(Qt::RoundJoin);
+
             p.setWidth(2);
             c->setPen(p);
             c->attach(this->thisPlot);
             curves.insert(i, c);
+            QVector<QPointF> d1;
+            d1.push_back(irwi->getElement(0));
+            d1.push_back(irwi->getElement(irwi->getNpoints() - 1));
+            QwtPointSeriesData * temp1 = new QwtPointSeriesData(d1);
+            QwtPlotCurve * c1 = new QwtPlotCurve();
+            c1->setPaintAttribute(QwtPlotCurve::PaintAttribute::ClipPolygons, true);
+            c1->setRenderHint(QwtPlotCurve::RenderHint::RenderAntialiased, true);
+            c1->setData(temp1);
+            c1->setStyle(QwtPlotCurve::Dots);
+            QPen p1;
+            p1.setColor(color);
+            p1.setWidth(2 * 3);
+            p1.setCapStyle(Qt::RoundCap);
+            c1->setPen(p1);
+            c1->attach(this->thisPlot);
+            curves.insert(i + 1, c1);
+
             maxty = c->maxYValue();
             minty = c->minYValue();
             maxtx = c->maxXValue();
@@ -131,15 +151,15 @@ inline void PollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi, QColor color
 }
 
 inline void PollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi) {
-    addToPlot(irwi,randomColor(qrand()));
+    addToPlot(irwi, randomColor(qrand()));
 }
 
 inline void PollarDrawingEngine::detach() {
     auto beg = curves.begin();
-    auto end = curves.begin();
     while (curves[beg.key()] != NULL) {
 
         curves[beg.key()]->detach();
+        delete curves[beg.key()];
         beg++;
     }
     curves.clear();

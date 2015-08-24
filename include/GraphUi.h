@@ -48,7 +48,7 @@ public slots:
     void spin2DMinVal(int v);
     void spin2DMaxVal(int v);
     void memoryRwOlay(int state);
-    void plotMemoryWalk(IRWItem<QPollarF> *);
+    void plotMemoryWalk(IRWItem<QPollarF> *,QColor);
     void choose(int a);
     void connections();
     void showall(int a);

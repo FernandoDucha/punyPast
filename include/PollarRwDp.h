@@ -9,10 +9,11 @@
 #define	POLLARRWDP_H
 #include "IRWItem.h"
 #include "QPollarF.h"
+#include "RWDpBase.h"
 #include <iostream>
 #include <limits>
 #include <assert.h>
-
+#include <cmath>
 class PollarRwDp : public IRWItem<QPollarF> {
 public:
     PollarRwDp();
@@ -354,9 +355,17 @@ inline IRWItem<double> * PollarRwDp::getIntegral() {
     return NULL;
 }
 
-inline IRWItem<double> * PollarRwDp::power(double) {
-    std::cout << "It doesn't apply look for a specific function in the class." << std::endl;
-    return NULL;
+inline IRWItem<double> * PollarRwDp::power(double a) {
+    IRWItem<double> * ret = new DataPointsDouble();
+    QPollarF Origin;
+    Origin.setX(0);
+    Origin.setY(0);
+    double * data = new double [Npoints];
+    for(int i=0;i<Npoints;i++){
+        data[i]=pow(pointsArray[i].distQPollarF(Origin),a);
+    }
+    ret->receiveData(data,Npoints);
+    return ret;
 }
 #endif	/* POLLARRWDP_H */
 

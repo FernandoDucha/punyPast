@@ -147,6 +147,7 @@ inline bool MemoryRandomWalk::recursiveSearch(QPollarF * p, int i, int *& ai) {
 inline IRWItem<QPollarF> * MemoryRandomWalk::perform2DWalkNoCollision() {
     tm.start();
     QPollarF * data = new QPollarF[walksSize];
+    RNG->resetSeed();
     QPollarF a = QPollarF(1.0, RNG->Double()*2 * M_PI);
     sumQPollarF(data[0], a, a);
     data[0].setIndice(0);
