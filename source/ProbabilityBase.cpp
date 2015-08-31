@@ -14,15 +14,11 @@
 
 ProbabilityBase::ProbabilityBase(IRandomWalk * brwk) {
     thisbrwk = brwk;
-    brwk->resetSeed();
-    datap = dynamic_cast<DataSetDouble*> (brwk->performAllWalksByPoints());
-    brwk->resetSeed();
-    databinp = dynamic_cast<RWVSInt*> (brwk->performAllWalksByBits());
-    brwk->resetSeed();
-    walks2d = new PollarRwDpSet(brwk->GetNumberRandomWalks());
-    for (int i = 0; i < brwk->GetNumberRandomWalks(); i++) {
-        walks2d->put(getNext2DWalk());
-    }
+    datap=nullptr;
+    databinp=nullptr;
+    walks2d=nullptr;
+    
+    
     //    this->datap=brwk->performAllWalksByPoints();
     //    this->databinp=brwk->performAllWalksByBits();
 }
@@ -34,11 +30,8 @@ ProbabilityBase::~ProbabilityBase() {
 void ProbabilityBase::setNewIRandomWalk(IRandomWalk * brwk) {
     clearDataBin();
     clearDataPoints();
+    clear2DWalks();
     thisbrwk = brwk;
-    brwk->resetSeed();
-    datap = dynamic_cast<DataSetDouble*> (brwk->performAllWalksByPoints());
-    brwk->resetSeed();
-    databinp = dynamic_cast<RWVSInt*> (brwk->performAllWalksByBits());
 }
 
 void ProbabilityBase::SetDatabinp(IRWSet<int>* databinp) {
@@ -46,6 +39,9 @@ void ProbabilityBase::SetDatabinp(IRWSet<int>* databinp) {
 }
 
 IRWSet<int>* ProbabilityBase::GetDatabinp() {
+    clearDataBin();
+    thisbrwk->resetSeed();
+    databinp = dynamic_cast<RWVSInt*> (thisbrwk->performAllWalksByBits());
     return databinp;
 }
 
@@ -54,8 +50,12 @@ void ProbabilityBase::SetDatap(IRWSet<double>* datap) {
 }
 
 IRWSet<double>* ProbabilityBase::GetDatap() {
+    clearDataPoints();
+    thisbrwk->resetSeed();
+    datap = dynamic_cast<DataSetDouble*> (thisbrwk->performAllWalksByPoints());
     return datap;
 }
+
 IRWItem<double> *ProbabilityBase::buildWeiestrass(double a, double b, double from, double to, uint_32t N) {
     IRWIntervalBuilder<double> * interval = new RWDpIntervalBuilder<double>();
     IRWItem<double> * X = interval->produceLinearInterval(from, to, (to - from) / N);
@@ -104,9 +104,17 @@ IRWItem<double>* ProbabilityBase::getAverageWalkByPoints() {
 IRWItem<QPollarF>* ProbabilityBase::getNext2DWalk() {
     return this->thisbrwk->perform2DWalk();
 }
+
 IRWSet<QPollarF> * ProbabilityBase::getAll2DWalks() {
+    clear2DWalks();
+    thisbrwk->resetSeed();
+    walks2d = new PollarRwDpSet(thisbrwk->GetNumberRandomWalks());
+    for (int i = 0; i < thisbrwk->GetNumberRandomWalks(); i++) {
+        walks2d->put(getNext2DWalk());
+    }
     return walks2d;
 }
+
 IRWSet<int>* ProbabilityBase::GetDatabinp(uint64_t nw, uint64_t ns, char*) {
     if (databinp) {
         delete databinp;
@@ -172,7 +180,8 @@ void ProbabilityBase::clearDataBin() {
         databinp = NULL;
     }
 }
-void ProbabilityBase::clear2DWalks(){
+
+void ProbabilityBase::clear2DWalks() {
     if (walks2d) {
         delete walks2d;
         walks2d = NULL;

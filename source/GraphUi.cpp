@@ -81,7 +81,7 @@ void GraphUi::connections() {
     connect(widget.spin2dmax, SIGNAL(valueChanged(int)), this, SLOT(spin2DMaxVal(int)));
     connect(widget.choose, SIGNAL(currentIndexChanged(int)), this, SLOT(choose(int)));
     connect(widget.showall, SIGNAL(stateChanged(int)), this, SLOT(showall(int)));
-    connect(widget.walks2d, SIGNAL(plotItem(IRWItem<QPollarF>*,QColor)), this, SLOT(plotMemoryWalk(IRWItem<QPollarF>*,QColor)));
+    connect(widget.walks2d, SIGNAL(plotItem(IRWItem<QPollarF>*, QColor)), this, SLOT(plotMemoryWalk(IRWItem<QPollarF>*, QColor)));
     connect(this, SIGNAL(emitCallQDist(int)), this, SLOT(quadDistCalled(int)));
     connect(widget.ScreenShot, SIGNAL(pressed()), this, SLOT(animate()));
     connect(widget.rand_source, SIGNAL(choiceType(RS_TYPES)), this, SLOT(configureGuiRSChoice(RS_TYPES)));
@@ -151,27 +151,27 @@ void GraphUi::configureWidgetProbBase(IRandomWalk* irwk) {
                 case ALL_MEM:
                     prob = new ProbabilityBase(irwk);
                     normDrawing = new DataPointsDrawingEngine<double>(widget.plotview);
-                    normDrawing->setDataSet(prob->GetDatap());
+                    //                    normDrawing->setDataSet(prob->GetDatap());
                     noiseDrawing = new BinDrawingEngine<int>(widget.plotview);
-                    noiseDrawing->setDataSet(prob->GetDatabinp());
+                    //                    noiseDrawing->setDataSet(prob->GetDatabinp());
                     integralDrawing = new IntegralDrawingEngine<int>(widget.plotview);
-                    integralDrawing->setDataSet(prob->GetDatabinp());
+                    //                    integralDrawing->setDataSet(prob->GetDatabinp());
                     fittingDrawing = new FittingDrawingEngine<int>(widget.plotview);
                     pollarDrawing = new PollarDrawingEngine(widget.plotview);
-                    pollarDrawing->setDataSet(prob->getAll2DWalks());
+                    //                    pollarDrawing->setDataSet(prob->getAll2DWalks());
                     widget.choose->setEnabled(true);
                     break;
                 case ALL_DISK:
                     prob = new BufferedProbabilityBase(irwk);
                     normDrawing = new DataPointsDrawingEngine<double>(widget.plotview);
-                    normDrawing->setDataSet(prob->GetDatap());
+                    //                    normDrawing->setDataSet(prob->GetDatap());
                     noiseDrawing = new BinDrawingEngine<int>(widget.plotview);
-                    noiseDrawing->setDataSet(prob->GetDatabinp());
+                    //                    noiseDrawing->setDataSet(prob->GetDatabinp());
                     integralDrawing = new IntegralDrawingEngine<int>(widget.plotview);
-                    integralDrawing->setDataSet(prob->GetDatabinp());
+                    //                    integralDrawing->setDataSet(prob->GetDatabinp());
                     fittingDrawing = new FittingDrawingEngine<int>(widget.plotview);
                     pollarDrawing = new BufferedPollarDrawingEngine(widget.plotview);
-                    pollarDrawing->setDataSet(prob->getAll2DWalks());
+                    //                    pollarDrawing->setDataSet(prob->getAll2DWalks());
                     widget.choose->setEnabled(true);
                     break;
                 case SQL_DB:
@@ -200,37 +200,37 @@ void GraphUi::configureWidgetProbBase(IRandomWalk* irwk) {
                 case ALL_MEM:
                     prob = new ProbabilityBase(irwk);
                     normDrawing = new DataPointsDrawingEngine<double>(widget.plotview);
-                    normDrawing->setDataSet(prob->GetDatap());
+                    //                    normDrawing->setDataSet(prob->GetDatap());
                     noiseDrawing = new BinDrawingEngine<int>(widget.plotview);
-                    noiseDrawing->setDataSet(prob->GetDatabinp());
+                    //                    noiseDrawing->setDataSet(prob->GetDatabinp());
                     integralDrawing = new IntegralDrawingEngine<int>(widget.plotview);
-                    integralDrawing->setDataSet(prob->GetDatabinp());
+                    //                    integralDrawing->setDataSet(prob->GetDatabinp());
                     fittingDrawing = new FittingDrawingEngine<int>(widget.plotview);
                     pollarDrawing = new PollarDrawingEngine(widget.plotview);
-                    pollarDrawing->setDataSet(prob->getAll2DWalks());
+                    //                    pollarDrawing->setDataSet(prob->getAll2DWalks());
                     widget.choose->setEnabled(true);
                     break;
                 case ALL_DISK:
                     prob = new BufferedProbabilityBase(irwk);
                     normDrawing = new DataPointsDrawingEngine<double>(widget.plotview);
-                    normDrawing->setDataSet(prob->GetDatap());
+                    //                    normDrawing->setDataSet(prob->GetDatap());
                     noiseDrawing = new BinDrawingEngine<int>(widget.plotview);
-                    noiseDrawing->setDataSet(prob->GetDatabinp());
+                    //                    noiseDrawing->setDataSet(prob->GetDatabinp());
                     integralDrawing = new IntegralDrawingEngine<int>(widget.plotview);
-                    integralDrawing->setDataSet(prob->GetDatabinp());
+                    //                    integralDrawing->setDataSet(prob->GetDatabinp());
                     fittingDrawing = new FittingDrawingEngine<int>(widget.plotview);
                     pollarDrawing = new BufferedPollarDrawingEngine(widget.plotview);
-                    pollarDrawing->setDataSet(prob->getAll2DWalks());
+                    //                    pollarDrawing->setDataSet(prob->getAll2DWalks());
                     widget.choose->setEnabled(true);
                     break;
                 case SQL_DB:
                     prob = new BDProbabilityBase(irwk);
                     normDrawing = new BDDataPointsDrawingEngine<double>(widget.plotview);
-                    normDrawing->setDataSet(dynamic_cast<BDProbabilityBase*> (prob)->getBd());
+//                    normDrawing->setDataSet(dynamic_cast<BDProbabilityBase*> (prob)->getBd());
                     noiseDrawing = new BDBinDrawingEngine<int>(widget.plotview);
-                    noiseDrawing->setDataSet(dynamic_cast<BDProbabilityBase*> (prob)->getBd());
+//                    noiseDrawing->setDataSet(dynamic_cast<BDProbabilityBase*> (prob)->getBd());
                     integralDrawing = new BDIntegralDrawingEngine<int>(widget.plotview);
-                    integralDrawing->setDataSet(dynamic_cast<BDProbabilityBase*> (prob)->getBd());
+//                    integralDrawing->setDataSet(dynamic_cast<BDProbabilityBase*> (prob)->getBd());
                     fittingDrawing = new FittingDrawingEngine<int>(widget.plotview);
                     widget.choose->setEnabled(true);
                     break;
@@ -292,6 +292,9 @@ void GraphUi::updateProb(TYPE a) {
     if ((nw > 0) &&(ns > 0)) {
         if (a == NIL) {
             widget.plotview->insertLegend(NULL);
+            prob->clear2DWalks();
+            prob->clearDataBin();
+            prob->clearDataPoints();
         } else if (a == BIN) {
             widget.plotview->insertLegend(NULL);
             widget.spinbinmax->setRange(0, prob->GetThisbrwk()->GetNumberRandomWalks());
@@ -299,6 +302,13 @@ void GraphUi::updateProb(TYPE a) {
             widget.spinbinmin->setSingleStep(1);
             widget.spinbinmax->setSingleStep(1);
             randomwalkSize = prob->GetThisbrwk()->GetNumberRandomWalks();
+            prob->clear2DWalks();
+            prob->clearDataPoints();
+            if(memAlloc!=SQL_DB){
+                noiseDrawing->setDataSet(prob->GetDatabinp());
+            }else{
+                noiseDrawing->setDataSet(dynamic_cast<BDProbabilityBase*> (prob)->getBd());
+            }
         } else if (a == POINTS) {
             widget.plotview->insertLegend(NULL);
             widget.spinmax->setRange(0, prob->GetThisbrwk()->GetNumberRandomWalks());
@@ -306,6 +316,13 @@ void GraphUi::updateProb(TYPE a) {
             widget.spinmin->setSingleStep(1);
             widget.spinmax->setSingleStep(1);
             randomwalkSize = prob->GetThisbrwk()->GetNumberRandomWalks();
+            prob->clearDataBin();
+            prob->clear2DWalks();
+            if(memAlloc!=SQL_DB){
+                normDrawing->setDataSet(prob->GetDatap());
+            }else{
+                normDrawing->setDataSet(dynamic_cast<BDProbabilityBase*> (prob)->getBd());
+            }
         } else if (a == FITTING) {
             fittingDrawing->setDataSet(prob->CurveFitting());
             fittingDrawing->paintAll();
@@ -316,7 +333,21 @@ void GraphUi::updateProb(TYPE a) {
             widget.spinintmin->setSingleStep(1);
             widget.spinintmax->setSingleStep(1);
             randomwalkSize = prob->GetThisbrwk()->GetNumberRandomWalks();
+            prob->clearDataPoints();
+            prob->clear2DWalks();
+            if(memAlloc!=SQL_DB){
+                integralDrawing->setDataSet(prob->GetDatabinp());
+            }else{
+                integralDrawing->setDataSet(dynamic_cast<BDProbabilityBase*> (prob)->getBd());
+            }
         } else if (a == D2_RW) {
+            prob->clearDataPoints();
+            prob->clearDataBin();
+            if(memAlloc!=SQL_DB){
+                pollarDrawing->setDataSet(prob->getAll2DWalks());
+            }else{
+                pollarDrawing->setDataSet(dynamic_cast<BDProbabilityBase*> (prob)->getBd());
+            }
             widget.plotview->insertLegend(NULL);
             widget.spin2dmax->setRange(0, prob->GetThisbrwk()->GetNumberRandomWalks());
             widget.spin2dmin->setRange(0, prob->GetThisbrwk()->GetNumberRandomWalks());
@@ -370,6 +401,9 @@ GraphUi::~GraphUi() {
 }
 
 void GraphUi::closeEvent(QCloseEvent* e) {
+    prob->clear2DWalks();
+    prob->clearDataBin();
+    prob->clearDataPoints();
     delete prob;
     QMainWindow::closeEvent(e);
 }
@@ -462,9 +496,9 @@ void GraphUi::spin2DMaxVal(int v) {
     }
 }
 
-void GraphUi::plotMemoryWalk(IRWItem<QPollarF> * item,QColor color) {
+void GraphUi::plotMemoryWalk(IRWItem<QPollarF> * item, QColor color) {
     pollarDrawing->detach();
-    pollarDrawing->addToPlot(item,color);
+    pollarDrawing->addToPlot(item, color);
     widget.plotview->replot();
 }
 
@@ -670,7 +704,7 @@ void GraphUi::animate() {
         qwtr->setLayoutFlag(QwtPlotRenderer::FrameWithScales);
         if (D.selectedNameFilter() == filters[0]) {
             qwtr->renderDocument(widget.plotview, s.at(0), "pdf", widget.plotview->canvas()->size(), 75);
-        }else if (D.selectedNameFilter() == filters[1]) {
+        } else if (D.selectedNameFilter() == filters[1]) {
             qwtr->renderDocument(widget.plotview, s.at(0), "png", widget.plotview->canvas()->size(), 75);
         }
     }

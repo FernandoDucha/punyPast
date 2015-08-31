@@ -103,6 +103,7 @@
       <itemPath>include/IRNG.h</itemPath>
       <itemPath>include/IRWBd.h</itemPath>
       <itemPath>include/IRWBufferedItem.h</itemPath>
+      <itemPath>include/IRWIHistogram.h</itemPath>
       <itemPath>include/IRWIntervalBuilder.h</itemPath>
       <itemPath>include/IRWItem.h</itemPath>
       <itemPath>include/IRWSet.h</itemPath>
@@ -143,10 +144,12 @@
       <itemPath>include/RWBufferedVecSet.h</itemPath>
       <itemPath>include/RWDp.h</itemPath>
       <itemPath>include/RWDpBase.h</itemPath>
+      <itemPath>include/RWDpHistogram.h</itemPath>
       <itemPath>include/RWDpIntervalBuilder.h</itemPath>
       <itemPath>include/RWDpSet.h</itemPath>
       <itemPath>include/RWLocPair.h</itemPath>
       <itemPath>include/RWPollarDpIntervalBuilder.h</itemPath>
+      <itemPath>include/RWPollarHistogram.h</itemPath>
       <itemPath>include/RWVBase.h</itemPath>
       <itemPath>include/RWVec.h</itemPath>
       <itemPath>include/RWVecIntervalBuilder.h</itemPath>
@@ -209,6 +212,7 @@
       <itemPath>source/IRNG.cpp</itemPath>
       <itemPath>source/IRWBd.cpp</itemPath>
       <itemPath>source/IRWBufferedItem.cpp</itemPath>
+      <itemPath>source/IRWIHistogram.cpp</itemPath>
       <itemPath>source/IRWIntervalBuilder.cpp</itemPath>
       <itemPath>source/IRWItem.cpp</itemPath>
       <itemPath>source/IRWSet.cpp</itemPath>
@@ -246,10 +250,12 @@
       <itemPath>source/RWBufferedVecIntervalBuilder.cpp</itemPath>
       <itemPath>source/RWBufferedVecSet.cpp</itemPath>
       <itemPath>source/RWDp.cpp</itemPath>
+      <itemPath>source/RWDpHistogram.cpp</itemPath>
       <itemPath>source/RWDpIntervalBuilder.cpp</itemPath>
       <itemPath>source/RWDpSet.cpp</itemPath>
       <itemPath>source/RWLocPair.cpp</itemPath>
       <itemPath>source/RWPollarDpIntervalBuilder.cpp</itemPath>
+      <itemPath>source/RWPollarHistogram.cpp</itemPath>
       <itemPath>source/RWVec.cpp</itemPath>
       <itemPath>source/RWVecIntervalBuilder.cpp</itemPath>
       <itemPath>source/RWVecSet.cpp</itemPath>
@@ -444,6 +450,8 @@
       </item>
       <item path="include/IRWBufferedItem.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/IRWIHistogram.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/IRWIntervalBuilder.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/IRWItem.h" ex="false" tool="3" flavor2="0">
@@ -536,6 +544,8 @@
       </item>
       <item path="include/RWDpBase.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/RWDpHistogram.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/RWDpIntervalBuilder.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/RWDpSet.h" ex="false" tool="3" flavor2="0">
@@ -546,6 +556,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="include/RWPollarHistogram.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/RWVBase.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -848,6 +860,8 @@
       </item>
       <item path="source/IRWBufferedItem.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/IRWIHistogram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/IRWIntervalBuilder.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/IRWItem.cpp" ex="false" tool="1" flavor2="0">
@@ -937,6 +951,8 @@
       </item>
       <item path="source/RWDp.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/RWDpHistogram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/RWDpIntervalBuilder.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/RWDpSet.cpp" ex="false" tool="1" flavor2="0">
@@ -947,6 +963,8 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="source/RWPollarHistogram.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/RWVec.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1140,6 +1158,8 @@
       </item>
       <item path="include/IRWBufferedItem.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/IRWIHistogram.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/IRWIntervalBuilder.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/IRWItem.h" ex="false" tool="3" flavor2="0">
@@ -1232,6 +1252,8 @@
       </item>
       <item path="include/RWDpBase.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/RWDpHistogram.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/RWDpIntervalBuilder.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/RWDpSet.h" ex="false" tool="3" flavor2="0">
@@ -1242,6 +1264,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="include/RWPollarHistogram.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/RWVBase.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -1544,6 +1568,8 @@
       </item>
       <item path="source/IRWBufferedItem.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/IRWIHistogram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/IRWIntervalBuilder.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/IRWItem.cpp" ex="false" tool="1" flavor2="0">
@@ -1633,6 +1659,8 @@
       </item>
       <item path="source/RWDp.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/RWDpHistogram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/RWDpIntervalBuilder.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/RWDpSet.cpp" ex="false" tool="1" flavor2="0">
@@ -1643,6 +1671,8 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="source/RWPollarHistogram.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/RWVec.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1809,6 +1839,8 @@
       </item>
       <item path="include/IRWBufferedItem.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/IRWIHistogram.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/IRWIntervalBuilder.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/IRWItem.h" ex="false" tool="3" flavor2="0">
@@ -1901,6 +1933,8 @@
       </item>
       <item path="include/RWDpBase.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/RWDpHistogram.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/RWDpIntervalBuilder.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/RWDpSet.h" ex="false" tool="3" flavor2="0">
@@ -1911,6 +1945,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="include/RWPollarHistogram.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/RWVBase.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2213,6 +2249,8 @@
       </item>
       <item path="source/IRWBufferedItem.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/IRWIHistogram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/IRWIntervalBuilder.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/IRWItem.cpp" ex="false" tool="1" flavor2="0">
@@ -2302,6 +2340,8 @@
       </item>
       <item path="source/RWDp.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/RWDpHistogram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/RWDpIntervalBuilder.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/RWDpSet.cpp" ex="false" tool="1" flavor2="0">
@@ -2312,6 +2352,8 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="source/RWPollarHistogram.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/RWVec.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -140,7 +140,7 @@ inline Walks2DOverlay::Walks2DOverlay(QWidget* Parent) : QWidget(Parent) {
 
 inline void Walks2DOverlay::plot() {
     if (data) {
-        emitting->receiveData(data, nData);
+        emitting->receiveData(&data[1], nData-1);
         emit plotItem(emitting, actualColor);
     }
 }
@@ -155,10 +155,10 @@ inline void Walks2DOverlay::runPushed() {
     thismemrw = aux;
     thismemrw->generatePointsDiscrete(Disc->value());
     if (data == NULL) {
-        data = new QPollarF[thismemrw->getWalksSize()];
+        data = new QPollarF[thismemrw->getWalksSize()+1];
     } else {
         delete [] data;
-        data = new QPollarF[thismemrw->getWalksSize()];
+        data = new QPollarF[thismemrw->getWalksSize()+1];
     }
     connect(thismemrw, SIGNAL(point(QPollarF*, int, double)), this, SLOT(point(QPollarF*, int, double)));
     thismemrw->setTime(MaxTime->value()*1000);

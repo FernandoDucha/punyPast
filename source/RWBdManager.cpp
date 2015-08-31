@@ -5,20 +5,20 @@
  * Created on March 9, 2015, 1:29 PM
  */
 
-#include <qt5/QtCore/qlogging.h>
 
 #include "RWBdManager.h"
 
 RWBdManager::RWBdManager(char * dbfile) {
     if (!QSqlDatabase::contains("qt_sql_default_connection")) {
         db = QSqlDatabase::addDatabase("QSQLITE");
-    }else{
+    } else {
         db = QSqlDatabase::database("qt_sql_default_connection");
     }
     this->dbfile = QString(dbfile);
     db.setDatabaseName(this->dbfile);
     dptable = "dp";
     rwvtable = "bin";
+    qptable = "d2rw";
 }
 
 bool RWBdManager::open() {
@@ -32,6 +32,17 @@ void RWBdManager::close() {
 bool RWBdManager::createDpTable() {
     db.exec("drop table " + dptable + ";");
     QString sql = "create table " + dptable + "(key integer primary key, _" + dptable + " blob);";
+    db.exec(sql);
+    if (db.lastError().type() == QSqlError::NoError) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool RWBdManager::createD2RwTable() {
+    db.exec("drop table " + qptable + ";");
+    QString sql = "create table " + qptable + "(key integer primary key, _" + qptable + " blob);";
     db.exec(sql);
     if (db.lastError().type() == QSqlError::NoError) {
         return true;
@@ -60,7 +71,7 @@ bool RWBdManager::insertItem(DataPointsDouble & dpitem) {
     q.prepare("insert into " + dptable + "(key, _" + dptable + ") values(:key,:_" + dptable + ")");
     QByteArray ba;
     char* _ba = new char[dpitem.getNpoints() * DP];
-    double * buffer = new double[dpitem.getNpoints() * DP];
+    double * buffer = new double[dpitem.getNpoints()];
     stringstream stream(stringstream::binary | stringstream::in | stringstream::out);
     for (uint32_t i = 0; i < dpitem.getNpoints(); i++) {
         buffer[i] = dpitem.getElement(i);
@@ -73,6 +84,124 @@ bool RWBdManager::insertItem(DataPointsDouble & dpitem) {
     q.bindValue(":_" + dptable, ba);
     q.exec();
     if (q.lastError().type() == QSqlError::NoError) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool RWBdManager::insertItem(PollarRwDp & d2item) {
+    QSqlQuery q;
+    q.prepare("insert into " + qptable + "(key, _" + qptable + ") values(:key,:_" + qptable + ")");
+    QByteArray ba;
+    char* _ba = new char[d2item.getNpoints() * D2RW];
+    double * buffer = new double[d2item.getNpoints() * 2];
+    stringstream stream(stringstream::binary | stringstream::in | stringstream::out);
+    for (uint32_t i = 0; i < d2item.getNpoints(); i++) {
+        buffer[2 * i] = d2item.getElement(i).rx();
+        buffer[2 * i + 1] = d2item.getElement(i).ry();
+    }
+    stream.write(reinterpret_cast<char*> (buffer), d2item.getNpoints() * D2RW);
+    stream.read(_ba, d2item.getNpoints() * D2RW);
+    ba.append(_ba, d2item.getNpoints() * D2RW);
+    delete [] _ba;
+    delete [] buffer;
+    q.bindValue(":_" + qptable, ba);
+    q.exec();
+    if (q.lastError().type() == QSqlError::NoError) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool RWBdManager::insertSet(PollarRwDpSet & d2set) {
+    for (uint32_t i = 0; i < d2set.getSize(); i++) {
+        if (!insertItem(*dynamic_cast<PollarRwDp*> (d2set.getElement(i)))) {
+            return false;
+        }
+    }
+    return true;
+}
+
+PollarRwDp RWBdManager::selectD2Item(int i) {
+    QSqlQuery sq;
+    if (i == 0) {
+        sq.exec("select * from " + qptable + " limit 1;");
+    } else {
+        QString s_i = QString::number(i);
+        sq.exec("select * from " + qptable + " limit " + s_i + ", 1 ;");
+    }
+    PollarRwDp ret;
+    while (sq.next()) {
+        QByteArray ba = sq.value(1).toByteArray();
+        double * data = reinterpret_cast<double*> (ba.data());
+        int size=ba.size()/D2RW;
+        QPollarF * _temp = new QPollarF[size];
+        for(int i=0;i<size;i++){
+            _temp[i].setX(data[i*2]);
+            _temp[i].setY(data[i*2+1]);
+            
+        }
+        delete [] _temp;
+        ret.receiveData(_temp,size);
+    }
+    return ret;
+}
+PollarRwDpSet * RWBdManager::selectD2Item(int Beg, int End){
+    QSqlQuery sq;
+    int N = End - Beg;
+    QString _n = QString::number(N);
+    if (Beg == 0) {
+        sq.exec("select * from " + qptable + " limit " + _n + ";");
+    } else {
+        QString s_i = QString::number(Beg);
+        sq.exec("select * from " + qptable + " limit " + s_i + ", " + _n + ";");
+    }
+    PollarRwDpSet * ret = new PollarRwDpSet(N);
+    while (sq.next()) {
+        PollarRwDp * d = new PollarRwDp();
+        QByteArray ba = sq.value(1).toByteArray();
+        double * data = reinterpret_cast<double*> (ba.data());
+        int size=ba.size()/D2RW;
+        QPollarF * _temp = new QPollarF[size];
+        for(int i=0;i<size;i++){
+            _temp[i].setX(data[i*2]);
+            _temp[i].setY(data[i*2+1]);
+            
+        }
+        d->receiveData(_temp,size);
+        delete [] _temp;
+        ret->put(d);
+    }
+    return ret;
+}
+void RWBdManager::prepareInsD2SetTo500(int N){
+    QString basic_v = "";
+    int i = 0;
+    for (; i < N - 1; i++)
+        basic_v += " ( :key" + QString::number(i) + " , :_" + qptable + QString::number(i) + " ) , ";
+    basic_v += "(:key" + QString::number(i) + ",:_" + qptable + QString::number(i) + ")";
+    ins_string = "insert into " + qptable + "(key, _" + qptable + ") values" + basic_v;
+    isprepared = true;
+}
+bool RWBdManager::bindValueMultD2Item(PollarRwDp & d2item, int elem){
+    if (isprepared) {
+        QByteArray ba;
+        char* _ba = new char[d2item.getNpoints() * D2RW];
+        double * buffer = new double[d2item.getNpoints()*2];
+        stringstream stream(stringstream::binary | stringstream::in | stringstream::out);
+        for (uint32_t i = 0; i < d2item.getNpoints(); i++) {
+            buffer[2*i] = d2item.getElement(i).rx();
+            buffer[2*i+1] = d2item.getElement(i).ry();
+        }
+        stream.write(reinterpret_cast<char*> (buffer), d2item.getNpoints() * D2RW);
+        stream.read(_ba, d2item.getNpoints() * D2RW);
+        ba.append(_ba, d2item.getNpoints() * D2RW);
+        QString v = ":_" + qptable + QString::number(elem);
+        _map[v] = ba;
+        delete [] _ba;
+        delete [] buffer;
         return true;
     } else {
         return false;
@@ -138,7 +267,7 @@ bool RWBdManager::bindValueMultDpItem(DataPointsDouble& dpitem, int elem) {
     if (isprepared) {
         QByteArray ba;
         char* _ba = new char[dpitem.getNpoints() * DP];
-        double * buffer = new double[dpitem.getNpoints() * DP];
+        double * buffer = new double[dpitem.getNpoints()];
         stringstream stream(stringstream::binary | stringstream::in | stringstream::out);
         for (uint32_t i = 0; i < dpitem.getNpoints(); i++) {
             buffer[i] = dpitem.getElement(i);
@@ -182,7 +311,7 @@ bool RWBdManager::insertItem(RWVInt & binitem) {
     q.prepare("insert into " + rwvtable + "(key, _" + rwvtable + ") values(:key,:_" + rwvtable + ")");
     QByteArray ba;
     char* _ba = new char[binitem.getNpoints() * DP];
-    int * buffer = new int[binitem.getNpoints() * DP];
+    int * buffer = new int[binitem.getNpoints()];
     stringstream stream(stringstream::binary | stringstream::in | stringstream::out);
     for (uint32_t i = 0; i < binitem.getNpoints(); i++) {
         buffer[i] = binitem.getElement(i);
@@ -271,7 +400,7 @@ bool RWBdManager::bindValueMultBinItem(RWVInt & binitem, int elem) {
     if (isprepared) {
         QByteArray ba;
         char* _ba = new char[binitem.getNpoints() * DP];
-        int * buffer = new int[binitem.getNpoints() * DP];
+        int * buffer = new int[binitem.getNpoints()];
         stringstream stream(stringstream::binary | stringstream::in | stringstream::out);
         for (uint32_t i = 0; i < binitem.getNpoints(); i++) {
             buffer[i] = binitem.getElement(i);

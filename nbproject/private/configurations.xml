@@ -26,18 +26,18 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>sh -c "ulimit -s 536870912"&amp;&amp;${OUTPUT_PATH}</runcommandpicklistitem>
-          <runcommandpicklistitem>sh -c "ulimit -s 536870912";${OUTPUT_PATH}</runcommandpicklistitem>
           <runcommandpicklistitem>sh -c "ulimit -s 536870912"|${OUTPUT_PATH}</runcommandpicklistitem>
           <runcommandpicklistitem>sh -c "ulimit -s 536870912|${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>sh -c "ulimit -s 536870912;echo $QTDIR;${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>sh -c "ulimit -s 536870912;${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>sh runSh.sh</runcommandpicklistitem>
           <runcommandpicklistitem>${OUTPUT_PATH}|"ulimit -s 536870912"</runcommandpicklistitem>
-          <runcommandpicklistitem>${OUTPUT_PATH}</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}">>data.dat</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}">>"data.dat"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>${OUTPUT_PATH}</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <runcommand>${OUTPUT_PATH}</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>1</terminal-type>

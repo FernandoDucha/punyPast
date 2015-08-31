@@ -38,7 +38,8 @@ IRWItem<double>* BDProbabilityBase::getAverageWalkByPoints() {
     *dynamic_cast<DataPointsDouble*> (retorno) / (double) nW;
     return retorno;
 }
-IRWItem<QPollarF>* BDProbabilityBase::getNext2DWalk(){
+
+IRWItem<QPollarF>* BDProbabilityBase::getNext2DWalk() {
     return thisrwk->perform2DWalk();
 }
 
@@ -46,8 +47,7 @@ BDProbabilityBase::BDProbabilityBase(IRandomWalk * irwk) : BdManager("database.d
     BdManager.open();
     thisrwk = irwk;
     block = 100;
-    fillBinTable();
-    fillDpTable();
+
 }
 
 void BDProbabilityBase::fillBinTable() {
@@ -107,11 +107,38 @@ void BDProbabilityBase::fillDpTable() {
     }
 }
 
+void BDProbabilityBase::fillD2Table() {
+    thisrwk->resetSeed();
+    BdManager.createD2RwTable();
+    int count = thisrwk->GetNumberRandomWalks() / block;
+    int rest = thisrwk->GetNumberRandomWalks() % block;
+    while (count > 0) {
+        BdManager.prepareInsD2SetTo500(block);
+        for (int i = 0; i < block; i++) {
+            PollarRwDp * dp = dynamic_cast<PollarRwDp*> (thisrwk->perform2DWalk());
+            BdManager.bindValueMultD2Item(*dp, i);
+            delete dp;
+        }
+        BdManager.execMultiple();
+        count--;
+    }
+    if (rest) {
+        BdManager.prepareInsD2SetTo500(rest);
+        for (int i = 0; i < rest; i++) {
+            PollarRwDp * dp = dynamic_cast<PollarRwDp*> (thisrwk->perform2DWalk());
+            BdManager.bindValueMultD2Item(*dp, i);
+            delete dp;
+        }
+        BdManager.execMultiple();
+    }
+}
+
 void BDProbabilityBase::SetDatabinp(IRWSet<int>*) {
 
 }
 
 IRWSet<int>* BDProbabilityBase::GetDatabinp() {
+    fillBinTable();
     return BdManager.selectBinItem(0, thisrwk->GetNumberRandomWalks());
 }
 
@@ -138,7 +165,13 @@ void BDProbabilityBase::SetDatap(IRWSet<double>*) {
 }
 
 IRWSet<double>* BDProbabilityBase::GetDatap() {
+    fillDpTable();
     return BdManager.selectDpItem(0, thisrwk->GetNumberRandomWalks());
+}
+
+IRWSet<QPollarF>* BDProbabilityBase::getAll2DWalks() {
+    fillD2Table();
+    return BdManager.selectD2Item(0, thisrwk->GetNumberRandomWalks());
 }
 
 IPolyfit * BDProbabilityBase::CurveFitting() {
@@ -164,6 +197,9 @@ IPolyfit * BDProbabilityBase::CurveFitting() {
 
 void BDProbabilityBase::clearDataBin() {
     BdManager.createBinTable();
+}
+void BDProbabilityBase::clear2DWalks(){
+    BdManager.createD2RwTable();
 }
 
 void BDProbabilityBase::clearDataPoints() {

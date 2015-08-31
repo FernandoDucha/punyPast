@@ -23,7 +23,7 @@ typedef RWDpSet<unsigned char> DataSetsUC;
 //DataPoints Pre-Def Types
 typedef RWDp<long double> DataPointsLD;
 typedef RWDp<double> DataPointsDouble;
-typedef RWDp<long int> DataPointsLI;
+typedef RWDp<long long> DataPointsLI;
 typedef RWDp<int> DataPointsInt;
 typedef RWDp<unsigned long int> DataPointsULI;
 typedef RWDp<unsigned int> DataPointsUInt;

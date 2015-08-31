@@ -11,6 +11,7 @@
 #include "qwt_plot.h"
 #include "qwt_plot_curve.h"
 #include "PollarRwDpSet.h"
+#include "qwt_symbol.h"
 
 class PollarDrawingEngine : public IDrawingEngine<QPollarF> {
 public:
@@ -29,13 +30,13 @@ public:
     void paintQAverageDistance();
 
     virtual void setMaxForType() {
-        this->max.setX(std::numeric_limits<double>::min());
-        this->max.setY(std::numeric_limits<double>::min());
+        this->max.setX(-std::numeric_limits<qreal>::max());
+        this->max.setY(-std::numeric_limits<qreal>::max());
     }
 
     virtual void setMinForType() {
-        this->min.setX(std::numeric_limits<double>::max());
-        this->min.setY(std::numeric_limits<double>::max());
+        this->min.setX(std::numeric_limits<qreal>::max());
+        this->min.setY(std::numeric_limits<qreal>::max());
     }
 private:
     IRWSet<QPollarF> * dataSet;
@@ -97,27 +98,21 @@ inline void PollarDrawingEngine::addToPlot(IRWItem<QPollarF>* irwi, QColor color
             p.setColor(color);
             p.setCapStyle(Qt::RoundCap);
             p.setJoinStyle(Qt::RoundJoin);
-
-            p.setWidth(2);
+            p.setWidthF(2);
             c->setPen(p);
-            c->attach(this->thisPlot);
-            curves.insert(i, c);
-            QVector<QPointF> d1;
-            d1.push_back(irwi->getElement(0));
-            d1.push_back(irwi->getElement(irwi->getNpoints() - 1));
-            QwtPointSeriesData * temp1 = new QwtPointSeriesData(d1);
-            QwtPlotCurve * c1 = new QwtPlotCurve();
-            c1->setPaintAttribute(QwtPlotCurve::PaintAttribute::ClipPolygons, true);
-            c1->setRenderHint(QwtPlotCurve::RenderHint::RenderAntialiased, true);
-            c1->setData(temp1);
-            c1->setStyle(QwtPlotCurve::Dots);
+            
             QPen p1;
             p1.setColor(color);
-            p1.setWidth(2 * 3);
+            p1.setWidthF(2 * 3);
             p1.setCapStyle(Qt::RoundCap);
-            c1->setPen(p1);
-            c1->attach(this->thisPlot);
-            curves.insert(i + 1, c1);
+            QBrush b(color);
+            QPainterPath path;
+            path.addEllipse(0,0,2,2);
+            QwtSymbol * qsym = new QwtSymbol(path,b,p1);
+            c->setSymbol(qsym);
+            c->attach(this->thisPlot);
+            curves.insert(i, c);
+
 
             maxty = c->maxYValue();
             minty = c->minYValue();

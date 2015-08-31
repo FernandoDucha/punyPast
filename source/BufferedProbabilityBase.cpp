@@ -49,9 +49,6 @@ BufferedProbabilityBase::BufferedProbabilityBase(IRandomWalk * irwk) : rwmngrint
     databinp = NULL;
     walks2d = NULL;
     thisrwk = irwk;
-    fillDatap();
-    fillDataBinp();
-    fill2DWalks();
 }
 
 void BufferedProbabilityBase::fillDatap() {
@@ -135,6 +132,7 @@ void BufferedProbabilityBase::SetDatabinp(IRWSet<int>* databinp) {
 }
 
 IRWSet<int>* BufferedProbabilityBase::GetDatabinp() {
+    fillDataBinp();
     return databinp;
 }
 
@@ -173,6 +171,7 @@ void BufferedProbabilityBase::SetDatap(IRWSet<double>* datap) {
 }
 
 IRWSet<double>* BufferedProbabilityBase::GetDatap() {
+    fillDatap();
     return datap;
 }
 
@@ -218,6 +217,7 @@ void BufferedProbabilityBase::clear2DWalks() {
 }
 
 IRWSet<QPollarF> * BufferedProbabilityBase::getAll2DWalks() {
+    fill2DWalks();
     return (walks2d);
 }
 

@@ -37,17 +37,14 @@ public:
     virtual IRWItem<double>* getAverageWalkByPoints();
     virtual IRWItem<QPollarF>* getNext2DWalk();
 
-    virtual void clear2DWalks() {
-        return;
-    }
-    virtual IRWSet<QPollarF>* getAll2DWalks(){
-        return nullptr;
-    }
+    virtual void clear2DWalks();
+    virtual IRWSet<QPollarF>* getAll2DWalks();
 
 
 private:
     void fillBinTable();
     void fillDpTable();
+    void fillD2Table();
     IRandomWalk * thisrwk;
     RWBdManager BdManager;
     int block;

@@ -76,6 +76,7 @@ inline MemoryRandomWalk::MemoryRandomWalk(IRandomWalk * IRw, uint_64t ws, int di
     RNG = IRw;
     walksSize = ws;
     generatePointsDiscrete(disc);
+    maxTimeMS=3600*1000;
 }
 
 inline MemoryRandomWalk::~MemoryRandomWalk() {
@@ -99,7 +100,7 @@ inline bool MemoryRandomWalk::recursiveSearch(QPollarF * p, int i, int *& ai) {
     vector<QPollarF> bag;
     auto beg = discPollarF.begin();
     auto end = discPollarF.end();
-    if (*ai >= walksSize && tm.elapsed() < maxTimeMS)
+    if (*ai >= walksSize + 1 && tm.elapsed() < maxTimeMS)
         return true;
     for (; beg != end; beg++) {
         sumQPollarF(p[i - 1], *beg, p[i]);
@@ -125,7 +126,7 @@ inline bool MemoryRandomWalk::recursiveSearch(QPollarF * p, int i, int *& ai) {
 
     if (bag.size()) {
         do {
-            int choice = RNG->Integer() % bag.size();
+            int choice = RNG->Double() * bag.size();
             QPollarF t = bag.at(choice);
             bag.erase(bag.begin() + choice);
             sumQPollarF(p[i - 1], t, p[i]);
@@ -138,7 +139,7 @@ inline bool MemoryRandomWalk::recursiveSearch(QPollarF * p, int i, int *& ai) {
                     --i;
                 }
             }
-        } while (bag.size() > 0 && *ai < walksSize && tm.elapsed() < maxTimeMS);
+        } while (bag.size() > 0 && *ai < walksSize + 1 && tm.elapsed() < maxTimeMS);
     } else {
         return false;
     }
@@ -146,9 +147,9 @@ inline bool MemoryRandomWalk::recursiveSearch(QPollarF * p, int i, int *& ai) {
 
 inline IRWItem<QPollarF> * MemoryRandomWalk::perform2DWalkNoCollision() {
     tm.start();
-    QPollarF * data = new QPollarF[walksSize];
+    QPollarF * data = new QPollarF[walksSize + 1];
     RNG->resetSeed();
-    QPollarF a = QPollarF(1.0, RNG->Double()*2 * M_PI);
+    QPollarF a = QPollarF(1.0, RNG->Double()*2 * M_PI); //discPollarF[discPollarF.size()*RNG->Double()];
     sumQPollarF(data[0], a, a);
     data[0].setIndice(0);
     data[1] += a;
@@ -158,8 +159,10 @@ inline IRWItem<QPollarF> * MemoryRandomWalk::perform2DWalkNoCollision() {
     PSet.addPollar(data[0]);
     PSet.addPollar(data[1]);
     recursiveSearch(data, *ai, ai);
+    emit point(data, *ai, tm.elapsed() / 1000.0);
+
     IRWItem<QPollarF> * ret = new PollarRwDp();
-    ret->receiveData(data, walksSize);
+    ret->receiveData(&data[1], walksSize);
     return ret;
 }
 #endif	/* MEMORYRANDOMWALK_H */

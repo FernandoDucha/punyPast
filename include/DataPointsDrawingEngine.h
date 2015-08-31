@@ -140,6 +140,8 @@ template <class Type> void DataPointsDrawingEngine<Type>::setNPlots(u_int32_t N)
 }
 
 template <class Type> void DataPointsDrawingEngine<Type>::paintFromTo(u_int32_t beg, u_int32_t end) {
+    setMaxForType();
+    setMinForType();
     for (int i = 0; i < beg; i++) {
         if (curves.contains(i) && curves.value(i)->plot() != NULL) {
             curves.value(i)->detach();
@@ -193,6 +195,8 @@ template <class Type> DataPointsDrawingEngine<Type>::DataPointsDrawingEngine(Qwt
 template <class Type> void DataPointsDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi, QColor color) {
     Type x;
     bool flag = false;
+    setMaxForType();
+    setMinForType();
     for (int i = 0;; i++) {
         Type maxt = numeric_limits<Type>::min(), mint = numeric_limits<Type>::max();
         if (curves[i] == NULL) {
@@ -233,7 +237,7 @@ template <class Type> void DataPointsDrawingEngine<Type>::addToPlot(IRWItem<Type
 }
 
 template <class Type> void DataPointsDrawingEngine<Type>::addToPlot(IRWItem<Type>* irwi) {
-    addToPlot(irwi,randomColor(qrand()));
+    addToPlot(irwi, randomColor(qrand()));
 }
 
 template <class Type> void DataPointsDrawingEngine<Type>::paintAll() {
