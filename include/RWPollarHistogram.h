@@ -10,6 +10,7 @@
 #include "IRWIHistogram.h"
 #include "QPollarF.h"
 #include "RWDpBase.h"
+#include <limits>
 
 class RWPollarHistogram : public IRWIHistogram<QPollarF> {
 public:
@@ -27,26 +28,30 @@ private:
 };
 
 inline void RWPollarHistogram::setBins(QPollarF max, QPollarF min, double step) {
-    _max = (max.rx() > max.ry()) ? max.rx() : max.ry();
-    _min = (min.rx() > min.ry()) ? min.rx() : min.ry();
-    setBins(_max, _min, step);
+    double _tmax = (max.rx() > max.ry()) ? max.rx() : max.ry();
+    double _tmin = (min.rx() > min.ry()) ? min.rx() : min.ry();
+    setBins(_tmax, _tmin, step);
 }
 
 inline void RWPollarHistogram::setBins(double max, double min, double step) {
-    nBins = (max - min) / step + 1;
-    ratio = step;
-    _max = max;
-    _min = min;
-    if (freq) {
-        delete [] freq;
+    if (ratio != step || _max != max || _min != min) {
+        ratio = step;
+        _max = max;
+        _min = min;
+        nBins = (max - min) / step + 1;
+        if (freq){
+            delete [] freq;
+            freq=nullptr;
+        }
+        freq = new long long[nBins];
     }
-    freq = new long long[nBins];
     for (int i = 0; i < nBins; i++) {
         freq[i] = 0;
     }
 }
 
 inline IRWItem<long long> * RWPollarHistogram::frequencies(IRWItem<QPollarF>*irwi) {
+    setBins(_max, _min, ratio);
     irwi->resetIterator();
     QPollarF a;
     while (irwi->getNext(a)) {
@@ -62,7 +67,6 @@ inline IRWItem<long long> * RWPollarHistogram::frequencies(IRWItem<QPollarF>*irw
 
 inline IRWItem<long long> * RWPollarHistogram::frequencies(IRWSet<QPollarF>*irws) {
     IRWItem<long long> * response = new DataPointsLI();
-    response->receiveData(freq, nBins);
     for (int i = 0; i < irws->getSize(); i++) {
         IRWItem<long long> * r = frequencies(irws->getElement(i));
         *response += *r;
@@ -72,7 +76,9 @@ inline IRWItem<long long> * RWPollarHistogram::frequencies(IRWSet<QPollarF>*irws
 }
 
 inline RWPollarHistogram::RWPollarHistogram() {
-    freq=nullptr;
+    freq = nullptr;
+    _max = std::numeric_limits<double>::max();
+    _min = -std::numeric_limits<double>::min();
 }
 
 inline RWPollarHistogram::~RWPollarHistogram() {

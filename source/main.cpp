@@ -71,33 +71,41 @@ int main(int argc, char *argv[]) {
     //        }
     //        destroy_die_teste(dtst_call, tst_call);
     //    }
-
+    //
 //    RNGLinearCong lcg(5645678);
-//
-//    LCGBinaryRandomWalk lcgbrwk(&lcg, , 100000);
-//    IProbabilityBase<int, double> * prob = new ProbabilityBase(&lcgbrwk);
-//    IRWSet<QPollarF> * set = prob->getAll2DWalks();
-//    set->getElement(0)
-   
-//    IRWIHistogram<QPollarF> * hist = new RWPollarHistogram();
-//    dynamic_cast<RWPollarHistogram*>(hist)->setBins(set->getMax(),set->getMin(),1);
-//    hist->frequencies(set)->print();
-    //    IRWItem<double> *sum = new DataPointsDouble();
-//    for (int i = 0; i < 100; i++) {
-//        //            lcg.setSeed(5645678+i);
-//        //        IRWItem<double> *p =d->power(2.0);
-//        //        *sum+=*p;
-//        //            lcg.setSeed(lcg.getSeed()+i);
-//        IRWItem<double> *p = prob->GetDatap()->getElement(i);
-//        p->print();
-//        //        cout<<i<<endl;
-//        ////        sum->print();
-//        //        delete p;
+//    int a = 10000;
+//    LCGBinaryRandomWalk lcgbrwk(&lcg, 1000, a);
+    //    FileRawBuffer frb("/media/fordem/My Passport/qrngdata",FileRawBuffer::NOTHING);
+    //    BinaryRandomWalk brwk(&frb,1000000,a);
+    //    IProbabilityBase<int, double> * prob = new ProbabilityBase(&lcgbrwk);
+    //    IRWSet<QPollarF> * set = prob->getAll2DWalks();
+    //    set->getElement(0)
+
+
+    //    IRWIHistogram<double> * hist = new RWDpHistogram<double>(set->getMax(), set->getMin(), 1);
+    //    hist->frequencies(set)->print();
+//    IRWSet<QPollarF> * set1 = new PollarRwDpSet(a);
+    //
+//    IRWItem<double> *sum = new DataPointsDouble();
+//    for (int i = 0; i < a; i++) {
+//        lcg.setSeed(5645678 + i);
+//        set1->put(lcgbrwk.perform2DWalkNoCollision(4));
+//        IRWItem<double> *p = set1->getElement(i)->power(2.0);
+//        *sum += *p;
+        //            lcg.setSeed(lcg.getSeed()+i);
+//        cout << i << endl;
+        //        p->print();
+//        delete p;
 //    }
-    //    *sum=*dynamic_cast<RWDp<double> *> (sum)/sum->getNpoints();
-    //    IRWItem<double> * sqrt= sum->power(0.5);
-    //    delete sum;
-    //    sqrt->print();
+//    IRWIHistogram<QPollarF> * hist1 = new RWPollarHistogram();
+//    dynamic_cast<RWPollarHistogram*> (hist1)->setBins(set1->getMax(), set1->getMin(), 1);
+//    hist1->frequencies(set1)->print();
+
+    //
+//    *sum = *dynamic_cast<RWDp<double> *> (sum) / sum->getNpoints();
+//    IRWItem<double> * sqrt = sum->power(0.5);
+//    delete sum;
+//    sqrt->print();
     //    IRWItem<QPollarF> * d = lcgbrwk.perform2DWalkNoCollision(4);
 
     //    RW2DFractalDimension rw2d(d,1.5,1.5);
@@ -151,11 +159,11 @@ int main(int argc, char *argv[]) {
     //    cout << (f == f1) << endl;
     //    DFAInputGui DFA(interval, d, NULL);
     //    DFA.exec();
-    //    FormatStrNms::Driver driver;
-    //    std::cout<<(driver.parse_string(std::string("%d;%d;%d;%g;\n"),std::string("hello"))==true)<<std::endl;
-    GraphUi * g = new GraphUi();
-    //    create and show your widgets here
-    g->showMaximized();
+        FormatStrNms::Driver driver;
+        std::cout<<(driver.parse_string(std::string("%dd%d;%d;%g\n"),std::string("hello"))==true)<<std::endl;
+    //    GraphUi * g = new GraphUi();
+    //    //    create and show your widgets here
+    //    g->showMaximized();
 
     //    Tokenizer T;
     //    QList<QString>* res=T.Tokenize("x=123.123*abc123abc");

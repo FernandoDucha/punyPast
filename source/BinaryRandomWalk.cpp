@@ -38,6 +38,7 @@ IRWItem<QPollarF> * BinaryRandomWalk::perform2DWalk() {
     }
     IRWItem<QPollarF> * ret = new PollarRwDp();
     ret->receiveData(data, walkSize);
+    delete [] data;
     //    ret->print();
     return ret;
 }

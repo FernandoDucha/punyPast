@@ -65,9 +65,8 @@ public:
 
     void print() {
         for (unsigned int i = 0; i < Npoints; i++) {
-            cout << pointsArray[i] << " ";
+            cout << pointsArray[i] << " "<< endl;
         }
-        cout << endl;
     }
 };
 

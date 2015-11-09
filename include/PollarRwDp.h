@@ -365,6 +365,7 @@ inline IRWItem<double> * PollarRwDp::power(double a) {
         data[i]=pow(pointsArray[i].distQPollarF(Origin),a);
     }
     ret->receiveData(data,Npoints);
+    delete [] data;
     return ret;
 }
 #endif	/* POLLARRWDP_H */

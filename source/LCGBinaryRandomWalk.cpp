@@ -123,6 +123,7 @@ IRWItem<QPollarF> * LCGBinaryRandomWalk::perform2DWalk() {
     }
     IRWItem<QPollarF> * ret = new PollarRwDp();
     ret->receiveData(data, walksSize);
+    delete [] data;
     return ret;
 }
 

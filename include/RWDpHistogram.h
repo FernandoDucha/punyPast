@@ -11,6 +11,7 @@
 #include "IRWSet.h"
 #include "RWDpBase.h"
 #include <cmath>
+
 template <class Type> class RWDpHistogram : public IRWIHistogram<Type> {
 public:
     RWDpHistogram(double max, double min, double step);
@@ -23,47 +24,54 @@ private:
     double ratio;
     int nBins;
     long long * freq;
-    double _max,_min;
+    double _max, _min;
 };
-template <class Type> IRWItem<long long> * RWDpHistogram<Type>::frequencies(IRWItem<Type>* irwi){
-//    setBins(_max,_min,ratio);
+
+template <class Type> IRWItem<long long> * RWDpHistogram<Type>::frequencies(IRWItem<Type>* irwi) {
+    setBins(_max, _min, ratio);
     irwi->resetIterator();
     Type a;
-    while(irwi->getNext(a)){
-        int result = (double)a/ratio-_min/ratio;
+    while (irwi->getNext(a)) {
+        int result = (double) a / ratio - _min / ratio;
         freq[result]++;
     }
     IRWItem<long long> * response = new DataPointsLI();
-    response->receiveData(freq,nBins);
+    response->receiveData(freq, nBins);
     return response;
 }
-template <class Type> IRWItem<long long> * RWDpHistogram<Type>::frequencies(IRWSet<Type>* irws){
-//    setBins(_max,_min,ratio);
+
+template <class Type> IRWItem<long long> * RWDpHistogram<Type>::frequencies(IRWSet<Type>* irws) {
     IRWItem<long long> * response = new DataPointsLI();
-    response->receiveData(freq,nBins);
-    for(int i=0;i<irws->getSize();i++){
+    response->receiveData(freq, nBins);
+    for (int i = 0; i < irws->getSize(); i++) {
         IRWItem<long long> * r = frequencies(irws->getElement(i));
-        *response+=*r;
+        *response += *r;
         delete r;
     }
     return response;
 }
+
 template <class Type> RWDpHistogram<Type>::RWDpHistogram(double max, double min, double step) {
     freq = nullptr;
+    _max = std::numeric_limits<double>::max();
+    _min = -std::numeric_limits<double>::min();
+    ratio = std::numeric_limits<double>::max();
     setBins(max, min, step);
 }
 
 template <class Type> void RWDpHistogram<Type>::setBins(double max, double min, double step) {
-    nBins = (max - min) / step + 1;
-    ratio = step;
-    _max=max;
-    _min=min;
-    if (freq) {
-        delete [] freq;
+    if (max != _max || min != _min || step != ratio) {
+        nBins = (max - min) / step + 1;
+        ratio = step;
+        _max = max;
+        _min = min;
+        if (freq) {
+            delete [] freq;
+        }
+        freq = new long long[nBins];
     }
-    freq = new long long[nBins];
-    for(int i=0;i<nBins;i++){
-        freq[i]=0;
+    for (int i = 0; i < nBins; i++) {
+        freq[i] = 0;
     }
 }
 

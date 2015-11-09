@@ -110,7 +110,7 @@ IRWSet<QPollarF> * ProbabilityBase::getAll2DWalks() {
     thisbrwk->resetSeed();
     walks2d = new PollarRwDpSet(thisbrwk->GetNumberRandomWalks());
     for (int i = 0; i < thisbrwk->GetNumberRandomWalks(); i++) {
-        walks2d->put(getNext2DWalk());
+        walks2d->put(thisbrwk->perform2DWalk());
     }
     return walks2d;
 }

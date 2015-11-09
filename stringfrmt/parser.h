@@ -460,7 +460,11 @@ namespace FormatStrNms {
     class Driver& driver;
   };
 
-
+  inline void
+  FormatStrPrs::set_debug_level (debug_level_type l)
+  {
+    yydebug_ = l;
+  }
 
 } // FormatStrNms
 #line 467 "y.tab.h" // lalr1.cc:372

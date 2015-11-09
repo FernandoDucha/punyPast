@@ -155,7 +155,7 @@ uint8_t * FileRawBuffer::getBytesFromBuffer(ulong n) {
             return NULL;
         }
     } else {
-        return NULL;
+        return getBytesFromFile(n);
     }
 }
 

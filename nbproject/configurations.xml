@@ -61,6 +61,18 @@
         <itemPath>include/dieharder/user_template.h</itemPath>
         <itemPath>include/dieharder/verbose.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="f2" displayName="stringfrmt" projectFiles="true">
+        <itemPath>stringfrmt/FlexLexer.h</itemPath>
+        <itemPath>stringfrmt/driver.h</itemPath>
+        <itemPath>stringfrmt/exprtest.h</itemPath>
+        <itemPath>stringfrmt/location.hh</itemPath>
+        <itemPath>stringfrmt/parser.h</itemPath>
+        <itemPath>stringfrmt/parser.hh</itemPath>
+        <itemPath>stringfrmt/position.hh</itemPath>
+        <itemPath>stringfrmt/scanner.h</itemPath>
+        <itemPath>stringfrmt/stack.hh</itemPath>
+        <itemPath>stringfrmt/y.tab.h</itemPath>
+      </logicalFolder>
       <itemPath>include/BDBinDrawingEngine.h</itemPath>
       <itemPath>include/BDDataPointsDrawingEngine.h</itemPath>
       <itemPath>include/BDIntegralDrawingEngine.h</itemPath>
@@ -269,11 +281,15 @@
       <itemPath>source/WeierstrassDrawingEngine.cpp</itemPath>
       <itemPath>source/WeiestrassInputWidget.cpp</itemPath>
       <itemPath>dieteste.c</itemPath>
+      <itemPath>source/driver.cc</itemPath>
       <itemPath>formatS.lex</itemPath>
       <itemPath>formatS.y</itemPath>
       <itemPath>source/main.cpp</itemPath>
+      <itemPath>source/parser.cc</itemPath>
+      <itemPath>source/scanner.cc</itemPath>
       <itemPath>teste.lex</itemPath>
       <itemPath>teste.y</itemPath>
+      <itemPath>source/y.tab.cc</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -993,7 +1009,35 @@
       </item>
       <item path="source/WeiestrassInputWidget.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/driver.cc" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/parser.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/scanner.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/y.tab.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="stringfrmt/FlexLexer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/driver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/exprtest.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/location.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/parser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/parser.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/position.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/scanner.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/stack.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/y.tab.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="4">
@@ -1005,6 +1049,9 @@
       <qt>
         <modules>core gui widgets printsupport sql</modules>
         <mocDir>moc</mocDir>
+        <defs>
+          <Elem>QMAKE_CXXFLAGS += -std=c++11</Elem>
+        </defs>
       </qt>
       <compileType>
         <cTool>
@@ -1037,7 +1084,6 @@
             <linkerLibFileItem>libdieharder/libdiehardercli.a</linkerLibFileItem>
             <linkerLibFileItem>libdieharder/libdieharder.a</linkerLibFileItem>
             <linkerLibFileItem>/usr/local/qwt-6.1.2/lib/libqwt.so</linkerLibFileItem>
-            <linkerLibFileItem>libformatstrprs.a</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -1701,7 +1747,35 @@
       </item>
       <item path="source/WeiestrassInputWidget.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/driver.cc" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/parser.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/scanner.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/y.tab.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="stringfrmt/FlexLexer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/driver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/exprtest.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/location.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/parser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/parser.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/position.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/scanner.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/stack.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/y.tab.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="teste.lex" ex="false" tool="3" flavor2="0">
       </item>
@@ -2382,7 +2456,35 @@
       </item>
       <item path="source/WeiestrassInputWidget.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/driver.cc" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/parser.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/scanner.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/y.tab.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="stringfrmt/FlexLexer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/driver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/exprtest.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/location.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/parser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/parser.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/position.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/scanner.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/stack.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringfrmt/y.tab.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="teste.lex" ex="false" tool="3" flavor2="0">
       </item>
