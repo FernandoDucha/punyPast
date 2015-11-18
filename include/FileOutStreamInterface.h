@@ -21,24 +21,38 @@ public:
     virtual void seek(uint64_t n);
     virtual uint64_t goBeg();
     virtual uint64_t goEnd();
-    virtual  uint64_t fileSize();
+    virtual uint64_t fileSize();
+    virtual uint64_t tell();
+    virtual bool eof();
     virtual void flush();
     virtual bool canWrite();
     virtual bool canRead();
     virtual void close();
     virtual void open();
-protected:
+
+    virtual bool good();
+
+    protected:
     fstream FileS;
     char * _file;
 };
-template <class Type>  void FileOutStreamInterface<Type>::close(){
+
+template <class Type> void FileOutStreamInterface<Type>::close() {
     FileS.close();
 }
-template <class Type>  void FileOutStreamInterface<Type>::open(){
+template <class Type> bool FileOutStreamInterface<Type>::good() {
+    return FileS.good();
+}
+
+template <class Type> bool FileOutStreamInterface<Type>::eof() {
+    return FileS.eof();
+}
+template <class Type> void FileOutStreamInterface<Type>::open() {
     FileS.open(_file, ios::out | ios::binary);
 }
+
 template <class Type> FileOutStreamInterface<Type>::FileOutStreamInterface(char * FileName) {
-    _file=FileName;
+    _file = FileName;
     open();
     assert(FileS.is_open());
 }
@@ -68,6 +82,10 @@ template <class Type> uint64_t FileOutStreamInterface<Type>::fileSize() {
     return ret;
 }
 
+template <class Type> uint64_t FileOutStreamInterface<Type>::tell() {
+    return FileS.tellp();
+}
+
 template <class Type> void FileOutStreamInterface<Type>::flush() {
     FileS.flush();
 }
@@ -75,9 +93,11 @@ template <class Type> void FileOutStreamInterface<Type>::flush() {
 template <class Type> void FileOutStreamInterface<Type>::seek(uint64_t n) {
     FileS.seekp(n);
 }
+
 template <class Type> bool FileOutStreamInterface<Type>::canRead() {
     return false;
 }
+
 template <class Type> bool FileOutStreamInterface<Type>::canWrite() {
     return true;
 }

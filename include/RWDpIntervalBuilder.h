@@ -27,7 +27,7 @@ private:
 };
 
 template <class Type> IRWItem<Type>* RWDpIntervalBuilder<Type>::getIntervalsI(IRWItem<Type>* Input, uint_32t N, uint_32t interval) {
-    uint_32t p = this->intervals(Input,N);
+    uint_32t p = this->intervals(Input, N);
     if (interval < p) {
         Type* ret = new Type[N];
         RWDp<Type> * retorno = new RWDp<Type>();
@@ -41,28 +41,44 @@ template <class Type> IRWItem<Type>* RWDpIntervalBuilder<Type>::getIntervalsI(IR
     return NULL;
 }
 
-template <class Type> IRWItem<Type>* RWDpIntervalBuilder<Type>::getOverlapingIntervalsI(IRWItem<Type>* Input, uint_32t N, uint_32t interval) {
-    uint_32t p = this->overlapingIntervals(Input,N);
+template <class Type> inline IRWItem<Type>* RWDpIntervalBuilder<Type>::getOverlapingIntervalsI(IRWItem<Type>* Input, uint_32t N, uint_32t interval) {
+    uint_32t p = this->overlapingIntervals(Input, N);
     if (interval < p) {
-        Type* ret = new Type[N];
-        RWDp<Type> * retorno = new RWDp<Type>();
-        for (int j = 0; j < N; j++) {
-            ret[j] = Input->getElement(j + interval);
+        //        Type* ret = new Type[N];
+        //        RWDp<Type> * retorno = new RWDp<Type>();
+        //        for (int j = 0; j < N; j++) {
+        //            ret[j] = Input->getElement(j + interval);
+        //        }
+        //        retorno->receiveData(ret, N);
+//        Type* ret = copyInterval(dynamic_cast<RWDp<Type>*> (Input), interval, interval + N);
+//        if (ret) {
+//            RWDp<Type> * retorno = new RWDp<Type>();
+//            retorno->receiveData(ret, N);
+//            retorno->print();
+//            delete [] ret;
+////            return retorno;
+//        }else{
+//            return nullptr;
+//        }
+        IRWItem<Type>* ret1 = subDuplicate(dynamic_cast<RWDp<Type>*> (Input), interval, interval + N);
+        if (ret1) {
+//            ret1->print();
+            return ret1;
+        }else{
+            return nullptr;
         }
-        retorno->receiveData(ret, N);
-        delete [] ret;
-        return retorno;
+
     }
     return NULL;
 }
 
 template <class Type> IRWItem<Type>* RWDpIntervalBuilder<Type>::getOverlapingIntervalsI(IRWItem<Type>*Input, uint_32t N, uint_32t Increment, uint_32t interval) {
-    uint_32t p = this->overlapingIntervals(Input,N,Increment);
+    uint_32t p = this->overlapingIntervals(Input, N, Increment);
     if (interval < p) {
         Type* ret = new Type[N];
         RWDp<Type> * retorno = new RWDp<Type>();
         for (int j = 0; j < N; j++) {
-            ret[j] = Input->getElement(j + interval*Increment);
+            ret[j] = Input->getElement(j + interval * Increment);
         }
         retorno->receiveData(ret, N);
         delete [] ret;
@@ -96,7 +112,7 @@ template <class Type> IRWItem<Type>* RWDpIntervalBuilder<Type>::produceLogarithm
 }
 
 template <class Type> IRWSet<Type>* RWDpIntervalBuilder<Type>::getIntervals(IRWItem<Type>* Input, uint_32t N) {
-    uint_32t p = this->intervals(Input,N);
+    uint_32t p = this->intervals(Input, N);
     Type* ret = new Type[N];
     IRWSet<Type> * retorno = new RWDpSet<Type>(p);
     for (int i = 0; i < p; i++) {
@@ -112,7 +128,7 @@ template <class Type> IRWSet<Type>* RWDpIntervalBuilder<Type>::getIntervals(IRWI
 }
 
 template <class Type> IRWSet<Type>* RWDpIntervalBuilder<Type>::getOverlapingIntervals(IRWItem<Type>* Input, uint_32t N) {
-    uint_32t p = this->overlapingIntervals(Input,N);
+    uint_32t p = this->overlapingIntervals(Input, N);
     Type* ret = new Type[N];
     IRWSet<Type> * retorno = new RWDpSet<Type>(p);
     for (int i = 0; i < p; i++) {
@@ -128,7 +144,7 @@ template <class Type> IRWSet<Type>* RWDpIntervalBuilder<Type>::getOverlapingInte
 }
 
 template <class Type> IRWSet<Type>* RWDpIntervalBuilder<Type>::getOverlapingIntervals(IRWItem<Type>* Input, uint_32t N, uint_32t Increment) {
-    uint_32t p = this->overlapingIntervals(Input,N,Increment);
+    uint_32t p = this->overlapingIntervals(Input, N, Increment);
     Type* ret = new Type[N];
     IRWSet<Type> * retorno = new RWDpSet<Type>(p);
     for (int i = 0; i < p; i++) {

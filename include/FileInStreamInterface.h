@@ -23,25 +23,43 @@ public:
     virtual uint64_t goBeg();
     virtual uint64_t goEnd();
     virtual uint64_t fileSize();
+    virtual uint64_t tell();
+    virtual bool eof();
     virtual void flush();
     virtual bool canWrite();
     virtual bool canRead();
     virtual void close();
     virtual void open();
+    virtual bool good();
+
 protected:
     char * _file;
     fstream FileS;
 };
-template <class Type>  void FileInStreamInterface<Type>::close(){
+
+template <class Type> void FileInStreamInterface<Type>::close() {
     FileS.close();
 }
-template <class Type>  void FileInStreamInterface<Type>::open(){
+
+template <class Type> bool FileInStreamInterface<Type>::good() {
+    return FileS.good();
+}
+template <class Type> bool FileInStreamInterface<Type>::eof() {
+    return FileS.eof();
+}
+
+template <class Type> void FileInStreamInterface<Type>::open() {
     FileS.open(_file, ios::in | ios::binary);
 }
+
 template <class Type> FileInStreamInterface<Type>::FileInStreamInterface(char * FileName) {
-    _file=FileName;
+    _file = FileName;
     open();
     assert(FileS.is_open());
+}
+
+template <class Type> uint64_t FileInStreamInterface<Type>::tell() {
+    return FileS.tellg();
 }
 
 template <class Type> FileInStreamInterface<Type>::~FileInStreamInterface() {
@@ -78,9 +96,11 @@ template <class Type> void FileInStreamInterface<Type>::flush() {
 template <class Type> void FileInStreamInterface<Type>::seek(uint64_t n) {
     FileS.seekg(n);
 }
+
 template <class Type> bool FileInStreamInterface<Type>::canRead() {
     return true;
 }
+
 template <class Type> bool FileInStreamInterface<Type>::canWrite() {
     return false;
 }

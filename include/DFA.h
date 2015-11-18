@@ -39,7 +39,7 @@ public:
     DFA(double minBox, double maxBox, double boxRatio);
     void receiveData(IRWItem<double>*, double MinX, double MaxX);
     void receiveData(IRWItem<double>*, IRWItem<double>*);
-    void performAnalysis(IRWItem<double>*, IRWItem<double>*);
+    void performAnalysis(double * logX, double * logY);
     void performAnalysisScale(double&, double&, u_int32_t);
 
     virtual ~DFA();
@@ -59,24 +59,22 @@ inline void DFA::performAnalysisScale(double & x, double & y, u_int32_t scale) {
     if (scale < nBoxes) {
         double sums = 0;
         uint_32t intervalsneeded = interval->overlapingIntervals(data, boxes[scale]);
+        IRWItem<double> * X = interval->getOverlapingIntervalsI(interX, boxes[scale], 0);
+
         for (unsigned long int j = 0; j < intervalsneeded; j++) {
             IRWItem<double> * Y = interval->getOverlapingIntervalsI(data, boxes[scale], j);
-            IRWItem<double> * X = interval->getOverlapingIntervalsI(interX, boxes[scale], j);
             LinearFit lfit(X, Y);
             lfit.performFit();
-            IRWItem<double> *dist = lfit.getFit()->heightDifference(X, Y);
             double sumsquared = 0;
-            for (unsigned long int k = 0; k < dist->getNpoints(); k++) {
-                sumsquared += pow((*dist)[k], 2);
-            }
+            IRWItem<double> *dist = lfit.getFit()->quadraticHeightDifference(X, Y, sumsquared);
             delete dist;
             sumsquared /= boxes[scale];
             sums += sqrt(sumsquared);
-            delete X;
             delete Y;
         }
-        x=boxes[scale];
-        y=sums / data->getNpoints();
+        delete X;
+        x = boxes[scale];
+        y = sums / data->getNpoints();
     }
 }
 
@@ -88,7 +86,7 @@ inline void DFA::preprocess(IRWSet<double>*& X, IRWSet<double>*& Y, int boxIndex
     delete interX;
 }
 
-inline void DFA::performAnalysis(IRWItem<double>* logX, IRWItem<double>* logY) {
+inline void DFA::performAnalysis(double * logX, double * logY) {
     //    IRWItem<double> * interX = interval->produceLinearInterval(0, data->getNpoints() - 1, 1);
     for (int i = 1; i < nBoxes; i++) {
         double sums = 0;
@@ -98,18 +96,16 @@ inline void DFA::performAnalysis(IRWItem<double>* logX, IRWItem<double>* logY) {
             IRWItem<double> * X = interval->getOverlapingIntervalsI(interX, boxes[i], j);
             LinearFit lfit(X, Y);
             lfit.performFit();
-            IRWItem<double> *dist = lfit.getFit()->heightDifference(X, Y);
             double sumsquared = 0;
-            for (unsigned long int k = 0; k < dist->getNpoints(); k++) {
-                sumsquared += pow((*dist)[k], 2);
-            }
+            IRWItem<double> *dist = lfit.getFit()->heightDifference(X, Y, sumsquared);
             delete dist;
             sumsquared /= boxes[i];
             sums += sqrt(sumsquared);
             delete X;
             delete Y;
         }
-        std::cout << sums / data->getNpoints() << " " << boxes[i] << endl;
+        logY [i] = sums / data->getNpoints();
+        logX [i] = boxes[i];
     }
 }
 
@@ -118,10 +114,12 @@ inline void DFA::receiveData(IRWItem<double>* data, double MinX, double MaxX) {
     interX = interval->produceLinearInterval(MinX, MaxX, (MaxX - MinX) / data->getNpoints());
 
 }
-inline void DFA::receiveData(IRWItem<double>* data,IRWItem<double> * X) {
+
+inline void DFA::receiveData(IRWItem<double>* data, IRWItem<double> * X) {
     this->data = data;
     interX = X;
 }
+
 inline DFA::DFA(double minBox, double maxBox, double boxRatio) {
     nBoxes = boxSizes(minBox, maxBox, boxRatio);
     interval = new RWDpIntervalBuilder<double>();

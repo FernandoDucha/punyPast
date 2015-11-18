@@ -34,24 +34,25 @@ public:
     double distanceFromPoint(double, double);
     IRWItem<double> * distanceFromPoints(IRWItem<double>*, IRWItem<double>*);
     double heightDifference(double x, double y);
-    IRWItem<double> * heightDifference(IRWItem<double>* X, IRWItem<double>* Y);
+    IRWItem<double>* quadraticHeightDifference(IRWItem<double>* X, IRWItem<double>* Y, double &sum);
+    IRWItem<double> * heightDifference(IRWItem<double>* X, IRWItem<double>* Y, double & sum);
 private:
     int Order;
     double * Coef;
 };
 
-template <int D> double Polynom<D>::distanceFromPoint(double x, double y) {
+template <int D>inline  double Polynom<D>::distanceFromPoint(double x, double y) {
     if (Order == 2) {
-                double denominator = sqrt(pow(Coef[1], 2) + 1);
-                double numerator = abs(x * Coef[1] + y + Coef[0]);
-                return numerator / denominator;
-//        return abs(y - evaluate(x));
+        double denominator = sqrt(pow(Coef[1], 2) + 1);
+        double numerator = abs(x * Coef[1] + y + Coef[0]);
+        return numerator / denominator;
+        //        return abs(y - evaluate(x));
     } else {
         return NAN;
     }
 }
 
-template <int D> IRWItem<double> * Polynom<D>::distanceFromPoints(IRWItem<double>* x, IRWItem<double>* y) {
+template <int D>inline IRWItem<double> * Polynom<D>::distanceFromPoints(IRWItem<double>* x, IRWItem<double>* y) {
     if (Order == 2) {
         if (x != NULL && y != NULL) {
             if (x->getNpoints() == y->getNpoints()) {
@@ -61,7 +62,8 @@ template <int D> IRWItem<double> * Polynom<D>::distanceFromPoints(IRWItem<double
                 double a, b;
                 int i = 0;
                 while (x->getNext(a) && y->getNext(b)) {
-                    buffer[i++] = distanceFromPoint(a, b);
+                    buffer[i] = distanceFromPoint(a, b);
+                    i++;
                 }
                 IRWItem<double> * retorno = new RWDp<double>();
                 retorno->receiveData(buffer, x->getNpoints());
@@ -79,7 +81,40 @@ template <int D> IRWItem<double> * Polynom<D>::distanceFromPoints(IRWItem<double
         return NULL;
     }
 }
-template <int D> double Polynom<D>::heightDifference(double x, double y) {
+
+template <int D>inline IRWItem<double> * Polynom<D>::quadraticHeightDifference(IRWItem<double>* x, IRWItem<double>* y, double & sum) {
+    if (Order == 2) {
+        if (x != NULL && y != NULL) {
+            if (x->getNpoints() == y->getNpoints()) {
+                double * buffer = new double[x->getNpoints()];
+                x->resetIterator();
+                y->resetIterator();
+                double a, b;
+                int i = 0;
+                while (x->getNext(a) && y->getNext(b)) {
+                    buffer[i] = heightDifference(a, b);
+                    buffer[i] *= buffer[i];
+                    sum += buffer[i];
+                    i++;
+                }
+                IRWItem<double> * retorno = new RWDp<double>();
+                retorno->receiveData(buffer, x->getNpoints());
+                delete buffer;
+                return retorno;
+            } else {
+                std::cerr << "Dimensions from Linear fit are different: X=" << x->getNpoints() << "  Y=" << y->getNpoints() << std::endl << std::endl;
+                return NULL;
+            }
+        } else {
+            std::cerr << "Invalid Input." << std::endl;
+            return NULL;
+        }
+    } else {
+        return NULL;
+    }
+}
+
+template <int D>inline double Polynom<D>::heightDifference(double x, double y) {
     if (Order == 2) {
         return abs(y - evaluate(x));
     } else {
@@ -87,7 +122,7 @@ template <int D> double Polynom<D>::heightDifference(double x, double y) {
     }
 }
 
-template <int D> IRWItem<double> * Polynom<D>::heightDifference(IRWItem<double>* x, IRWItem<double>* y) {
+template <int D>inline IRWItem<double> * Polynom<D>::heightDifference(IRWItem<double>* x, IRWItem<double>* y, double & sum) {
     if (Order == 2) {
         if (x != NULL && y != NULL) {
             if (x->getNpoints() == y->getNpoints()) {
@@ -97,7 +132,9 @@ template <int D> IRWItem<double> * Polynom<D>::heightDifference(IRWItem<double>*
                 double a, b;
                 int i = 0;
                 while (x->getNext(a) && y->getNext(b)) {
-                    buffer[i++] = heightDifference(a, b);
+                    buffer[i] = heightDifference(a, b);
+                    sum += buffer[i];
+                    i++;
                 }
                 IRWItem<double> * retorno = new RWDp<double>();
                 retorno->receiveData(buffer, x->getNpoints());
@@ -115,7 +152,8 @@ template <int D> IRWItem<double> * Polynom<D>::heightDifference(IRWItem<double>*
         return NULL;
     }
 }
-template <int D> void Polynom<D>::print() {
+
+template <int D>inline void Polynom<D>::print() {
     for (int i = 0; i < Order; i++) {
         std::cout << Coef[i] << " ";
     }
@@ -136,7 +174,7 @@ inline IPolynom & operator/(IPolynom & op1, double op2) {
     return op1;
 }
 
-template <int D > Polynom<D> & operator+(IPolynom & op1, IPolynom & op2) {
+template <int D >inline Polynom<D> & operator+(IPolynom & op1, IPolynom & op2) {
     Polynom<0> ret = op1.getOrder() > op2.getOrder() ? op1 : op2;
     if (ret == op1) {
         for (int i = 0; i < op2.getOrder(); i++) {
@@ -151,7 +189,7 @@ template <int D > Polynom<D> & operator+(IPolynom & op1, IPolynom & op2) {
     return ret;
 }
 
-template <int D > Polynom<D> & operator-(IPolynom & op1, IPolynom & op2) {
+template <int D >inline Polynom<D> & operator-(IPolynom & op1, IPolynom & op2) {
     Polynom<0> ret = op1.getOrder() > op2.getOrder() ? op1 : op2;
     if (ret == op1) {
         for (int i = 0; i < op2.getOrder(); i++) {
@@ -166,7 +204,7 @@ template <int D > Polynom<D> & operator-(IPolynom & op1, IPolynom & op2) {
     return ret;
 }
 
-template <int D > IRWItem<double> * Polynom<D>::evalFromTo(double start, double end, double step) {
+template <int D >inline IRWItem<double> * Polynom<D>::evalFromTo(double start, double end, double step) {
     int it = (end - start) / step + 1;
     double * buffer = new double[it];
     for (int i = 0; i < it; start += step, i++) {
@@ -178,28 +216,28 @@ template <int D > IRWItem<double> * Polynom<D>::evalFromTo(double start, double 
     return retorno;
 }
 
-template <int D > IRWItem<double> * Polynom<D>::evalFromToBuffered(double start, double end, double step) {
+template <int D >inline IRWItem<double> * Polynom<D>::evalFromToBuffered(double start, double end, double step) {
     RWBufferManagerSingleton<double> * instance = RWBufferManagerSingleton<double>::getInstance();
     int it = (end - start) / step + 1;
     double * buffer = new double[it];
     for (int i = 0; i < it; start += step, i++) {
         buffer[i] = evaluate(start);
     }
-    RWBufferedDp<double> * r=instance->createDpItem(buffer, it);
+    RWBufferedDp<double> * r = instance->createDpItem(buffer, it);
     RWBufferedDp<double> * retorno = new RWBufferedDp<double>(*r);
     delete r;
     delete [] buffer;
     return retorno;
 }
 
-template <int D > IPolynom & Polynom<D>::operator-() {
+template <int D >inline IPolynom & Polynom<D>::operator-() {
     for (int i = 0; i < Order; i++) {
         Coef[i] = -Coef[i];
     }
     return *this;
 }
 
-template <int D > IPolynom & Polynom<D>::operator+=(IPolynom & rhs) {
+template <int D >inline IPolynom & Polynom<D>::operator+=(IPolynom & rhs) {
     if (rhs.getOrder() > Order) {
         double * temp = new double[rhs.getOrder()];
         for (int i = 0; i < rhs.getOrder(); i++) {
@@ -224,7 +262,7 @@ template <int D > IPolynom & Polynom<D>::operator+=(IPolynom & rhs) {
     return *this;
 }
 
-template <int D > IPolynom & Polynom<D>::operator-=(IPolynom & rhs) {
+template <int D >inline IPolynom & Polynom<D>::operator-=(IPolynom & rhs) {
     if (rhs.getOrder() > Order) {
         double * temp = new double[rhs.getOrder()];
         for (int i = 0; i < rhs.getOrder(); i++) {
@@ -249,7 +287,7 @@ template <int D > IPolynom & Polynom<D>::operator-=(IPolynom & rhs) {
     return *this;
 }
 
-template <int D> bool Polynom<D>::operator==(IPolynom & rhs) {
+template <int D>inline bool Polynom<D>::operator==(IPolynom & rhs) {
     if (Order != rhs.getOrder()) {
         return false;
     }
@@ -261,11 +299,11 @@ template <int D> bool Polynom<D>::operator==(IPolynom & rhs) {
     return true;
 }
 
-template <int D> bool Polynom<D>::operator!=(IPolynom & rhs) {
+template <int D>inline bool Polynom<D>::operator!=(IPolynom & rhs) {
     return !(*this == rhs);
 }
 
-template <int D > IPolynom & Polynom<D>::operator=(IPolynom & rhs) {
+template <int D >inline IPolynom & Polynom<D>::operator=(IPolynom & rhs) {
     if (*this != rhs) {
         delete [] Coef;
         Order = rhs.getOrder();
@@ -278,7 +316,7 @@ template <int D > IPolynom & Polynom<D>::operator=(IPolynom & rhs) {
 
 }
 
-template <int D > Polynom<D>::Polynom() {
+template <int D >inline Polynom<D>::Polynom() {
     Order = D;
     Coef = new double[D];
     for (int i = 0; i < Order; i++) {
@@ -286,7 +324,7 @@ template <int D > Polynom<D>::Polynom() {
     }
 }
 
-template <int D> double Polynom<D>::evaluate(double x) {
+template <int D>inline double Polynom<D>::evaluate(double x) {
     double ret = Coef[0];
     for (int i = 1; i < Order; i++) {
         ret += Coef[i] * pow(x, i);
@@ -294,13 +332,13 @@ template <int D> double Polynom<D>::evaluate(double x) {
     return ret;
 }
 
-template <int D> void Polynom<D>::setCoef(int c, double x) {
+template <int D>inline void Polynom<D>::setCoef(int c, double x) {
     if (c < Order) {
         Coef[c] = x;
     }
 }
 
-template <int D> double Polynom<D>::getCoef(int c) {
+template <int D>inline double Polynom<D>::getCoef(int c) {
     if (c < Order) {
         return Coef[c];
     } else {
@@ -310,7 +348,7 @@ template <int D> double Polynom<D>::getCoef(int c) {
     return NAN;
 }
 
-template <int D> int Polynom<D>::getOrder() {
+template <int D>inline int Polynom<D>::getOrder() {
     return Order;
 }
 

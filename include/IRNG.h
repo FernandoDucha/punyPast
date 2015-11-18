@@ -11,7 +11,7 @@
 using namespace std;
 
 enum IRNG_TYPE {
-    LCG = 0,FRNG=1
+    LCG = 0,FRNG=1,GSLMST=2,GSLCMRG=3, GSLMRG=4, GSLGFSR4=5,
 };
 
 class IRNG {

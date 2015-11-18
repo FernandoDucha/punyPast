@@ -65,10 +65,34 @@ public:
 
     void print() {
         for (unsigned int i = 0; i < Npoints; i++) {
-            cout << pointsArray[i] << " "<< endl;
+            cout << pointsArray[i] << " " << endl;
         }
     }
+    template <class T> friend T * copyInterval(RWDp<T> * t, int s, int e);
+    template <class T> friend RWDp<T> * subDuplicate(RWDp<T> * t, int s, int e);
 };
+
+template <class T> inline RWDp<T> * subDuplicate(RWDp<T> * t, int s, int e) {
+    if (t) {
+        int n = e - s;
+        RWDp<T> * ret= new RWDp<T>();
+        ret->receiveData(&t->pointsArray[s],n);
+        return ret;
+    } else {
+        return nullptr;
+    }
+}
+
+template <class T> inline T * copyInterval(RWDp<T> * t, int s, int e) {
+    if (t) {
+        int n = e - s + 1;
+        T * ret = new T[n];
+        memcpy(ret, &t->pointsArray[s], sizeof (T) * n);
+        return ret;
+    } else {
+        return nullptr;
+    }
+}
 
 template <class type> IRWItem<double> * RWDp<type>::power(double a) {
     double * data = new double[Npoints];

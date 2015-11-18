@@ -19,7 +19,7 @@ LCGBinaryRandomWalk::LCGBinaryRandomWalk() {
     walksSize = -1;
 }
 
-LCGBinaryRandomWalk::LCGBinaryRandomWalk(RNGLinearCong * rng, unsigned long int ws, uint64_t nw) {
+LCGBinaryRandomWalk::LCGBinaryRandomWalk(IRNG * rng, unsigned long int ws, uint64_t nw) {
     RNG = rng;
     numberOfWalks = nw;
     walksSize = ws;

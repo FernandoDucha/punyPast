@@ -12,13 +12,12 @@
 #include <QDebug>
 #include "PollarRwDp.h"
 #include <QPollarF.h>
-#include "QPointFSLC.h"
 #include "PollarSet.h"
 
 class LCGBinaryRandomWalk : public IRandomWalk {
 public:
     LCGBinaryRandomWalk();
-    LCGBinaryRandomWalk(RNGLinearCong * rng, unsigned long int WS, u_int64_t nw);
+    LCGBinaryRandomWalk(IRNG * rng, unsigned long int WS, u_int64_t nw);
     ~LCGBinaryRandomWalk();
     uint64_t GetNumberRandomWalks() const;
     unsigned long int GetWalkSize() const;

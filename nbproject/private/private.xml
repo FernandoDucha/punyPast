@@ -10,11 +10,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/FormatString.cpp</file>
-            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/Overlay.h</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/main.cpp</file>
-            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/stringfrmt/driver.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/BDDataPointsDrawingEngine.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/ImporterManager.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/IImporter.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/flex-bison-cpp-example-master/src/parser.yy</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/FileOutStreamInterface.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/IRWItemImporter.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/FileInStreamInterfaceDecimal.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/IRWItemImporter.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/IImporter.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/DFAInputGui.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/IRandomWalk.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/FileInStreamInterfaceDecimal.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/FileInStreamInterface.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/FileStreamInterface.h</file>
             <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/FormatString.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/ImporterManager.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/FileOutStreamInterface.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/FileInStreamInterface.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/IntegralDrawingEngine.cpp</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/include/DFA.h</file>
+            <file>file:/home/fordem/Dropbox/HC/RandomFwkGUI/source/DFAInputGui.cpp</file>
         </group>
     </open-files>
 </project-private>

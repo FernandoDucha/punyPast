@@ -8,7 +8,7 @@
 #include "RNGLinearCong.h"
 
 RNGLinearCong::RNGLinearCong() {
-    actualSeed = seed = 123;
+    actualSeed = seed = 0;
     setType(LCG);
 }
 

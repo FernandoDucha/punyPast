@@ -52,7 +52,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lgmp -lgmpxx -lfl -lgsl -lgslcblas libdieharder/libdiehardercli.a libdieharder/libdieharder.a /usr/local/qwt-6.1.2/lib/libqwt.so
+LDLIBSOPTIONS=-lgmp -lgmpxx -lfl -lgsl -lgslcblas libdieharder/libdiehardercli.a libdieharder/libdieharder.a /usr/local/qwt-6.1.2/lib/libqwt.so formatstr.a
 
 nbproject/qt-${CND_CONF}.mk: nbproject/qt-${CND_CONF}.pro FORCE
 	${QMAKE} VPATH=. -o qttmp-${CND_CONF}.mk nbproject/qt-${CND_CONF}.pro
