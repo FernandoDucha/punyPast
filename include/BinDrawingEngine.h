@@ -8,8 +8,8 @@
 #ifndef BINDRAWINGENGINE_H
 #define	BINDRAWINGENGINE_H
 #include "IDrawingEngine.h"
-#include <qwt_plot.h>
-#include <qwt_plot_curve.h>
+#include <qwt/qwt_plot.h>
+#include <qwt/qwt_plot_curve.h>
 
 template <class Type> class BinDrawingEngine : public IDrawingEngine<Type> {
 public:

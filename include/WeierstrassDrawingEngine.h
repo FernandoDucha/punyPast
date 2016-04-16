@@ -8,7 +8,7 @@
 #ifndef WEIERSTRASSDRAWINGENGINE_H
 #define	WEIERSTRASSDRAWINGENGINE_H
 #include "IDrawingEngine.h"
-#include <qwt_plot_curve.h>
+#include <qwt/qwt_plot_curve.h>
 
 template <class Type> class WeierstrassDrawingEngine : public IDrawingEngine<Type> {
 public:

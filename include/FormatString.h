@@ -10,6 +10,7 @@
 #include <QString>
 #include <string>
 #include <vector>
+#include <iostream>
 #include "GeneralUsage.h"
 #include "driver.h"
 
@@ -38,22 +39,23 @@ private:
     bool pars;
 };
 
-inline std::string FormatString::grabSepStrAt(int a){
+inline std::string FormatString::grabSepStrAt(int a) {
     return FrmtDrv.regsS[a];
 }
+
 inline FormatString::FormatString(QString input) {
     format = input;
-//    pars = FrmtDrv.parse_string(format.toStdString(),std::string("FormatString"));
+    //    pars = FrmtDrv.parse_string(format.toStdString(),std::string("FormatString"));
 }
 
 inline FormatString::FormatString(char * input) {
     format = QString(input);
-//    pars = FrmtDrv.parse_string(format.toStdString(),std::string("FormatString"));
+    //    pars = FrmtDrv.parse_string(format.toStdString(),std::string("FormatString"));
 }
 
 inline FormatString::FormatString(std::string input) {
     format = QString(input.c_str());
-//    pars = FrmtDrv.parse_string(format.toStdString(),std::string("FormatString"));
+    //    pars = FrmtDrv.parse_string(format.toStdString(),std::string("FormatString"));
 }
 
 inline void FormatString::setFormatString(QString input) {
@@ -69,7 +71,8 @@ inline void FormatString::setFormatString(std::string input) {
 }
 
 inline bool FormatString::parse() {
-    pars = FrmtDrv.parse_string(std::string(format.toStdString().c_str()),std::string("FormatString"));
+    pars = FrmtDrv.parse_string(std::string(format.toStdString().c_str()), std::string("FormatString"));
+    return pars;
 }
 
 inline int FormatString::grabNargs() {
@@ -85,7 +88,7 @@ inline int FormatString::grabNargs() {
                     break;
             }
         }
-        return sum+1;
+        return sum + 1;
     }
     return sum;
 }

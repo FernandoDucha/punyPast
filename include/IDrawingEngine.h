@@ -7,7 +7,7 @@
 
 #ifndef IDRAWINGENGINE_H
 #define	IDRAWINGENGINE_H
-#include <qwt_plot.h>
+#include <qwt/qwt_plot.h>
 #include "IRWSet.h"
 #include "IProbabilityBase.h"
 #include <QObject>

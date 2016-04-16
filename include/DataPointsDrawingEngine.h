@@ -8,7 +8,7 @@
 #ifndef DATAPOINTSDRAWINGENGINE_H
 #define	DATAPOINTSDRAWINGENGINE_H
 #include "IDrawingEngine.h"
-#include <qwt_plot_curve.h>
+#include <qwt/qwt_plot_curve.h>
 #include <limits>
 
 template <class Type> class DataPointsDrawingEngine : public IDrawingEngine<Type> {

@@ -27,9 +27,9 @@
 #include  <qt5/QtWidgets/QCheckBox>
 #include <qt5/QtWidgets/QSpinBox>
 #include <qt5/QtWidgets/QComboBox>
-#include <qwt_plot.h>
-#include <qwt_plot_grid.h>
-#include <qwt_plot_magnifier.h>
+#include <qwt/qwt_plot.h>
+#include <qwt/qwt_plot_grid.h>
+#include <qwt/qwt_plot_magnifier.h>
 #include <GraphPicker.h>
 #include <GraphPanner.h>
 #include <QPixmap>

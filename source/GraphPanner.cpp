@@ -5,7 +5,7 @@
  * Created on July 16, 2013, 5:58 AM
  */
 
-#include <qwt_plot_canvas.h>
+#include <qwt/qwt_plot_canvas.h>
 
 #include "GraphPanner.h"
 

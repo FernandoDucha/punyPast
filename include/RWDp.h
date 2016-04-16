@@ -47,6 +47,10 @@ public:
     IRWItem<double> * getIntegral();
     IRWItem<double> * power(double);
 
+    type * data() {
+        return pointsArray;
+    }
+
     type & operator[](uint32_t a) {
         assert(a < Npoints);
         return pointsArray[a];
@@ -75,8 +79,8 @@ public:
 template <class T> inline RWDp<T> * subDuplicate(RWDp<T> * t, int s, int e) {
     if (t) {
         int n = e - s;
-        RWDp<T> * ret= new RWDp<T>();
-        ret->receiveData(&t->pointsArray[s],n);
+        RWDp<T> * ret = new RWDp<T>();
+        ret->receiveData(&t->pointsArray[s], n);
         return ret;
     } else {
         return nullptr;

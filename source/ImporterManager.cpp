@@ -26,6 +26,18 @@ longReader(const_cast<char*> (filename.c_str())), floatReader(const_cast<char*> 
 }
 
 ImporterManager::~ImporterManager() {
+    if (iSet) {
+        delete iSet;
+    }
+    if (dSet) {
+        delete dSet;
+    }
+    if (lSet) {
+        delete lSet;
+    }
+    if (fSet) {
+        delete fSet;
+    }
 }
 
 bool ImporterManager::searchColumSeparator() {
@@ -77,6 +89,14 @@ void ImporterManager::clearImporters() {
         delete importers[i];
     }
     importers.clear();
+}
+
+void ImporterManager::closeReaders() {
+    sepReader.close();
+    intReader.close();
+    longReader.close();
+    doubleReader.close();
+    floatReader.close();
 }
 
 void ImporterManager::initializeImporters() {
@@ -181,7 +201,6 @@ void ImporterManager::readFile() {
                     break;
                 case -1:
                 {
-
                     searchColumSeparator();
                     uint64_t tp = sepReader.tell();
                     intReader.seek(tp);
@@ -244,5 +263,7 @@ void ImporterManager::readFile() {
         }
     }
     fillSets();
+    closeReaders();
+    clearImporters();
 }
 

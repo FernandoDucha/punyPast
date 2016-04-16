@@ -9,8 +9,8 @@
 #define	BDDATAPOINTSDRAWINGENGINE_H
 
 #include "IDrawingEngine.h"
-#include <qwt_plot_curve.h>
-#include <qwt_plot.h>
+#include <qwt/qwt_plot_curve.h>
+#include <qwt/qwt_plot.h>
 
 template <class Type> class BDDataPointsDrawingEngine : public IDrawingEngine<Type> {
 public:

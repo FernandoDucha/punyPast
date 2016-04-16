@@ -39,6 +39,7 @@ public:
     virtual double average()=0;
     virtual IRWItem<double> * getIntegral()=0;
     virtual IRWItem<double> * power(double)=0;
+    virtual Type * data() = 0;
 private:
 
 };

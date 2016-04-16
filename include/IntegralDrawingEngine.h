@@ -8,8 +8,8 @@
 #ifndef INTEGRALDRAWINGENGINE_H
 #define	INTEGRALDRAWINGENGINE_H
 #include "IDrawingEngine.h"
-#include "qwt_plot.h"
-#include "qwt_plot_curve.h"
+#include <qwt/qwt_plot.h>
+#include <qwt/qwt_plot_curve.h>
 
 template<class Type> class IntegralDrawingEngine : public IDrawingEngine<Type> {
 public:

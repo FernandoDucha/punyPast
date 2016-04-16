@@ -13,7 +13,7 @@
 #include <QLabel>
 #include <QDoubleSpinBox>
 #include <QLineEdit>
-#include <qwt_plot.h>
+#include <qwt/qwt_plot.h>
 #include <QWidget>
 #include "RWDpIntervalBuilder.h"
 #include "DFA.h"

@@ -8,10 +8,10 @@
 #ifndef POLLARDRAWINGENGINE_H
 #define	POLLARDRAWINGENGINE_H
 #include "IDrawingEngine.h"
-#include "qwt_plot.h"
-#include "qwt_plot_curve.h"
+#include <qwt/qwt_plot.h>
+#include <qwt/qwt_plot_curve.h>
 #include "PollarRwDpSet.h"
-#include "qwt_symbol.h"
+#include <qwt/qwt_symbol.h>
 
 class PollarDrawingEngine : public IDrawingEngine<QPollarF> {
 public:

@@ -7,7 +7,7 @@
 
 #ifndef GRAPHPANNER_H
 #define	GRAPHPANNER_H
-#include <qwt_plot_panner.h>
+#include <qwt/qwt_plot_panner.h>
 class GraphPanner: public QwtPlotPanner  {
 public:
     GraphPanner(QwtPlotCanvas *);

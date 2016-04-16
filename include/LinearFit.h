@@ -15,6 +15,7 @@
 class LinearFit : public IPolyfit {
 public:
     LinearFit(IRWItem<double>*, IRWItem<double>*);
+    LinearFit(double*, int nx, double*, int ny);
     virtual ~LinearFit();
     MatrixGSL * getCovMatrix();
     IPolynom * getFit();
@@ -32,15 +33,38 @@ private:
     int N;
     double * X;
     double * Y;
+    bool _delete;
 };
-inline double LinearFit::getN(){
+
+inline double LinearFit::getN() {
     return N;
 }
-inline double * LinearFit::getSamplesX(){
+
+inline double * LinearFit::getSamplesX() {
     return X;
 }
-inline double * LinearFit::getSamplesY(){
+
+inline double * LinearFit::getSamplesY() {
     return Y;
+}
+
+inline LinearFit::LinearFit(double* x, int nx, double* y, int ny) {
+    if (x != NULL && y != NULL) {
+        if (nx == ny) {
+            N = nx;
+            X = x;
+            Y = y;
+            fit = new Polynom<2>();
+            M = new MatrixGSL(2, 2);
+            _delete=false;
+        } else {
+            std::cerr << "Dimensions from Linear fit are different: X=" << nx << "  Y=" << ny << std::endl << std::endl;
+            exit(-1);
+        }
+    } else {
+        std::cerr << "Invalid Input." << std::endl;
+        exit(-1);
+    }
 }
 
 inline LinearFit::LinearFit(IRWItem<double>* x, IRWItem<double>* y) {
@@ -60,6 +84,7 @@ inline LinearFit::LinearFit(IRWItem<double>* x, IRWItem<double>* y) {
             }
             fit = new Polynom<2>();
             M = new MatrixGSL(2, 2);
+            _delete = true;
         } else {
             std::cerr << "Dimensions from Linear fit are different: X=" << x->getNpoints() << "  Y=" << y->getNpoints() << std::endl << std::endl;
             exit(-1);
@@ -106,8 +131,10 @@ inline double LinearFit::getSSE() {
 
 inline LinearFit::~LinearFit() {
     delete M;
-    delete [] X;
-    delete [] Y;
+    if (_delete) {
+        delete [] X;
+        delete [] Y;
+    }
     delete fit;
 }
 #endif	/* LINEARFIT_H */

@@ -25,6 +25,7 @@ public:
     virtual IRWItem<double> * distanceFromPoints(IRWItem<double>*, IRWItem<double>*) = 0;
     virtual double heightDifference(double, double) = 0;
     virtual IRWItem<double> * heightDifference(IRWItem<double>*, IRWItem<double>*,double & sum) = 0;
+    virtual IRWItem<double> * heightDifference(double*,int, double*,int,double & sum) = 0;
     virtual IRWItem<double> * quadraticHeightDifference(IRWItem<double>*, IRWItem<double>*,double &sum) = 0;
 
     virtual IPolynom & operator=(IPolynom&) = 0;

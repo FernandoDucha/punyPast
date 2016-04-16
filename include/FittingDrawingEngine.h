@@ -9,8 +9,8 @@
 #define	FITTINGDRAWINGENGINE_H
 #include "IDrawingEngine.h"
 #include "IPolyfit.h"
-#include <qwt_plot_curve.h>
-#include <qwt_legend.h>
+#include <qwt/qwt_plot_curve.h>
+#include <qwt/qwt_legend.h>
 
 template <class Type>class FittingDrawingEngine : public IDrawingEngine<Type> {
 public:

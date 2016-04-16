@@ -31,7 +31,7 @@
 #include "GSL_CMRG.h"
 #include "GSL_MRG.h"
 #include "GSL_GFSR4.h"
-
+#include "RWDpBase.h"
 extern "C" {
     Dtest * dtst_call;
     Test ** tst_call;
@@ -78,30 +78,38 @@ int main(int argc, char *argv[]) {
     //        destroy_die_teste(dtst_call, tst_call);
     //    }
     //
-    GSL_CMRG mst(123214);
-    
-    //    int a = 10000;
-    LCGBinaryRandomWalk lcgbrwk(&mst, 50000, 100);
+    //    GSL_MST mst(123214);
+    //    
+    //    //    int a = 10000;
+    //    LCGBinaryRandomWalk lcgbrwk(&mst, 1000, 1000);
+    //    IRWSet<double> * disp = lcgbrwk.multipleBrownianMotionDisplacement(0.75);
+    //    IRWItem<double> * sum = disp->getElement(0);
+    //    for(int i=1;i<disp->getSize();i++){
+    //        *sum+=*disp->getElement(i);
+    //    }
+    //    (*dynamic_cast<RWDp<double>*>(sum))/disp->getSize();
+    //    sum->power(0.5);
+    //    sum->print();
     //    FileRawBuffer frb("/media/fordem/My Passport/qrngdata",FileRawBuffer::NOTHING);
     //    BinaryRandomWalk brwk(&frb,1000000,a);
-    IProbabilityBase<int, double> * prob = new ProbabilityBase(&lcgbrwk);
-    //    IRWSet<QPollarF> * set = prob->getAll2DWalks();
-    //    set->getElement(0)
-    IRWSet<double> * set = prob->GetDatap();
-
-    IRWItem<double> * item = prob->getAverageWalkByPoints();
-    
-    DFA dfa(20,20000,1.05);
-    vector<double> x;
-    vector<double> y;
-    dfa.receiveData(item,0,100000);
-    for(int i=1;i<dfa.getNBoxes();i++){
-        double x1, y1;
-        dfa.performAnalysisScale(x1,y1,i);
-        x.push_back(x1);
-        y.push_back(y1);
-        cout<<x1<<" "<<y1<<endl;
-    }
+    //    IProbabilityBase<int, double> * prob = new ProbabilityBase(&lcgbrwk);
+    //    //    IRWSet<QPollarF> * set = prob->getAll2DWalks();
+    //    //    set->getElement(0)
+    //    IRWSet<double> * set = prob->GetDatap();
+    //
+    //    IRWItem<double> * item = prob->getAverageWalkByPoints();
+    //    
+    //    DFA dfa(20,20000,1.05);
+    //    vector<double> x;
+    //    vector<double> y;
+    //    dfa.receiveData(item,0,100000);
+    //    for(int i=1;i<dfa.getNBoxes();i++){
+    //        double x1, y1;
+    //        dfa.performAnalysisScale(x1,y1,i);
+    //        x.push_back(x1);
+    //        y.push_back(y1);
+    //        cout<<x1<<" "<<y1<<endl;
+    //    }
 
     //    IRWIHistogram<double> * hist = new RWDpHistogram<double>(set->getMax(), set->getMin(), 1);
     //    hist->frequencies(set)->print();
@@ -182,20 +190,74 @@ int main(int argc, char *argv[]) {
     //    DFA.exec();
     //    FormatStrNms::Driver driver;
     //    std::cout << (driver.parse_string(std::string("%dd%d;%d;%g\n"), std::string("hello")) == true) << std::endl;
-    //    ImporterManager a("%g %g %g %g %g %g %g\n", "data_noise_mod2.dat");
-    //    a.readFile();
-    //    IRWSet<double> * t = a.getDset();
-    //    IRWItem<double> * er = t->getElement(6)->getIntegral();
-    //    er->print();
-    //    DFA dfa(3,500,1.05);
-    //    dfa.receiveData(er,0,1000);
-    //    IRWItem<double> * X= new RWDp<double>();
-    //    IRWItem<double> * Y= new RWDp<double>();
-    //    double * x = new double[dfa.getNBoxes()];
-    //    double * y = new double[dfa.getNBoxes()];
-    //    dfa.performAnalysis(x,y);
-    //    X->receiveData(x,dfa.getNBoxes());
-    //    Y->receiveData(y,dfa.getNBoxes());
+    //    GraphUi g;
+    //    g.show();
+
+    //Parte Importante início
+    QDir dir("/home/fordem/smb4k/FORDEMSIM/Doutorado_Ducha/LibPython/GraphUtils/rng/");
+    QStringList filters;
+    filters << "*.txt";
+    dir.setNameFilters(filters);
+    ImporterManager * a = new ImporterManager("%g %g %g %g %g %g %g\n", "/home/fordem/smb4k/FORDEMSIM/Doutorado_Ducha/LibPython/GraphUtils/rng/temp_test_1.txt");
+    a->readFile();
+    IRWSet<double> * t = a->getDset();
+    IRWItem<double> * er = new DataPointsDouble();
+    er->receiveData(&t->getElement(4)->data()[10000], t->getElement(4)->getNpoints() - 10000);
+    delete a;
+    std::cout << er->getNpoints() << std::endl;
+    DFA dfa(3, er->getNpoints() / 10, 1.3);
+    IRWSet<double> * set = new RWDpSet<double>(dfa.getNBoxes() + 1);
+    int * sequence = new int[dfa.getNBoxes() + 1];
+    for (int i = 0; i < dfa.getNBoxes() + 1; i++) {
+        double * buffer = nullptr;
+        int size = 0;
+        if (i) {
+            u_int32_t box_size = dfa.getBoxes()[i];
+            sequence[i] = box_size;
+            size = er->getNpoints() - box_size;
+            buffer = new double[size];
+            double * data = er->data();
+            for (int i = 0; i < size; i++) {
+                buffer[i] = data[i + box_size] - data[i];
+            }
+        } else {
+            sequence[i] = 1;
+            size = er->getNpoints() - 1;
+            buffer = new double[size];
+            double * data = er->data();
+            for (int i = 0; i < size; i++) {
+                buffer[i] = data[i + 1] - data[i];
+            }
+        }
+        IRWItem<double> * it = new RWDp<double>();
+        it->receiveData(buffer, size);
+        set->put(it);
+        delete buffer;
+    }
+    IRWIHistogram<double> * hist = new RWDpHistogram<double>(set->getMax(), set->getMin(), 1);
+    IRWItem<double> * intervals = hist->intervals();
+    intervals->resetIterator();
+    double abc;
+    int zero = 0;
+    while (intervals->getNext(abc)) {
+        if (abc > 0) {
+            break;
+        }
+        zero++;
+    }
+    for (int i = 0; i < set->getSize(); i++) {
+        IRWItem<long long> * it = hist->frequencies(set->getElement(i));
+        //        std::cout << intervals->getElement(zero - 1) << " " << intervals->getElement(zero) << " " << intervals->getElement(zero + 1) << std::endl;
+        //        std::cout << it->getElement(zero - 1) << " " << it->getElement(zero) << " " << it->getElement(zero + 1) << std::endl;
+        std::cout << sequence[i] << " " << (double) it->getElement(zero - 1) / (er->getNpoints() - sequence[i]) << std::endl;
+    }
+
+    dfa.receiveData(er->data(), er->getNpoints(), 0, er->getNpoints());
+    double * x = new double[dfa.getNBoxes() + 1];
+    double * y = new double[dfa.getNBoxes() + 1];
+    dfa.performAnalysis_1(x, y);
+    //    X->receiveData(x, dfa.getNBoxes());
+    //    Y->receiveData(y, dfa.getNBoxes());
     //    X->print();
     //    Y->print();
 

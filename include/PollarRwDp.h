@@ -14,6 +14,7 @@
 #include <limits>
 #include <assert.h>
 #include <cmath>
+
 class PollarRwDp : public IRWItem<QPollarF> {
 public:
     PollarRwDp();
@@ -41,6 +42,10 @@ public:
     virtual double average();
     virtual IRWItem<double> * getIntegral();
     virtual IRWItem<double> * power(double);
+
+    QPollarF * data() {
+        return pointsArray;
+    }
 private:
     QPollarF * pointsArray;
     unsigned long int Npoints;
@@ -329,7 +334,7 @@ inline unsigned long int PollarRwDp::getActualPoint()const {
 
 inline void PollarRwDp::print() {
     for (unsigned int i = 0; i < Npoints; i++) {
-        std::cout<<pointsArray[i].x()<<" "<<pointsArray[i].y()<<" "<<std::endl;
+        std::cout << pointsArray[i].x() << " " << pointsArray[i].y() << " " << std::endl;
     }
     std::cout << std::endl;
 }
@@ -361,10 +366,10 @@ inline IRWItem<double> * PollarRwDp::power(double a) {
     Origin.setX(0);
     Origin.setY(0);
     double * data = new double [Npoints];
-    for(int i=0;i<Npoints;i++){
-        data[i]=pow(pointsArray[i].distQPollarF(Origin),a);
+    for (int i = 0; i < Npoints; i++) {
+        data[i] = pow(pointsArray[i].distQPollarF(Origin), a);
     }
-    ret->receiveData(data,Npoints);
+    ret->receiveData(data, Npoints);
     delete [] data;
     return ret;
 }

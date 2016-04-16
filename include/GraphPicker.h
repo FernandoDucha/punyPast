@@ -7,14 +7,14 @@
 
 #ifndef GRAPHPICKER_H
 #define	GRAPHPICKER_H
-#include <qwt_plot_picker.h>
-#include <qwt_plot_canvas.h>
-#include <qwt_plot_curve.h>
-#include <qwt_picker_machine.h>
-#include <qwt_symbol.h>
-#include <qwt_plot.h>
-#include <qwt_plot_seriesitem.h>
-#include <qwt_plot_curve.h>
+#include <qwt/qwt_plot_picker.h>
+#include <qwt/qwt_plot_canvas.h>
+#include <qwt/qwt_plot_curve.h>
+#include <qwt/qwt_picker_machine.h>
+#include <qwt/qwt_symbol.h>
+#include <qwt/qwt_plot.h>
+#include <qwt/qwt_plot_seriesitem.h>
+#include <qwt/qwt_plot_curve.h>
 #include <qt5/QtGui/qpainter.h>
 #include <limits.h>
 #include <float.h>

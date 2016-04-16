@@ -43,6 +43,10 @@ public:
     IRWItem<double> * getIntegral();
     IRWItem<double> * power(double);
     BufferedPollarRwDp& operator=(IRWItem<QPollarF>& rhs);
+    QPollarF * data(){
+        std::cerr<<"This object is buffered on disk returning NULL."<<std::endl;
+        return nullptr;
+    }
 private:
     virtual QPollarF & operator[](uint32_t a);
     unsigned long int Npoints;

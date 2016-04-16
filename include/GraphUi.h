@@ -14,8 +14,8 @@
 #include <QObject>
 #include "ProbabilityBase.h"
 #include <QImage>
-#include <qwt_plot_curve.h>
-#include <qwt_series_data.h>
+#include <qwt/qwt_plot_curve.h>
+#include <qwt/qwt_series_data.h>
 #include "Tokenizer.h"
 #include "Token.h"
 #include <QString>

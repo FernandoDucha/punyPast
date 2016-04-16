@@ -46,6 +46,10 @@ public:
     double average();
     IRWItem<double> * getIntegral();
     IRWItem<double> * power(double);
+    Type * data(){
+        std::cerr<<"This object is buffered on disk returning NULL."<<std::endl;
+        return nullptr;
+    }
 private:
     virtual Type & operator[](uint32_t a);
     unsigned long int Npoints;

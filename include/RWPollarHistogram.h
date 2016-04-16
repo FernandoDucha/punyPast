@@ -20,13 +20,18 @@ public:
     virtual void setBins(double max, double min, double step);
     void setBins(QPollarF max, QPollarF min, double step);
     virtual ~RWPollarHistogram();
+
+    virtual IRWItem<double>* intervals();
+
 private:
     double ratio;
     int nBins;
     long long * freq;
     double _max, _min;
 };
-
+inline IRWItem<double>* RWPollarHistogram::intervals(){
+    return nullptr;
+}
 inline void RWPollarHistogram::setBins(QPollarF max, QPollarF min, double step) {
     double _tmax = (max.rx() > max.ry()) ? max.rx() : max.ry();
     double _tmin = (min.rx() > min.ry()) ? min.rx() : min.ry();

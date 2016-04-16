@@ -8,8 +8,8 @@
 #ifndef BUFFEREDPOLLARDRAWINGENGINE_H
 #define	BUFFEREDPOLLARDRAWINGENGINE_H
 #include "IDrawingEngine.h"
-#include "qwt_plot.h"
-#include "qwt_plot_curve.h"
+#include <qwt/qwt_plot.h>
+#include <qwt/qwt_plot_curve.h>
 #include "PollarBufferedRwDpSet.h"
 
 class BufferedPollarDrawingEngine : public IDrawingEngine<QPollarF> {

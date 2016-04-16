@@ -39,6 +39,7 @@ public:
     }
 
 private:
+    void closeReaders();
     void fillSets();
     bool searchColumSeparator();
     void initializeImporters();

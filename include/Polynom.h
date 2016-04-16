@@ -36,6 +36,7 @@ public:
     double heightDifference(double x, double y);
     IRWItem<double>* quadraticHeightDifference(IRWItem<double>* X, IRWItem<double>* Y, double &sum);
     IRWItem<double> * heightDifference(IRWItem<double>* X, IRWItem<double>* Y, double & sum);
+    IRWItem<double> * heightDifference(double * X, int nx, double * Y, int ny, double & sum);
 private:
     int Order;
     double * Coef;
@@ -142,6 +143,29 @@ template <int D>inline IRWItem<double> * Polynom<D>::heightDifference(IRWItem<do
                 return retorno;
             } else {
                 std::cerr << "Dimensions from Linear fit are different: X=" << x->getNpoints() << "  Y=" << y->getNpoints() << std::endl << std::endl;
+                return NULL;
+            }
+        } else {
+            std::cerr << "Invalid Input." << std::endl;
+            return NULL;
+        }
+    } else {
+        return NULL;
+    }
+}
+template <int D>inline IRWItem<double> * Polynom<D>::heightDifference(double * X, int nx, double * Y, int ny, double & sum) {
+    if (Order == 2) {
+        if (X!= NULL && X != NULL) {
+            if (nx == ny){
+                for(int i=0;i<nx;i++){
+                    sum+= heightDifference(X[i], Y[i]);
+                }
+//                IRWItem<double> * retorno = new RWDp<double>();
+//                retorno->receiveData(buffer, x->getNpoints());
+//                delete buffer;
+                return nullptr;
+            } else {
+                std::cerr << "Dimensions from Linear fit are different: X=" << nx << "  Y=" << ny << std::endl << std::endl;
                 return NULL;
             }
         } else {

@@ -46,6 +46,9 @@ public:
         }
         return sum;
     }
+    type * data() {
+        return pointsArray;
+    }
     uint_32t getEpsilonN(double);
     //    IRWSet<type>* getIntervals(uint_32t);
     IRWItem<type> & operator=(IRWItem<type>&);

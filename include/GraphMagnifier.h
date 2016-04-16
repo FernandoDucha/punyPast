@@ -7,8 +7,8 @@
 
 #ifndef GRAPHMAGNIFIER_H
 #define	GRAPHMAGNIFIER_H
-#include <qwt_plot_magnifier.h>
-#include <qwt_plot_canvas.h>
+#include <qwt/qwt_plot_magnifier.h>
+#include <qwt/qwt_plot_canvas.h>
 
 class GraphMagnifier : public QwtPlotMagnifier {
 public:

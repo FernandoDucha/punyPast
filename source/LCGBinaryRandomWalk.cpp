@@ -12,6 +12,8 @@
 #include "VEdge.h"
 #include "PollarSet.h"
 #include "MemoryRandomWalk.h"
+#include "PollarRwDpSet.h"
+#include "BrownianMotion.h"
 
 LCGBinaryRandomWalk::LCGBinaryRandomWalk() {
     RNG = NULL;
@@ -127,19 +129,47 @@ IRWItem<QPollarF> * LCGBinaryRandomWalk::perform2DWalk() {
     return ret;
 }
 
-
-double LCGBinaryRandomWalk::Double(){
+double LCGBinaryRandomWalk::Double() {
     return RNG->randd();
 }
-uint_64t LCGBinaryRandomWalk::Integer(){
+
+uint_64t LCGBinaryRandomWalk::Integer() {
     return RNG->randi();
 }
 
 IRWItem<QPollarF> * LCGBinaryRandomWalk::perform2DWalkNoCollision(int divisor) {
-    MemoryRandomWalk memrw(this,walksSize,divisor);
+    MemoryRandomWalk memrw(this, walksSize, divisor);
     return memrw.perform2DWalkNoCollision();
 }
 
+IRWItem<QPollarF> * LCGBinaryRandomWalk::brownianMotion(double diff) {
+    BrownianMotion bm(RNG,1,walksSize,diff,walksSize);
+    bm.simulateAllParticles();
+    return bm.getParticleItem(0);
+}
+
+IRWSet<QPollarF>* LCGBinaryRandomWalk::multipleBrownianMotion(double diff) {
+    RNG->resetSeed();
+    PollarRwDpSet * ret = new PollarRwDpSet(numberOfWalks);
+    for(int i=0;i<numberOfWalks;i++){
+        ret->put(brownianMotion(diff));
+    }
+    return ret;
+}
+IRWItem<double> * LCGBinaryRandomWalk::brownianMotionDisplacement(double diff) {
+    BrownianMotion bm(RNG,1,walksSize,diff,walksSize);
+    bm.simulateAllParticles();
+    return bm.getDisplacementItem(0);
+}
+
+IRWSet<double>* LCGBinaryRandomWalk::multipleBrownianMotionDisplacement(double diff) {
+    RNG->resetSeed();
+    IRWSet<double> * ret = new RWDpSet<double>(numberOfWalks);;
+    for(int i=0;i<numberOfWalks;i++){
+        ret->put(brownianMotionDisplacement(diff));
+    }
+    return ret;
+}
 RWVSInt * LCGBinaryRandomWalk::performAllWalksByBitsOnLineRandom() {
     RNG->resetSeed();
     return performAllWalksByBits();

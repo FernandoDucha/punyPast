@@ -37,10 +37,16 @@ public:
     void setup(RNGLinearCong * rng, u_int64_t ws, u_int64_t nw);
     double Double();
     uint_64t Integer();
+
     void resetSeed() {
         RNG->resetSeed();
     }
     IRWItem<QPollarF> * perform2DWalkNoCollision(int divisor);
+    virtual IRWItem<QPollarF> * brownianMotion(double diff);
+    virtual IRWSet<QPollarF>* multipleBrownianMotion(double diff);
+    virtual IRWItem<double> * brownianMotionDisplacement(double diff);
+    virtual IRWSet<double>* multipleBrownianMotionDisplacement(double diff);
+
 private:
     IRNG * RNG;
     u_int64_t numberOfWalks;

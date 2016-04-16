@@ -61,6 +61,24 @@ public:
     uint64_t GetNumberRandomWalks() const;
     double Double();
     uint_64t Integer();
+    virtual IRWItem<QPollarF>* brownianMotion(double diff){
+        return nullptr;
+    }
+
+    virtual IRWSet<QPollarF>* multipleBrownianMotion(double diff){
+        return nullptr;
+    }
+
+    virtual IRWItem<double>* brownianMotionDisplacement(double diff){
+        return nullptr;
+    }
+
+    virtual IRWSet<double>* multipleBrownianMotionDisplacement(double diff){
+        return nullptr;
+    }
+    
+
+
 private:
     FileRawBuffer * fbuffer;
     unsigned long int walkSize;

@@ -11,6 +11,7 @@
 #include "IRandomWalk.h"
 #include "ExprRNG.h"
 #include "PollarRwDp.h"
+
 class ExprBinaryRandomWalk : public IRandomWalk {
 public:
     ExprBinaryRandomWalk();
@@ -33,11 +34,30 @@ public:
     IRWItem<QPollarF> * perform2DWalk();
     IRWItem<QPollarF> * perform2DWalkNoCollision(int);
     void setup(ExprRNG * rng, u_int64_t ws, u_int64_t nw);
+
     void resetSeed() {
         RNG->resetSeed();
     }
     uint_64t Integer();
     double Double();
+
+    virtual IRWItem<QPollarF>* brownianMotion(double diff) {
+        return nullptr;
+    }
+
+    virtual IRWSet<QPollarF>* multipleBrownianMotion(double diff) {
+        return nullptr;
+    }
+
+    virtual IRWItem<double>* brownianMotionDisplacement(double diff){
+        return nullptr;
+    }
+
+    virtual IRWSet<double>* multipleBrownianMotionDisplacement(double diff){
+        return nullptr;
+    }
+
+
 private:
     ExprRNG * RNG;
     u_int64_t numberOfWalks;

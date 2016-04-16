@@ -22,7 +22,7 @@ AS=as
 QMAKE=qmake
 
 # Macros
-CND_PLATFORM=GNU-Linux-x86
+CND_PLATFORM=GNU_64-Linux
 CND_DLIB_EXT=so
 CND_CONF=Release
 CND_DISTDIR=dist
@@ -52,7 +52,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lgmp -lgmpxx -lfl -lgsl -lgslcblas libdieharder/libdiehardercli.a libdieharder/libdieharder.a /usr/local/qwt-6.1.2/lib/libqwt.so formatstr.a
+LDLIBSOPTIONS=-lgmp -lgmpxx -lfl -lgsl -lgslcblas libdieharder/libdiehardercli.a libdieharder/libdieharder.a formatstr.a /usr/lib/libqwt-qt5.so
 
 nbproject/qt-${CND_CONF}.mk: nbproject/qt-${CND_CONF}.pro FORCE
 	${QMAKE} VPATH=. -o qttmp-${CND_CONF}.mk nbproject/qt-${CND_CONF}.pro

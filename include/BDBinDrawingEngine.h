@@ -9,7 +9,7 @@
 #define	BDBINDRAWINGENGINE_H
 #include "IDrawingEngine.h"
 #include "IRWBd.h"
-#include <qwt_plot_curve.h>
+#include <qwt/qwt_plot_curve.h>
 
 template<class Type> class BDBinDrawingEngine : public IDrawingEngine<Type> {
 public:

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="95">
+<configurationDescriptor version="97">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="include" displayName="include" projectFiles="true">
       <logicalFolder name="f1" displayName="dieharder" projectFiles="true">
@@ -79,6 +79,7 @@
       <itemPath>include/BDProbabilityBase.h</itemPath>
       <itemPath>include/BinDrawingEngine.h</itemPath>
       <itemPath>include/BinaryRandomWalk.h</itemPath>
+      <itemPath>include/BrownianMotion.h</itemPath>
       <itemPath>include/BufferedPollarDrawingEngine.h</itemPath>
       <itemPath>include/BufferedPollarRwDp.h</itemPath>
       <itemPath>include/BufferedPollarRwVec.h</itemPath>
@@ -87,6 +88,7 @@
       <itemPath>include/DFA.h</itemPath>
       <itemPath>include/DFAInputGui.h</itemPath>
       <itemPath>include/DataPointsDrawingEngine.h</itemPath>
+      <itemPath>include/DirFilteringUtility.h</itemPath>
       <itemPath>include/ExprBinaryRandomWalk.h</itemPath>
       <itemPath>include/ExprParserWidget.h</itemPath>
       <itemPath>include/ExprRNG.h</itemPath>
@@ -197,6 +199,7 @@
       <itemPath>source/BDProbabilityBase.cpp</itemPath>
       <itemPath>source/BinDrawingEngine.cpp</itemPath>
       <itemPath>source/BinaryRandomWalk.cpp</itemPath>
+      <itemPath>source/BrownianMotion.cpp</itemPath>
       <itemPath>source/BufferedPollarDrawingEngine.cpp</itemPath>
       <itemPath>source/BufferedPollarRwDp.cpp</itemPath>
       <itemPath>source/BufferedPollarRwVec.cpp</itemPath>
@@ -205,6 +208,7 @@
       <itemPath>source/DFA.cpp</itemPath>
       <itemPath>source/DFAInputGui.cpp</itemPath>
       <itemPath>source/DataPointsDrawingEngine.cpp</itemPath>
+      <itemPath>source/DirFilteringUtility.cpp</itemPath>
       <itemPath>source/ExprBinaryRandomWalk.cpp</itemPath>
       <itemPath>source/ExprParserWidget.cpp</itemPath>
       <itemPath>source/ExprRNG.cpp</itemPath>
@@ -354,8 +358,8 @@
             <linkerLibLibItem>fl</linkerLibLibItem>
             <linkerLibFileItem>libdieharder/libdiehardercli.a</linkerLibFileItem>
             <linkerLibFileItem>libdieharder/libdieharder.a</linkerLibFileItem>
-            <linkerLibFileItem>/usr/local/qwt-6.1.2/lib/libqwt.so</linkerLibFileItem>
             <linkerLibFileItem>formatstr.a</linkerLibFileItem>
+            <linkerLibFileItem>/usr/lib/libqwt-qt5.so</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -394,6 +398,8 @@
       </item>
       <item path="include/BinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/BrownianMotion.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/BufferedPollarDrawingEngine.h"
             ex="false"
             tool="3"
@@ -412,6 +418,8 @@
       <item path="include/DFAInputGui.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/DataPointsDrawingEngine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/DirFilteringUtility.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/ExprBinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -842,6 +850,8 @@
       </item>
       <item path="source/BinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/BrownianMotion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/BufferedPollarDrawingEngine.cpp"
             ex="false"
             tool="1"
@@ -860,6 +870,8 @@
       <item path="source/DFAInputGui.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/DataPointsDrawingEngine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/DirFilteringUtility.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/ExprBinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1086,6 +1098,9 @@
             <pElem>/usr/local/qwt-6.1.2/include</pElem>
             <pElem>include/stringfrmt</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>HAVE_INLINE</Elem>
+          </preprocessorList>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -1102,8 +1117,8 @@
             <linkerLibLibItem>gslcblas</linkerLibLibItem>
             <linkerLibFileItem>libdieharder/libdiehardercli.a</linkerLibFileItem>
             <linkerLibFileItem>libdieharder/libdieharder.a</linkerLibFileItem>
-            <linkerLibFileItem>/usr/local/qwt-6.1.2/lib/libqwt.so</linkerLibFileItem>
             <linkerLibFileItem>formatstr.a</linkerLibFileItem>
+            <linkerLibFileItem>/usr/lib/libqwt-qt5.so</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -1146,6 +1161,8 @@
       </item>
       <item path="include/BinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/BrownianMotion.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/BufferedPollarDrawingEngine.h"
             ex="false"
             tool="3"
@@ -1164,6 +1181,8 @@
       <item path="include/DFAInputGui.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/DataPointsDrawingEngine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/DirFilteringUtility.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/ExprBinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -1594,6 +1613,8 @@
       </item>
       <item path="source/BinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/BrownianMotion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/BufferedPollarDrawingEngine.cpp"
             ex="false"
             tool="1"
@@ -1612,6 +1633,8 @@
       <item path="source/DFAInputGui.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/DataPointsDrawingEngine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/DirFilteringUtility.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/ExprBinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1867,6 +1890,8 @@
       </item>
       <item path="include/BinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/BrownianMotion.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/BufferedPollarDrawingEngine.h"
             ex="false"
             tool="3"
@@ -1885,6 +1910,8 @@
       <item path="include/DFAInputGui.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/DataPointsDrawingEngine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/DirFilteringUtility.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/ExprBinaryRandomWalk.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2315,6 +2342,8 @@
       </item>
       <item path="source/BinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/BrownianMotion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/BufferedPollarDrawingEngine.cpp"
             ex="false"
             tool="1"
@@ -2333,6 +2362,8 @@
       <item path="source/DFAInputGui.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/DataPointsDrawingEngine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/DirFilteringUtility.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/ExprBinaryRandomWalk.cpp" ex="false" tool="1" flavor2="0">
       </item>

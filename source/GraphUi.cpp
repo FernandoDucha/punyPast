@@ -7,8 +7,8 @@
 
 #include <qglobal.h>
 #include <qwidget.h>
-#include <qwt_scale_engine.h>
-#include <qwt_legend.h>
+#include <qwt/qwt_scale_engine.h>
+#include <qwt/qwt_legend.h>
 #include <qt5/QtCore/qlogging.h>
 #include "GraphUi.h"
 #include "BufferedProbabilityBase.h"
@@ -23,7 +23,7 @@
 #include "DFAInputGui.h"
 #include "BufferedPollarDrawingEngine.h"
 #include <QFileDialog>
-#include <qwt_plot_renderer.h>
+#include <qwt/qwt_plot_renderer.h>
 
 GraphUi::GraphUi() {
     widget.setupUi(this);

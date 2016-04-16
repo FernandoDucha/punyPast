@@ -42,6 +42,11 @@ public:
     virtual Type getMin()const;
     virtual Type getMax()const;
     uint_32t getEpsilonN(double);
+
+    Type * data() {
+        std::cerr << "This object is buffered on disk returning NULL." << std::endl;
+        return nullptr;
+    }
     //    IRWSet<Type>* getIntervals(uint_32t);
     double average();
     IRWItem<double> * getIntegral();
@@ -51,7 +56,6 @@ private:
     unsigned long int Npoints;
     unsigned long int actualPoint;
 };
-
 
 template <class Type> RWBufferedVec<Type>::RWBufferedVec(const RWBufferedVec<Type>& clone) : IRWBufferedItem<Type>(clone.getInput(), clone.getOutput()) {
     this->finitpos = clone.getFInitPos();
@@ -76,19 +80,21 @@ template <class Type> RWBufferedVec<Type>::RWBufferedVec(FileInStreamInterface<T
 template <class Type> RWBufferedVec<Type>::~RWBufferedVec() {
 
 }
-template <class Type> IRWItem<double> * RWBufferedVec<Type>::power(double a){
+
+template <class Type> IRWItem<double> * RWBufferedVec<Type>::power(double a) {
     double * data = new double[Npoints];
     for (int i = 0; i < Npoints; i++) {
         resetIterator();
         Type elem;
         getNext(elem);
-        data[i] += pow(elem,a);
+        data[i] += pow(elem, a);
     }
     IRWItem<double> * ret = new RWVec<double>();
     ret->receiveData(data, Npoints);
     delete [] data;
     return ret;
 }
+
 template <class Type> IRWItem<double> * RWBufferedVec<Type>::getIntegral() {
     double avg = average();
     double * data = new double[Npoints];
