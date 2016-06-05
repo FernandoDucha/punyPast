@@ -32,6 +32,7 @@
 #include "GSL_MRG.h"
 #include "GSL_GFSR4.h"
 #include "RWDpBase.h"
+#include "GroupHistogramCalculation.h"
 extern "C" {
     Dtest * dtst_call;
     Test ** tst_call;
@@ -194,77 +195,23 @@ int main(int argc, char *argv[]) {
     //    g.show();
 
     //Parte Importante início
-    QDir dir("/home/fordem/smb4k/FORDEMSIM/Doutorado_Ducha/LibPython/GraphUtils/rng/");
-    QStringList filters;
-    filters << "*.txt";
-    dir.setNameFilters(filters);
-    ImporterManager * a = new ImporterManager("%g %g %g %g %g %g %g\n", "/home/fordem/smb4k/FORDEMSIM/Doutorado_Ducha/LibPython/GraphUtils/rng/temp_test_1.txt");
-    a->readFile();
-    IRWSet<double> * t = a->getDset();
-    IRWItem<double> * er = new DataPointsDouble();
-    er->receiveData(&t->getElement(4)->data()[10000], t->getElement(4)->getNpoints() - 10000);
-    delete a;
-    std::cout << er->getNpoints() << std::endl;
-    DFA dfa(3, er->getNpoints() / 10, 1.3);
-    IRWSet<double> * set = new RWDpSet<double>(dfa.getNBoxes() + 1);
-    int * sequence = new int[dfa.getNBoxes() + 1];
-    for (int i = 0; i < dfa.getNBoxes() + 1; i++) {
-        double * buffer = nullptr;
-        int size = 0;
-        if (i) {
-            u_int32_t box_size = dfa.getBoxes()[i];
-            sequence[i] = box_size;
-            size = er->getNpoints() - box_size;
-            buffer = new double[size];
-            double * data = er->data();
-            for (int i = 0; i < size; i++) {
-                buffer[i] = data[i + box_size] - data[i];
-            }
-        } else {
-            sequence[i] = 1;
-            size = er->getNpoints() - 1;
-            buffer = new double[size];
-            double * data = er->data();
-            for (int i = 0; i < size; i++) {
-                buffer[i] = data[i + 1] - data[i];
-            }
-        }
-        IRWItem<double> * it = new RWDp<double>();
-        it->receiveData(buffer, size);
-        set->put(it);
-        delete buffer;
-    }
-    IRWIHistogram<double> * hist = new RWDpHistogram<double>(set->getMax(), set->getMin(), 1);
-    IRWItem<double> * intervals = hist->intervals();
-    intervals->resetIterator();
-    double abc;
-    int zero = 0;
-    while (intervals->getNext(abc)) {
-        if (abc > 0) {
-            break;
-        }
-        zero++;
-    }
-    for (int i = 0; i < set->getSize(); i++) {
-        IRWItem<long long> * it = hist->frequencies(set->getElement(i));
-        //        std::cout << intervals->getElement(zero - 1) << " " << intervals->getElement(zero) << " " << intervals->getElement(zero + 1) << std::endl;
-        //        std::cout << it->getElement(zero - 1) << " " << it->getElement(zero) << " " << it->getElement(zero + 1) << std::endl;
-        std::cout << sequence[i] << " " << (double) it->getElement(zero - 1) / (er->getNpoints() - sequence[i]) << std::endl;
-    }
+    //    GroupHistogramCalculation gh("/home/fordem/Dropbox/FernandoDoutorado/LibPython/GraphUtils/rng/res_arthur/", 3, 10000, 1.4);
+    //    gh.calculateDFAERFiles();
+    //    gh.exportOriginReturn("histogramtest.dat");
 
-    dfa.receiveData(er->data(), er->getNpoints(), 0, er->getNpoints());
-    double * x = new double[dfa.getNBoxes() + 1];
-    double * y = new double[dfa.getNBoxes() + 1];
-    dfa.performAnalysis_1(x, y);
+    //    dfa.receiveData(er->data(), er->getNpoints(), 0, er->getNpoints());
+    //    double * x = new double[dfa.getNBoxes() + 1];
+    //    double * y = new double[dfa.getNBoxes() + 1];
+    //    dfa.performAnalysis_1(x, y);
     //    X->receiveData(x, dfa.getNBoxes());
     //    Y->receiveData(y, dfa.getNBoxes());
     //    X->print();
     //    Y->print();
 
     //    cout<<t->getElement(0)->getMax()<<" "<<t->getElement(0)->getMin()<< " "<<t->getElement(0)->sum()<<endl;
-    //    GraphUi * g = new GraphUi();
+    GraphUi * g = new GraphUi();
     //    //    create and show your widgets here
-    //    g->showMaximized();
+    g->showMaximized();
 
     //    Tokenizer T;
     //    QList<QString>* res=T.Tokenize("x=123.123*abc123abc");

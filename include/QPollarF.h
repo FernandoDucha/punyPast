@@ -52,7 +52,7 @@ public:
         
 //        QString ret;
         char buffer[50];
-        sprintf(buffer,"%g|%g",rx(),ry());
+        sprintf(buffer,"%g|%g",x(),y());
         std::string ret(buffer);
         return ret;
     }
@@ -60,29 +60,35 @@ public:
     QPollarF & operator=(QPollarF rhs) {
         theta = rhs.getTheta();
         rho = rhs.getRho();
-        setX(rhs.rx());
-        setY(rhs.ry());
+        setX(rhs.x());
+        setY(rhs.y());
         return *this;
     }
 
     QPollarF & operator+=(QPollarF & rhs) {
-        setX(rx() + rhs.rx());
-        setY(ry() + rhs.ry());
-        rho = (sqrt(pow(rx(), 2) + pow(ry(), 2)));
-        theta = (atan(ry() / rx()));
+        setX(x() + rhs.x());
+        setY(y() + rhs.y());
+        rho = (sqrt(pow(x(), 2) + pow(y(), 2)));
+        theta = (atan(y() / x()));
         return *this;
     }
 
     double distQPollarF(QPollarF & rhs) {
-        return sqrt(pow(rx() - rhs.rx(), 2) + pow(ry() - rhs.ry(), 2));
+        return sqrt(pow(x() - rhs.x(), 2) + pow(y() - rhs.y(), 2));
     }
-
+    bool operator!=(QPollarF & rhs){
+        if(x()!=rhs.x()||y()!=rhs.y()){
+            return true;
+        }else{
+            return false;
+        }
+    }
     bool operator<(QPollarF & rhs) {
-        if (rhs.rx() != rx()) {
-            bool ret = rhs.rx() - rx() > 0 ? false : true;
+        if (rhs.x() != x()) {
+            bool ret = rhs.x() - x() > 0 ? false : true;
             return ret;
         } else {
-            bool ret = rhs.ry() - ry() > 0 ? false : true;
+            bool ret = rhs.y() - y() > 0 ? false : true;
             return ret;
         }
     }
@@ -102,28 +108,28 @@ private:
 struct PollarFComp {
 
     bool operator() ( QPollarF  lhs,   QPollarF rhs) {
-        if (rhs.rx() != lhs.rx()) {
-            bool ret = rhs.rx() - lhs.rx() > 0 ? false : true;
+        if (rhs.x() != lhs.x()) {
+            bool ret = rhs.x() - lhs.x() > 0 ? false : true;
             return ret;
         } else {
-            bool ret = rhs.ry() - lhs.ry() > 0 ? false : true;
+            bool ret = rhs.y() - lhs.y() > 0 ? false : true;
             return ret;
         }
     }
 };
 
 inline void sumQPollarF(QPollarF & A, QPollarF & B, QPollarF & C) {
-    C.setX(A.rx() + B.rx());
-    C.setY(A.ry() + B.ry());
-    C.setRho(sqrt(pow(C.rx(), 2) + pow(C.ry(), 2)));
-    C.setTheta(atan(C.ry() / C.rx()));
+    C.setX(A.x() + B.x());
+    C.setY(A.y() + B.y());
+    C.setRho(sqrt(pow(C.x(), 2) + pow(C.y(), 2)));
+    C.setTheta(atan(C.y() / C.x()));
 }
 
 inline void subQPollarF(QPollarF & A, QPollarF & B, QPollarF & C) {
-    C.setX(A.rx() - B.rx());
-    C.setY(A.ry() - B.ry());
-    C.setRho(sqrt(pow(C.rx(), 2) + pow(C.ry(), 2)));
-    C.setTheta(atan(C.ry() / C.rx()));
+    C.setX(A.x() - B.x());
+    C.setY(A.y() - B.y());
+    C.setRho(sqrt(pow(C.x(), 2) + pow(C.y(), 2)));
+    C.setTheta(atan(C.y() / C.x()));
 }
 #endif	/* QPOLLARF_H */
 

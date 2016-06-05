@@ -21,11 +21,14 @@ public:
     void addPollar(QPollarF f);
     void removePollar(QPollarF F);
     int qtyPollar(QPollarF f);
+    void clear();
 private:
     map<string, int> *thismap;
 //    QMap<QString,int> *thismap;
 };
-
+inline void PollarSet::clear(){
+    thismap->clear();
+}
 inline PollarSet::PollarSet() {
     thismap = new map<string,int>();
 }

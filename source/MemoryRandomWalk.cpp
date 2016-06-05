@@ -7,4 +7,3 @@
 
 #include "MemoryRandomWalk.h"
 
-

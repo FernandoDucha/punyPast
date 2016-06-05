@@ -1,9 +1,7 @@
 [Dolphin]
-SortRole=size
-Timestamp=2015,8,30,17,0,42
+SortOrder=1
+SortRole=date
+Timestamp=2016,4,26,17,23,14
 Version=3
 ViewMode=1
 VisibleRoles=Details_text,Details_size,Details_date,Details_type,CustomizedDetails
-
-[Settings]
-HiddenFilesShown=true

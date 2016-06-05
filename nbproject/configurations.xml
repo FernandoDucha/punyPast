@@ -109,6 +109,7 @@
       <itemPath>include/GraphPanner.h</itemPath>
       <itemPath>include/GraphPicker.h</itemPath>
       <itemPath>include/GraphUi.h</itemPath>
+      <itemPath>include/GroupHistogramCalculation.h</itemPath>
       <itemPath>include/IDrawingEngine.h</itemPath>
       <itemPath>include/IImporter.h</itemPath>
       <itemPath>include/IInputWidget.h</itemPath>
@@ -229,6 +230,7 @@
       <itemPath>source/GraphPanner.cpp</itemPath>
       <itemPath>source/GraphPicker.cpp</itemPath>
       <itemPath>source/GraphUi.cpp</itemPath>
+      <itemPath>source/GroupHistogramCalculation.cpp</itemPath>
       <itemPath>source/IDrawingEngine.cpp</itemPath>
       <itemPath>source/IImporter.cpp</itemPath>
       <itemPath>source/IInputWidget.cpp</itemPath>
@@ -463,6 +465,11 @@
       <item path="include/GraphPicker.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/GraphUi.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GroupHistogramCalculation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="include/IDrawingEngine.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -916,6 +923,11 @@
       </item>
       <item path="source/GraphUi.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/GroupHistogramCalculation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="source/IDrawingEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/IImporter.cpp" ex="false" tool="1" flavor2="0">
@@ -1080,9 +1092,6 @@
         <buildMode>1</buildMode>
         <modules>core gui widgets printsupport sql</modules>
         <mocDir>moc</mocDir>
-        <defs>
-          <Elem>QMAKE_CXXFLAGS += -std=c++11 -O3</Elem>
-        </defs>
       </qt>
       <compileType>
         <cTool>
@@ -1226,6 +1235,11 @@
       <item path="include/GraphPicker.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/GraphUi.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/GroupHistogramCalculation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="include/IDrawingEngine.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -1678,6 +1692,11 @@
       <item path="source/GraphPicker.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/GraphUi.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GroupHistogramCalculation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="source/IDrawingEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1956,6 +1975,11 @@
       </item>
       <item path="include/GraphUi.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/GroupHistogramCalculation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="include/IDrawingEngine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/IImporter.h" ex="false" tool="3" flavor2="0">
@@ -2407,6 +2431,11 @@
       <item path="source/GraphPicker.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/GraphUi.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/GroupHistogramCalculation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="source/IDrawingEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>

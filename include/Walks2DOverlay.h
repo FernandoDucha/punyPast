@@ -6,7 +6,7 @@
  */
 
 #ifndef WALKS2DOVERLAY_H
-#define	WALKS2DOVERLAY_H
+#define WALKS2DOVERLAY_H
 #include <QWidget>
 #include <QGridLayout>
 #include <QTextEdit>
@@ -19,7 +19,7 @@
 #include <QTimer>
 #include <QColorDialog>
 #include "GeneralUsage.h"
-
+#include <qglobal.h>
 class Walks2DOverlay : public QWidget {
     Q_OBJECT
 public:
@@ -55,9 +55,10 @@ signals:
 };
 
 inline void Walks2DOverlay::point(QPollarF* p, int n, double t) {
-    for (int i = 0; i < n; i++) {
-        data[i] = p[i];
-    }
+    //    for (int i = 0; i < n; i++) {
+    //        data[i] = p[i];
+    //    }
+    memcpy(data,p,n*sizeof(QPollarF));
     nData = n;
     Adepth->setText(QString::number(n));
     Tspent->setText(QString::number(t));
@@ -76,17 +77,18 @@ inline void Walks2DOverlay::chooseColor() {
 
 inline void Walks2DOverlay::setMemoryRW(MemoryRandomWalk* memRw) {
     if (thismemrw != NULL&&!thismemrw->isRunning()) {
+        delete thismemrw;
         thismemrw = memRw;
-    }else  if (thismemrw == NULL) {
+    } else if (thismemrw == NULL) {
         thismemrw = memRw;
     }
 }
 
 inline Walks2DOverlay::Walks2DOverlay(QWidget* Parent) : QWidget(Parent) {
     data = NULL;
-    thismemrw = NULL;
     QPalette pal;
     emitting = new PollarRwDp();
+    thismemrw = nullptr;
     pal.setBrush(QPalette::Window, QColor(255, 0, 0, 128));
     this->setAutoFillBackground(true);
     this->resize(400, 400);
@@ -140,7 +142,7 @@ inline Walks2DOverlay::Walks2DOverlay(QWidget* Parent) : QWidget(Parent) {
 
 inline void Walks2DOverlay::plot() {
     if (data) {
-        emitting->receiveData(&data[1], nData-1);
+        emitting->receiveData(&data[1], nData - 1);
         emit plotItem(emitting, actualColor);
     }
 }
@@ -150,21 +152,21 @@ inline Walks2DOverlay::~Walks2DOverlay() {
 }
 
 inline void Walks2DOverlay::runPushed() {
-    MemoryRandomWalk * aux = new MemoryRandomWalk(*thismemrw);
-    delete thismemrw;
-    thismemrw = aux;
-    thismemrw->generatePointsDiscrete(Disc->value());
-    if (data == NULL) {
-        data = new QPollarF[thismemrw->getWalksSize()+1];
-    } else {
-        delete [] data;
-        data = new QPollarF[thismemrw->getWalksSize()+1];
+    if (thismemrw) {
+        thismemrw->generatePointsDiscrete(Disc->value());
+        if (data == nullptr) {
+            data = new QPollarF[thismemrw->getWalksSize() + 1];
+        } else {
+            delete [] data;
+            data = new QPollarF[thismemrw->getWalksSize() + 1];
+        }
+        connect(thismemrw, SIGNAL(point(QPollarF*, int, double)), this, SLOT(point(QPollarF*, int, double)));
+        thismemrw->setTime(MaxTime->value()*1000);
+        thismemrw->start();
+        Run->setEnabled(false);
+        Stop->setEnabled(true);
     }
-    connect(thismemrw, SIGNAL(point(QPollarF*, int, double)), this, SLOT(point(QPollarF*, int, double)));
-    thismemrw->setTime(MaxTime->value()*1000);
-    thismemrw->start();
-    Run->setEnabled(false);
-    Stop->setEnabled(true);
+
 }
 
 inline void Walks2DOverlay::stopPushed() {
@@ -172,5 +174,5 @@ inline void Walks2DOverlay::stopPushed() {
     Run->setEnabled(true);
     Stop->setEnabled(false);
 }
-#endif	/* WALKS2DOVERLAY_H */
+#endif /* WALKS2DOVERLAY_H */
 

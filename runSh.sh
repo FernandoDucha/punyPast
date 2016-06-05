@@ -9,5 +9,5 @@
 ulimit -s 64000
 #make CONF=Release QMAKE=/usr/bin/qmake clean
 #make CONF=Release QMAKE=/usr/bin/qmake 
-/home/fordem/Dropbox/HC/RandomFwkGUI/dist/Release/GNU-Linux-x86/RandomFwkGUI
+/home/fordem/Dropbox/HC/RandomFwkGUI/dist/Release/GNU-Linux/RandomFwkGUI
 
