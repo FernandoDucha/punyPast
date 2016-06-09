@@ -296,6 +296,7 @@
       <itemPath>source/Walks2DOverlay.cpp</itemPath>
       <itemPath>source/WeierstrassDrawingEngine.cpp</itemPath>
       <itemPath>source/WeiestrassInputWidget.cpp</itemPath>
+      <itemPath>source/dfamain.cpp</itemPath>
       <itemPath>dieteste.c</itemPath>
       <itemPath>formatS.lex</itemPath>
       <itemPath>formatS.y</itemPath>
@@ -1079,6 +1080,8 @@
       </item>
       <item path="source/WeiestrassInputWidget.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/dfamain.cpp" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="source/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -1849,7 +1852,9 @@
       </item>
       <item path="source/WeiestrassInputWidget.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="source/main.cpp" ex="false" tool="1" flavor2="0">
+      <item path="source/dfamain.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/main.cpp" ex="true" tool="1" flavor2="0">
       </item>
       <item path="teste.lex" ex="false" tool="3" flavor2="0">
       </item>
@@ -2587,6 +2592,8 @@
             flavor2="0">
       </item>
       <item path="source/WeiestrassInputWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/dfamain.cpp" ex="false" tool="0" flavor2="0">
       </item>
       <item path="source/main.cpp" ex="false" tool="1" flavor2="0">
       </item>

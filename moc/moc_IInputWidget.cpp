@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'IInputWidget.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.4.2)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'IInputWidget.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.4.2. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,11 +20,11 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_IInputWidget_t {
     QByteArrayData data[7];
-    char stringdata[79];
+    char stringdata0[79];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_IInputWidget_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_IInputWidget_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_IInputWidget_t qt_meta_stringdata_IInputWidget = {
@@ -79,6 +79,7 @@ void IInputWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         IInputWidget *_t = static_cast<IInputWidget *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->createdRWK((*reinterpret_cast< IRandomWalk*(*)>(_a[1]))); break;
         case 1: _t->numwalksEdit((*reinterpret_cast< QString(*)>(_a[1]))); break;
@@ -112,7 +113,7 @@ const QMetaObject *IInputWidget::metaObject() const
 void *IInputWidget::qt_metacast(const char *_clname)
 {
     if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_IInputWidget.stringdata))
+    if (!strcmp(_clname, qt_meta_stringdata_IInputWidget.stringdata0))
         return static_cast<void*>(const_cast< IInputWidget*>(this));
     return QWidget::qt_metacast(_clname);
 }

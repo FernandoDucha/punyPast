@@ -20,6 +20,7 @@
 #include <QColorDialog>
 #include "GeneralUsage.h"
 #include <qglobal.h>
+
 class Walks2DOverlay : public QWidget {
     Q_OBJECT
 public:
@@ -47,7 +48,8 @@ private:
     QLabel * actualSize;
     QLabel * Adepth, * Tspent;
     MemoryRandomWalk * thismemrw;
-    QPollarF * data;
+    vector<QPollarF> data;
+    QTimer * tm;
     int nData;
     IRWItem<QPollarF> * emitting;
 signals:
@@ -55,14 +57,15 @@ signals:
 };
 
 inline void Walks2DOverlay::point(QPollarF* p, int n, double t) {
-    //    for (int i = 0; i < n; i++) {
-    //        data[i] = p[i];
-    //    }
-    memcpy(data,p,n*sizeof(QPollarF));
+    for (int i = 0; i < n; i++) {
+        data[i] = p[i];
+    }
+    //    memcpy(data, p, n * sizeof (QPollarF));
+    //    data=p;
     nData = n;
     Adepth->setText(QString::number(n));
     Tspent->setText(QString::number(t));
-    plot();
+    //    plot();
 }
 
 inline void Walks2DOverlay::chooseColor() {
@@ -76,16 +79,15 @@ inline void Walks2DOverlay::chooseColor() {
 }
 
 inline void Walks2DOverlay::setMemoryRW(MemoryRandomWalk* memRw) {
-    if (thismemrw != NULL&&!thismemrw->isRunning()) {
+    if (thismemrw != nullptr&&!thismemrw->isRunning()) {
         delete thismemrw;
         thismemrw = memRw;
-    } else if (thismemrw == NULL) {
+    } else if (thismemrw == nullptr) {
         thismemrw = memRw;
     }
 }
 
 inline Walks2DOverlay::Walks2DOverlay(QWidget* Parent) : QWidget(Parent) {
-    data = NULL;
     QPalette pal;
     emitting = new PollarRwDp();
     thismemrw = nullptr;
@@ -99,7 +101,7 @@ inline Walks2DOverlay::Walks2DOverlay(QWidget* Parent) : QWidget(Parent) {
     Disc = new QSpinBox(this);
     Disc->setButtonSymbols(QAbstractSpinBox::NoButtons);
     Disc->setMaximum(360 * 16);
-    Disc->setMinimum(4);
+    Disc->setMinimum(3);
     Disc->setValue(4);
     LblMaxTime = new QLabel(this);
     LblMaxTime->setText("Available Time(s):");
@@ -133,16 +135,20 @@ inline Walks2DOverlay::Walks2DOverlay(QWidget* Parent) : QWidget(Parent) {
     thisLayout->addWidget(Stop, 4, 0, 1, 2, Qt::AlignCenter | Qt::AlignHCenter);
     thisLayout->addWidget(Adepth, 5, 0, 1, 1, Qt::AlignCenter | Qt::AlignHCenter);
     thisLayout->addWidget(Tspent, 5, 1, 1, 1, Qt::AlignCenter | Qt::AlignHCenter);
+    tm = new QTimer(this);
+    tm->setInterval(10);
+
     connect(Run, SIGNAL(released()), this, SLOT(runPushed()));
     connect(Plot, SIGNAL(released()), this, SLOT(plot()));
+    connect(tm, SIGNAL(timeout()), this, SLOT(plot()));
     connect(Stop, SIGNAL(released()), this, SLOT(stopPushed()));
     connect(ChooseColor, SIGNAL(released()), this, SLOT(chooseColor()));
     Stop->setEnabled(false);
 }
 
 inline void Walks2DOverlay::plot() {
-    if (data) {
-        emitting->receiveData(&data[1], nData - 1);
+    if (data.size()>0) {
+        emitting->receiveData(&data.data()[1], nData - 1);
         emit plotItem(emitting, actualColor);
     }
 }
@@ -154,23 +160,20 @@ inline Walks2DOverlay::~Walks2DOverlay() {
 inline void Walks2DOverlay::runPushed() {
     if (thismemrw) {
         thismemrw->generatePointsDiscrete(Disc->value());
-        if (data == nullptr) {
-            data = new QPollarF[thismemrw->getWalksSize() + 1];
-        } else {
-            delete [] data;
-            data = new QPollarF[thismemrw->getWalksSize() + 1];
-        }
+        data = vector<QPollarF>(thismemrw->getWalksSize() + 1);
         connect(thismemrw, SIGNAL(point(QPollarF*, int, double)), this, SLOT(point(QPollarF*, int, double)));
         thismemrw->setTime(MaxTime->value()*1000);
         thismemrw->start();
         Run->setEnabled(false);
         Stop->setEnabled(true);
+        tm->start();
     }
 
 }
 
 inline void Walks2DOverlay::stopPushed() {
     thismemrw->terminate();
+    tm->stop();
     Run->setEnabled(true);
     Stop->setEnabled(false);
 }

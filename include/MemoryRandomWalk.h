@@ -114,11 +114,11 @@ inline void MemoryRandomWalk::generatePointsDiscrete(int divisor) {
 
 inline bool MemoryRandomWalk::pruneEdge(VEdge v, QPollarF actual) {
     double d = dist_Point_to_Segment(actual, v);
-//    double angle= 2 * M_PI / discPollarF.size();
-//    QPollarF a(1.0,angle);
-//    QPollarF b;
-//    b.rx()--;
-//    double dist = b.distQPollarF(a);
+    //    double angle= 2 * M_PI / discPollarF.size();
+    //    QPollarF a(1.0,angle);
+    //    QPollarF b;
+    //    b.rx()--;
+    //    double dist = b.distQPollarF(a);
     if (d <= 2) {
         return true;
     }
@@ -166,6 +166,7 @@ inline bool MemoryRandomWalk::recursiveSearch(QVector<QPollarF> & p, int i, int 
             PSet.addPollar(p[i]);
             *ai = ++i;
             emit point(p.data(), i, tm.elapsed() / 1000.0);
+            //            cout<<i<<" "<<tm.elapsed()/1000.0<<endl;
             if (!recursiveSearch(p, i, ai)) {
                 *ai = --i;
             } else {

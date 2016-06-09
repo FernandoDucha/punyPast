@@ -6,71 +6,72 @@
  */
 
 #ifndef RW2DFRACTALDIMENSION_H
-#define	RW2DFRACTALDIMENSION_H
+#define RW2DFRACTALDIMENSION_H
 #include "RWPollarDpIntervalBuilder.h"
+#include "VEdge.h"
 
 class RW2DFractalDimension {
 public:
-    RW2DFractalDimension(IRWItem<QPollarF>* irwp, double deltaX, double deltaY);
+    RW2DFractalDimension(IRWItem<QPollarF>* irwp, int minb, int maxb, double r);
     virtual ~RW2DFractalDimension();
+    void process();
+    void edgeprocess();
 private:
-    IRWIntervalBuilder<QPollarF> * rwpib;
+    int calculateBoxes(int minb, int maxb, double ratio);
     IRWItem<QPollarF> * item;
-    QPollarF max;
-    QPollarF min;
-    double dx, dy;
-    double * boxesX, *boxesY;
-    long nBoxesX, nBoxesY;
+    u_int32_t * boxes;
+    int maxBox, minBox;
+    u_int32_t nBoxes;
+    double ratio;
 };
 
-inline RW2DFractalDimension::RW2DFractalDimension(IRWItem<QPollarF>* irwp, double scaleX, double scaleY) {
-    rwpib = new RWPollarDpIntervalBuilder();
+inline int RW2DFractalDimension::calculateBoxes(int minb, int maxb, double ratio) {
+    int tBoxes = log10((double) maxb / minb) / log10(ratio) + 1.5;
+    boxes = new u_int32_t[tBoxes + 1];
+    long i = 1, j = 2, k = 0;
+    for (boxes[1] = minb; j <= tBoxes && boxes[j - 1] < maxb; i++)
+        if ((k = minb * pow(ratio, i) + 0.5) > boxes[j - 1])
+            boxes[j++] = k;
+    if (boxes[--j] > maxb) --j;
+    return (j);
+}
+
+inline RW2DFractalDimension::RW2DFractalDimension(IRWItem<QPollarF>* irwp, int minb, int maxb, double r) {
     item = irwp;
-    max = irwp->getMax();
-    min = irwp->getMin();
-    dx = scaleX;
-    dy = scaleY;
-
-    double maxBoxX = max.rx() - min.rx();
-    double maxBoxY = max.ry() - min.ry();
-    long i, j;
-    double k, k1;
-    long i1, j1;
-    do {
-        j = 2;
-        j1 = 2;
-        i = 1;
-        i1 = 1;
-        k = 0;
-        k1 = 0;
-        int tBoxesX = log10((double) maxBoxX) / log10(dx) + 1.5;
-        boxesX = new double[tBoxesX + 1];
-        for (boxesX[1] = 1; j <= tBoxesX && boxesX[j - 1] < maxBoxX; i++)
-            if ((k = pow(dx, i) + 0.5) > boxesX[j - 1])
-                boxesX[j++] = k;
-        if (boxesX[--j] > maxBoxX) --j;
-        int tBoxesY = log10((double) maxBoxY) / log10(dy) + 1.5;
-        boxesY = new double[tBoxesY + 1];
-        for (boxesY[1] = 1; j1 <= tBoxesY && boxesY[j1 - 1] < maxBoxY; i1++)
-            if ((k1 = pow(dy, i1) + 0.5) > boxesY[j1 - 1])
-                boxesY[j1++] = k1;
-        if (boxesY[--j1] > maxBoxY) --j1;
-        if (j != j1) {
-            if (j < j1) {
-                dx -= 0.01 * dx;
-            } else {
-                dy -= 0.01 * dy;
+    minBox = minb;
+    maxBox = maxb;
+    ratio =r;
+    nBoxes=calculateBoxes(minBox,maxBox,ratio);
+}
+inline void RW2DFractalDimension::process(){
+    for(int i=1;i<=nBoxes;i++){
+        QPollarF origin;
+        int count=0;
+        for(int j=0;j<item->getNpoints();j++){
+            QPollarF a = item->getElement(j);
+            if(origin.distQPollarF(a)<=boxes[i]){
+                count++;
             }
-            delete [] boxesX;
-            delete [] boxesY;
         }
-    } while (j != j1);
-    nBoxesX = j;
-    nBoxesY = j1;
+        cout<<boxes[i]<<" "<<count<<endl;
+    }
 }
-
+inline void RW2DFractalDimension::edgeprocess(){
+    for(int i=1;i<=nBoxes;i++){
+        QPollarF origin;
+        int count=0;
+        for(int j=0;j<item->getNpoints()-1;j++){
+            QPollarF a = item->getElement(j);
+            QPollarF b = item->getElement(j+1);
+            if(origin.distQPollarF(a)<=boxes[i]&&origin.distQPollarF(b)<=boxes[i]){
+                count++;
+            }
+        }
+        cout<<boxes[i]<<" "<<count<<endl;
+    }
+}
 inline RW2DFractalDimension::~RW2DFractalDimension() {
-    delete rwpib;
+    
 }
-#endif	/* RW2DFRACTALDIMENSION_H */
+#endif /* RW2DFRACTALDIMENSION_H */
 

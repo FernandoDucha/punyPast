@@ -5,7 +5,7 @@
  * Created on July 1, 2013, 11:52 AM
  */
 
-#include <QApplication>
+//#include <QApplication>
 #include <FileRawBuffer.h>
 #include <ProbabilityBase.h>
 #include <GraphUi.h>
@@ -65,8 +65,8 @@ int main(int argc, char *argv[]) {
     //    //        teste++;
     //    //    }
     //    rwbfm.resetManager();
-    QApplication app(argc, argv);
-    setlocale(LC_ALL, "C");
+    //    QApplication app(argc, argv);
+    //    setlocale(LC_ALL, "C");
 
 
     //    for (int i = 0; i < 18; i++) {
@@ -79,10 +79,26 @@ int main(int argc, char *argv[]) {
     //        destroy_die_teste(dtst_call, tst_call);
     //    }
     //
-    //    GSL_MST mst(123214);
-    //    
-    //    //    int a = 10000;
-    //    LCGBinaryRandomWalk lcgbrwk(&mst, 1000, 1000);
+    if (argc == 5) {
+        GSL_MST mst(QString(argv[5]).toULong());
+        LCGBinaryRandomWalk lcgbrwk(&mst, QString(argv[1]).toInt(), 1);
+        MemoryRandomWalk * mem = new MemoryRandomWalk(&lcgbrwk, QString(argv[1]).toInt(), QString(argv[2]).toInt());
+        mem->setTime(QString(argv[6]).toULong());
+        IRWItem<QPollarF> * d = mem->perform2DWalkNoCollision();
+        RW2DFractalDimension * fractal = new RW2DFractalDimension(d, 3, 10000, 1.4);
+        fractal->edgeprocess();
+    } else if (argc == 7) {
+        GSL_MST mst(QString(argv[5]).toULong());
+        LCGBinaryRandomWalk lcgbrwk(&mst, QString(argv[1]).toInt(), 1);
+        MemoryRandomWalk * mem = new MemoryRandomWalk(&lcgbrwk, QString(argv[1]).toInt(), QString(argv[2]).toInt());
+        mem->setTime(QString(argv[6]).toULong());
+        IRWItem<QPollarF> * d = mem->perform2DWalkNoCollision();
+        RW2DFractalDimension * fractal = new RW2DFractalDimension(d, QString(argv[3]).toInt(), QString(argv[4]).toInt(), 1.05);
+        fractal->edgeprocess();
+    }
+    exit(1);
+    //    IProbabilityBase<int, double> * prob = new ProbabilityBase(&lcgbrwk);
+
     //    IRWSet<double> * disp = lcgbrwk.multipleBrownianMotionDisplacement(0.75);
     //    IRWItem<double> * sum = disp->getElement(0);
     //    for(int i=1;i<disp->getSize();i++){
@@ -92,8 +108,7 @@ int main(int argc, char *argv[]) {
     //    sum->power(0.5);
     //    sum->print();
     //    FileRawBuffer frb("/media/fordem/My Passport/qrngdata",FileRawBuffer::NOTHING);
-    //    BinaryRandomWalk brwk(&frb,1000000,a);
-    //    IProbabilityBase<int, double> * prob = new ProbabilityBase(&lcgbrwk);
+    //    BinaryRandomWalk brwk(&frb, 1000000, a);
     //    //    IRWSet<QPollarF> * set = prob->getAll2DWalks();
     //    //    set->getElement(0)
     //    IRWSet<double> * set = prob->GetDatap();
@@ -195,9 +210,9 @@ int main(int argc, char *argv[]) {
     //    g.show();
 
     //Parte Importante início
-    //    GroupHistogramCalculation gh("/home/fordem/Dropbox/FernandoDoutorado/LibPython/GraphUtils/rng/res_arthur/", 3, 10000, 1.4);
-    //    gh.calculateDFAERFiles();
-    //    gh.exportOriginReturn("histogramtest.dat");
+    GroupHistogramCalculation gh("/home/fordem/Dropbox/FernandoDoutorado/LibPython/GraphUtils/simrng/res_arthur/", 3, 100000, 1.4);
+    gh.calculateDFABarabasiFiles();
+    gh.exportOriginReturn("histogramtest.dat");
 
     //    dfa.receiveData(er->data(), er->getNpoints(), 0, er->getNpoints());
     //    double * x = new double[dfa.getNBoxes() + 1];
@@ -209,12 +224,12 @@ int main(int argc, char *argv[]) {
     //    Y->print();
 
     //    cout<<t->getElement(0)->getMax()<<" "<<t->getElement(0)->getMin()<< " "<<t->getElement(0)->sum()<<endl;
-    GraphUi * g = new GraphUi();
+    //    GraphUi * g = new GraphUi();
     //    //    create and show your widgets here
-    g->showMaximized();
+    //    g->showMaximized();
 
     //    Tokenizer T;
     //    QList<QString>* res=T.Tokenize("x=123.123*abc123abc");
     //    qDebug()<<*res;
-    return app.exec();
+    //    return app.exec();
 }
